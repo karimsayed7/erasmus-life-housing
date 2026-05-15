@@ -12,7 +12,7 @@ const features = [
 ];
 
   return (
-    <div className='w-full' role="region" aria-labelledby="about-heading">
+    <section id='about' className='w-full' role="region" aria-labelledby="about-heading">
       <div className='max-w-[1580px] flex flex-col gap-20 lg:gap-0 lg:flex-row px-6 xl:px-20 py-20 mx-auto'>
         {/* image */}
         <div className='md:w-[45%] lg:mx-0 mx-auto'>
@@ -74,7 +74,7 @@ const features = [
             </div>
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 
