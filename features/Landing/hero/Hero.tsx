@@ -5,7 +5,7 @@ import CountUp from "react-countup";
 
 export default function Hero() {
   return (
-    <section className="relative pb-0 md:pb-20 py-20 overflow-hidden" aria-labelledby="hero-heading">
+    <section className="relative pb-0 md:pb-20 py-20 overflow-hidden" id="hero" aria-labelledby="hero-heading">
       {/* Background image | right side */}
       <div 
         className="absolute right-0 top-0 w-1/2 h-full hidden min-[996px]:block rounded-l-lg overflow-hidden z-0"
