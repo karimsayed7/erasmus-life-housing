@@ -1,11 +1,11 @@
 import React from 'react'
-import Header from './Header'
-import Hero from './hero/Hero'
-import About from './about/About'
-import Rooms from './rooms/Rooms'
-import Testimonias from './testimonials/Testimonias'
-import Process from './reservationProccess/Process'
-import Footer from '../Landing/footer/Footer'
+import Header from './components/Header/Header'
+import Hero from './components/Hero/Hero'
+import About from './components/About'
+import Rooms from './components/Rooms'
+import Testimonias from './components/Testimonias'
+import Process from './components/Process'
+import Footer from './components/Footer'
 
 function LandingPage() {
   return (
