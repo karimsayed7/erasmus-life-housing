@@ -1,0 +1,94 @@
+{
+  "Header": {
+    "goHome": "Go to Home Page",
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "about": "About",
+    "finestRooms": "Finest Rooms",
+    "testimonials": "Testimonials",
+    "process": "Process",
+    "rentRoom": "Rent a Room",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "account": "Account",
+    "applications": "Room Applications",
+    "favorites": "Compare Favorites",
+    "signOut": "Sign Out",
+    "toggleLocale": "Switch language to {locale}"
+  },
+  "Hero": {
+    "titlePrimary": "Find Your Future",
+    "titleSecondary": "Dream Accommodation",
+    "description": "Want to find an accommodation? We are ready to help you find one that suits your lifestyle and needs.",
+    "rooms": "Rooms",
+    "reservationsLine1": "Reservation/",
+    "reservationsLine2": "Semester",
+    "students": "Students"
+  },
+  "Search": {
+    "title": "Search for available rooms",
+    "locationLabel": "Select Location",
+    "locationPlaceholder": "Location",
+    "lisbon": "Lisbon",
+    "porto": "Porto",
+    "budgetLabel": "Budget",
+    "budgetPlaceholder": "Budget",
+    "checkInLabel": "Check-in Date",
+    "submit": "Search"
+  },
+  "About": {
+    "heading": "We Help Students Find Their Perfect Home",
+    "eyebrow": "About Us",
+    "paragraph1": "Erasmus Life Housing is your go-to hub for finding the perfect home for students, by students. Since 2013, our team has helped tons of students discover their ideal place. We have got a wide selection of student-friendly rooms, all built and managed just for you.",
+    "paragraph2Prefix": "Our ultimate goal is to make Lisbon the number one destination for ",
+    "paragraph2Strong": "International Students and Young Workers",
+    "paragraph2Suffix": ", and we surely do not want your experience finding accommodation to be a negative part of that journey!",
+    "featuresAria": "Service features",
+    "featureProfessionalTeam": "Professional Team",
+    "featureAlwaysInTouch": "Always in touch",
+    "featureVerifiedRooms": "Verified Rooms",
+    "featureFastBooking": "Fast and Secure Booking"
+  },
+  "Rooms": {
+    "heading": "Reserve the Finest Rooms",
+    "error": "Error loading rooms",
+    "noImage": "No image available",
+    "verified": "ELL Verified",
+    "currency": "EUR"
+  },
+  "Testimonials": {
+    "eyebrow": "Testimonials",
+    "heading": "That is what our clients say",
+    "emmaOpinion": "Finding a reliable place in a new city was my biggest worry. The booking process was incredibly smooth, and the room was exactly as shown in the photos. Highly recommended for any international student!",
+    "lucasOpinion": "The best part about this platform is the community aspect. I managed to book a shared apartment with amazing housemates. The support team was also very helpful with my contract questions.",
+    "matteoOpinion": "Super convenient and trustworthy. I liked how easy it was to filter by university proximity. It saved me so much time and effort compared to looking through local classifieds.",
+    "sofiaOpinion": "I was looking for a safe and quiet place to focus on my studies, and I found the perfect studio through this site. The verification process gave me peace of mind before I even arrived!"
+  },
+  "Process": {
+    "eyebrow": "Reservation Process",
+    "heading": "Fast, intuitive and absolutely safe!",
+    "ariaLabel": "Process stage indicator",
+    "stepsAria": "Reservation process steps",
+    "step": "Step {num}",
+    "pickTitle": "Pick a few places",
+    "pickDescription": "Explore hundreds of high-quality rooms, studios, and apartments. Save favorites and book it. Finding your dream home could not be easier!",
+    "acceptTitle": "Accepting a reservation",
+    "acceptDescription": "You will receive the acceptance of the reservation from the owner in just a couple of hours. You will not have to wait long for an answer.",
+    "paymentTitle": "Payment",
+    "paymentDescription": "After receiving a response, all you need to do is send the payment and you are almost at the finish line!",
+    "keysTitle": "Get your keys!",
+    "keysDescription": "Your accommodation is reserved. Get ready to move as soon as possible and check in on your chosen date."
+  },
+  "Footer": {
+    "tagline": "Find Your Dream Accommodation",
+    "navigation": "Navigation",
+    "resources": "Resources",
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "about": "About",
+    "finestRooms": "Finest Rooms",
+    "testimonials": "Testimonials",
+    "reservationProcess": "Reservation Process",
+    "copyright": "All rights reserved."
+  }
+}

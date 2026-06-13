@@ -1,0 +1,64 @@
+// features/auth/components/UserDropdown.tsx
+import Link from "next/link";
+import { ChevronDownIcon, UserIcon, FileTextIcon, HeartIcon, LogOutIcon } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { UserAvatar } from "../profile/UserAvatar";
+import type { UserProfile } from "../../hooks/profile/useAuthProfile";
+
+type Props = {
+  profile: UserProfile;
+  onLogout: () => void;
+};
+
+export function UserDropdown({ profile, onLogout }: Props) {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+  <button className="flex items-center justify-between gap-2.5 border border-gray-200 rounded-tl-xl rounded-tr-xl px-3 py-1.5 hover:border-gray-400 hover:shadow-sm transition-all cursor-pointer bg-white w-46">
+    <div className="flex items-center gap-2">
+      <UserAvatar profile={profile} size={30} />
+      <span className="text-[15px] font-medium text-gray-800 max-w-[120px] truncate">
+        {profile.name ?? profile.email}
+      </span>
+    </div>
+    <ChevronDownIcon className="w-4 h-4 text-gray-500 flex-shrink-0" />
+  </button>
+</DropdownMenuTrigger>
+<DropdownMenuContent align="center" className="w-45 z-30 rounded-tr-none rounded-tl-none -mt-1">
+  {/* <div className="flex items-center gap-3 px-2 py-2.5">
+    <UserAvatar profile={profile} size={36} />
+    <div className="flex flex-col min-w-0">
+      <span className="text-sm font-semibold text-gray-900 truncate">{profile.name}</span>
+      <span className="text-xs text-gray-500 truncate">{profile.email}</span>
+    </div>
+  </div> */}
+  {/* <DropdownMenuSeparator /> */}
+  <DropdownMenuItem asChild>
+    <Link href="/account" className="cursor-pointer gap-2">
+      <UserIcon className="w-4 h-4" /> Account
+    </Link>
+  </DropdownMenuItem>
+  <DropdownMenuItem asChild>
+    <Link href="/applications" className="cursor-pointer gap-2">
+      <FileTextIcon className="w-4 h-4" /> Room Applications
+    </Link>
+  </DropdownMenuItem>
+  <DropdownMenuItem asChild>
+    <Link href="/favorites" className="cursor-pointer gap-2">
+      <HeartIcon className="w-4 h-4" /> Compare Favorites
+    </Link>
+  </DropdownMenuItem>
+  <DropdownMenuSeparator />
+  <DropdownMenuItem variant="destructive" onClick={onLogout} className="cursor-pointer gap-2">
+    <LogOutIcon className="w-4 h-4" /> Sign Out
+  </DropdownMenuItem>
+</DropdownMenuContent>
+    </DropdownMenu>
+  );
+}

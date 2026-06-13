@@ -1,0 +1,94 @@
+{
+  "Header": {
+    "goHome": "Ir para a página inicial",
+    "home": "Início",
+    "dashboard": "Painel",
+    "about": "Sobre nós",
+    "finestRooms": "Melhores quartos",
+    "testimonials": "Testemunhos",
+    "process": "Processo",
+    "rentRoom": "Arrendar quarto",
+    "signIn": "Entrar",
+    "signUp": "Criar conta",
+    "account": "Conta",
+    "applications": "Candidaturas a quartos",
+    "favorites": "Comparar favoritos",
+    "signOut": "Sair",
+    "toggleLocale": "Mudar idioma para {locale}"
+  },
+  "Hero": {
+    "titlePrimary": "Encontre o seu futuro",
+    "titleSecondary": "Alojamento de sonho",
+    "description": "Quer encontrar alojamento? Estamos prontos para ajudar a encontrar uma opção que combine com o seu estilo de vida e as suas necessidades.",
+    "rooms": "Quartos",
+    "reservationsLine1": "Reservas/",
+    "reservationsLine2": "Semestre",
+    "students": "Estudantes"
+  },
+  "Search": {
+    "title": "Procurar quartos disponíveis",
+    "locationLabel": "Selecionar localização",
+    "locationPlaceholder": "Localização",
+    "lisbon": "Lisboa",
+    "porto": "Porto",
+    "budgetLabel": "Orçamento",
+    "budgetPlaceholder": "Orçamento",
+    "checkInLabel": "Data de entrada",
+    "submit": "Procurar"
+  },
+  "About": {
+    "heading": "Ajudamos estudantes a encontrar a casa perfeita",
+    "eyebrow": "Sobre nós",
+    "paragraph1": "A Erasmus Life Housing é o seu ponto de partida para encontrar a casa perfeita para estudantes, criada por estudantes. Desde 2013, a nossa equipa já ajudou muitos estudantes a descobrir o lugar ideal. Temos uma ampla seleção de quartos pensados para estudantes, todos preparados e geridos para si.",
+    "paragraph2Prefix": "O nosso principal objetivo é fazer de Lisboa o destino número um para ",
+    "paragraph2Strong": "estudantes internacionais e jovens trabalhadores",
+    "paragraph2Suffix": ", e não queremos que a procura de alojamento seja uma parte negativa dessa experiência!",
+    "featuresAria": "Características do serviço",
+    "featureProfessionalTeam": "Equipa profissional",
+    "featureAlwaysInTouch": "Sempre em contacto",
+    "featureVerifiedRooms": "Quartos verificados",
+    "featureFastBooking": "Reserva rápida e segura"
+  },
+  "Rooms": {
+    "heading": "Reserve os melhores quartos",
+    "error": "Erro ao carregar quartos",
+    "noImage": "Sem imagem disponível",
+    "verified": "Verificado pela ELL",
+    "currency": "EUR"
+  },
+  "Testimonials": {
+    "eyebrow": "Testemunhos",
+    "heading": "O que os nossos clientes dizem",
+    "emmaOpinion": "Encontrar um lugar fiável numa cidade nova era a minha maior preocupação. O processo de reserva foi muito simples e o quarto era exatamente como nas fotografias. Recomendo a qualquer estudante internacional!",
+    "lucasOpinion": "A melhor parte desta plataforma é o lado comunitário. Consegui reservar um apartamento partilhado com colegas incríveis. A equipa de apoio também foi muito prestável com as minhas dúvidas sobre o contrato.",
+    "matteoOpinion": "Muito prático e de confiança. Gostei de poder filtrar facilmente pela proximidade à universidade. Poupei imenso tempo em comparação com os anúncios locais.",
+    "sofiaOpinion": "Procurava um lugar seguro e tranquilo para me concentrar nos estudos, e encontrei o estúdio perfeito através deste site. O processo de verificação deu-me tranquilidade antes mesmo de chegar!"
+  },
+  "Process": {
+    "eyebrow": "Processo de reserva",
+    "heading": "Rápido, intuitivo e totalmente seguro!",
+    "ariaLabel": "Indicador da etapa do processo",
+    "stepsAria": "Etapas do processo de reserva",
+    "step": "Etapa {num}",
+    "pickTitle": "Escolha alguns espaços",
+    "pickDescription": "Explore centenas de quartos, estúdios e apartamentos de qualidade. Guarde favoritos e reserve. Encontrar a casa ideal nunca foi tão fácil!",
+    "acceptTitle": "Aceitação da reserva",
+    "acceptDescription": "Receberá a aceitação da reserva pelo proprietário em apenas algumas horas. Não terá de esperar muito por uma resposta.",
+    "paymentTitle": "Pagamento",
+    "paymentDescription": "Depois de receber a resposta, só precisa de enviar o pagamento e estará quase na meta!",
+    "keysTitle": "Receba as suas chaves!",
+    "keysDescription": "O seu alojamento está reservado. Prepare-se para mudar assim que possível e fazer o check-in na data escolhida."
+  },
+  "Footer": {
+    "tagline": "Encontre o seu alojamento de sonho",
+    "navigation": "Navegação",
+    "resources": "Contactos",
+    "home": "Início",
+    "dashboard": "Painel",
+    "about": "Sobre nós",
+    "finestRooms": "Melhores quartos",
+    "testimonials": "Testemunhos",
+    "reservationProcess": "Processo de reserva",
+    "copyright": "Todos os direitos reservados."
+  }
+}
