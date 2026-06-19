@@ -4,8 +4,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import useSignIn from '../hooks/use-sign-in';
+import { useTranslations } from "next-intl";
 
 function Sign_in() {
+  const t = useTranslations("SignIn");
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -30,8 +32,8 @@ function Sign_in() {
 
         <div className="flex-1 flex flex-col justify-center max-w-100 w-full mx-auto">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-semibold text-[#1e3a8a] tracking-tight mb-2">Sign in</h1>
-            <p className="text-gray-500 text-sm font-medium">Welcome back! Please enter your details.</p>
+            <h1 className="text-3xl font-semibold text-[#1e3a8a] tracking-tight mb-2">{t("title")}</h1>
+            <p className="text-gray-500 text-sm font-medium">{t("subtitle")}</p>
           </div>
 
           <form className="space-y-5" onSubmit={(e) => {
@@ -39,12 +41,12 @@ function Sign_in() {
           }}>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1.5" htmlFor="email">
-                Email
+                {t("email")}
               </label>
               <input
                 id="email"
                 type="email"
-                placeholder="Enter your email"
+                placeholder={t("emailPlaceholder")}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition text-sm text-gray-900 placeholder-gray-400"
@@ -54,7 +56,7 @@ function Sign_in() {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1.5" htmlFor="password">
-                Password
+                {t("password")}
               </label>
               <input
                 id="password"
@@ -80,10 +82,10 @@ function Sign_in() {
                   type="checkbox"
                   className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mr-2 cursor-pointer"
                 />
-                Remember for 30 days
+                {t("rememberMe")}
               </label>
               <Link href="/forgot_password" className="font-semibold text-[#1e3a8a] hover:text-[#172e6e] transition">
-                Forgot password?
+                {t("forgotPassword")}
               </Link>
             </div>
 
@@ -92,7 +94,7 @@ function Sign_in() {
               disabled={loading}
               className="w-full py-3 px-4 bg-[#224294] hover:bg-[#1b3576] active:bg-[#152a5e] text-white font-semibold rounded-lg shadow-sm transition duration-150 ease-in-out cursor-pointer text-sm disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              {loading ? 'Signing in...' : 'Sign in'}
+              {loading ? t("signingIn") : t("signIn")}
             </button>
 
             <div className="grid grid-cols-2 gap-4 pt-2">
@@ -102,7 +104,7 @@ function Sign_in() {
                 onClick={handleGoogleLogin}
               >
                 <Image src="/assets/google.png" alt="Google" width={30} height={20} className=" w-auto object-contain" />
-                <p className='text-blue-900'>continue with google</p>
+                <p className='text-blue-900'>{t("continueWithGoogle")}</p>
               </button>
               <button
                 type="button"
@@ -110,14 +112,16 @@ function Sign_in() {
                 disabled={loading}
                 className="flex items-center justify-center py-2.5 px-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition cursor-pointer disabled:opacity-60"
               >
-                <p>Continue as Demo Admin</p>
+                <p>
+                  {t("continueAsDemoAdmin")}
+                </p>
               </button>
             </div>
 
             <div className="text-center text-sm text-gray-600 pt-4">
-              Dont have an account?{' '}
+              {t("dontHaveAccount")}
               <Link href="/sign_up" className="font-semibold text-[#1e3a8a] hover:text-[#172e6e] transition">
-                Sign up
+                {t("signUp")}
               </Link>
             </div>
           </form>

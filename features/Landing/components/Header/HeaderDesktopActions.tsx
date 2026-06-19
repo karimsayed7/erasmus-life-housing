@@ -35,7 +35,9 @@ export function HeaderDesktopActions({ profile, isLoading, onLogout }: Props) {
         {nextLocaleLabel}
       </button>
       <button className="text-gray-800 border-2 border-gray-200 hover:bg-gray-100 hover:border-black transition-all px-5 py-2.5 rounded-tr-xl rounded-tl-xl font-bold cursor-pointer text-sm">
+        <Link href="/rooms">
         {t("rentRoom")}
+        </Link>
       </button>
 
       {isLoading ? (

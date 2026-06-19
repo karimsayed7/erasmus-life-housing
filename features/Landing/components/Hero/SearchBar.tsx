@@ -1,3 +1,4 @@
+"use client";
 import { SlidersHorizontal, Euro, ChevronDown } from "lucide-react";
 import { useTranslations } from "next-intl";
 import React from 'react'

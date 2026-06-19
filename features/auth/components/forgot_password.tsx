@@ -4,10 +4,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import useForgetPassword from '@/features/auth/hooks/use-forget-password';
+import { useTranslations } from "next-intl";
 
 function Forgot_password() {
   const [email, setEmail] = useState('');
   const { error, success, loading, handleResetPassword } = useForgetPassword();
+  const t = useTranslations("ForgotPassword");
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row w-full bg-white">
@@ -28,29 +30,29 @@ function Forgot_password() {
 
         <div className="flex-1 flex flex-col justify-center max-w-[400px] w-full mx-auto">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-semibold text-[#1e3a8a] tracking-tight mb-2">Reset password</h1>
-            <p className="text-gray-500 text-sm font-medium">Enter your email and well send you a password reset link.</p>
+            <h1 className="text-3xl font-semibold text-[#1e3a8a] tracking-tight mb-2">{t("title")}</h1>
+            <p className="text-gray-500 text-sm font-medium">{t("subtitle")}</p>
           </div>
 
           {success ? (
             <div className="text-center space-y-4">
               <div className="text-green-600 bg-green-50 border border-green-200 rounded-lg px-4 py-4 text-sm leading-relaxed">
-                ✅ Verification link sent! Please check your email (including spam/junk folder) to reset your password.
+                ✅ {t("successMessage")}
               </div>
               <Link href="/sign_in" className="inline-block text-sm font-semibold text-[#1e3a8a] hover:text-[#172e6e] transition">
-                ← Back to Sign in
+                {t("backToSignIn")}
               </Link>
             </div>
           ) : (
             <form className="space-y-5" onSubmit={(e) => {handleResetPassword(e,email)}}>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1.5" htmlFor="email">
-                  Email address
+                  {t("email")}
                 </label>
                 <input
                   id="email"
                   type="email"
-                  placeholder="Enter your email"
+                  placeholder={t("emailPlaceholder")}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition text-sm text-gray-900 placeholder-gray-400"
@@ -70,13 +72,13 @@ function Forgot_password() {
                 disabled={loading}
                 className="w-full py-3 px-4 bg-[#224294] hover:bg-[#1b3576] active:bg-[#152a5e] text-white font-semibold rounded-lg shadow-sm transition duration-150 ease-in-out cursor-pointer text-sm disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                {loading ? 'Sending link...' : 'Send reset link'}
+                {loading ? t("sendingLink") : t("sendResetLink")}
               </button>
 
               <div className="text-center text-sm text-gray-600 pt-4">
-                Remember your password?{' '}
+                {t("rememberPassword")}
                 <Link href="/sign_in" className="font-semibold text-[#1e3a8a] hover:text-[#172e6e] transition">
-                  Sign in
+                  {t("signIn")}
                 </Link>
               </div>
             </form>
