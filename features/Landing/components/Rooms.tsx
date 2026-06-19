@@ -10,8 +10,11 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { createSupabaseServerClient } from "@/lib/supabase/server-client";
+// import { useLocale } from "next-intl";
+import { getLocale } from "next-intl/server";
 
 export async function Rooms() {
+  const locale =await getLocale();
   const t = await getTranslations("Rooms");
   const supabase = await createSupabaseServerClient();
   const { data: rooms, error } = await supabase
@@ -33,7 +36,7 @@ export async function Rooms() {
               {room.images?.[0] ? (
                 <Image
                   src={room.images[0]}
-                  alt={room.title}
+                  alt={room.title[locale]}
                   fill
                   className="object-cover hover:scale-105 transition-transform duration-300 cursor-pointer"
                 />
@@ -46,13 +49,13 @@ export async function Rooms() {
 
             <CardHeader>
               <CardTitle className="flex justify-between items-center mb-5">
-                <p className="font-semibold line-clamp-1">{room.title}</p>
+                <p className="font-semibold line-clamp-1">{room.title[locale]}</p>
 
                 <Heart className="cursor-pointer flex shrink-0 hover:text-red-600" />
               </CardTitle>
 
               <CardDescription className="line-clamp-2">
-                <p className="text-gray-800">{room.description}</p>
+                <p className="text-gray-800">{room.description[locale]}</p>
               </CardDescription>
             </CardHeader>
 

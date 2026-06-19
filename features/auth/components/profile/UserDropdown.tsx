@@ -1,4 +1,5 @@
 // features/auth/components/UserDropdown.tsx
+"use client";
 import Link from "next/link";
 import { ChevronDownIcon, UserIcon, FileTextIcon, HeartIcon, LogOutIcon } from "lucide-react";
 import {
@@ -9,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { UserAvatar } from "../profile/UserAvatar";
+import { useTranslations } from 'next-intl';
 import type { UserProfile } from "../../hooks/profile/useAuthProfile";
 
 type Props = {
@@ -17,6 +19,8 @@ type Props = {
 };
 
 export function UserDropdown({ profile, onLogout }: Props) {
+    const t = useTranslations('Header');
+  
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -41,22 +45,22 @@ export function UserDropdown({ profile, onLogout }: Props) {
   {/* <DropdownMenuSeparator /> */}
   <DropdownMenuItem asChild>
     <Link href="/account" className="cursor-pointer gap-2">
-      <UserIcon className="w-4 h-4" /> Account
+      <UserIcon className="w-4 h-4" /> {t('account')}
     </Link>
   </DropdownMenuItem>
   <DropdownMenuItem asChild>
     <Link href="/applications" className="cursor-pointer gap-2">
-      <FileTextIcon className="w-4 h-4" /> Room Applications
+      <FileTextIcon className="w-4 h-4" /> {t('applications')}
     </Link>
   </DropdownMenuItem>
   <DropdownMenuItem asChild>
     <Link href="/favorites" className="cursor-pointer gap-2">
-      <HeartIcon className="w-4 h-4" /> Compare Favorites
+      <HeartIcon className="w-4 h-4" /> {t('favorites')}
     </Link>
   </DropdownMenuItem>
   <DropdownMenuSeparator />
   <DropdownMenuItem variant="destructive" onClick={onLogout} className="cursor-pointer gap-2">
-    <LogOutIcon className="w-4 h-4" /> Sign Out
+    <LogOutIcon className="w-4 h-4" /> {t('signOut')}
   </DropdownMenuItem>
 </DropdownMenuContent>
     </DropdownMenu>

@@ -90,5 +90,61 @@
     "testimonials": "Testemunhos",
     "reservationProcess": "Processo de reserva",
     "copyright": "Todos os direitos reservados."
+  },
+  "SignIn": {
+    "title": "Entrar",
+    "subtitle": "Bem-vindo de volta! Por favor, insira seus dados.",
+    "email": "E-mail",
+    "emailPlaceholder": "Digite seu e-mail",
+    "password": "Senha",
+    "rememberMe": "Lembrar por 30 dias",
+    "forgotPassword": "Esqueceu a senha?",
+    "signIn": "Entrar",
+    "signingIn": "Entrando...",
+    "continueWithGoogle": "Continuar com Google",
+    "continueAsDemoAdmin": "Continuar como Administrador Demo",
+    "dontHaveAccount": "Não tem uma conta?",
+    "signUp": "Criar conta"
+  },
+   "SignUp": {
+    "title": "Criar conta",
+    "subtitle": "Crie sua conta para começar.",
+    "name": "Nome",
+    "namePlaceholder": "Digite seu nome",
+    "email": "E-mail",
+    "emailPlaceholder": "Digite seu e-mail",
+    "phone": "Número de telefone",
+    "phonePlaceholder": "535 123 45 67",
+    "password": "Senha",
+    "agreeTerms": "Eu concordo com os Termos e Condições",
+    "signUp": "Criar conta",
+    "creatingAccount": "Criando conta...",
+    "alreadyHaveAccount": "Já tem uma conta?",
+    "signIn": "Entrar",
+    "successMessage": "Conta criada com sucesso! Verifique seu e-mail para confirmar sua conta.",
+    "goToSignIn": "Ir para Entrar →"
+  },
+  "ResetPassword": {
+    "title": "Definir nova senha",
+    "subtitle": "Por favor, insira sua nova senha abaixo.",
+    "newPassword": "Nova Senha",
+    "confirmPassword": "Confirmar Nova Senha",
+    "updatePassword": "Atualizar senha",
+    "updatingPassword": "Atualizando senha...",
+    "successMessage": "Senha atualizada com sucesso! Agora você pode entrar com sua nova senha.",
+    "goToSignIn": "Ir para Entrar"
+  },
+  "ForgotPassword": {
+    "title": "Redefinir senha",
+    "subtitle": "Digite seu e-mail e enviaremos um link para redefinir sua senha.",
+    "email": "Endereço de e-mail",
+    "emailPlaceholder": "Digite seu e-mail",
+    "sendResetLink": "Enviar link de redefinição",
+    "sendingLink": "Enviando link...",
+    "successMessage": "Link de verificação enviado! Verifique seu e-mail (incluindo a pasta de spam/lixo eletrônico) para redefinir sua senha.",
+    "backToSignIn": "← Voltar para Entrar",
+    "rememberPassword": "Lembrou sua senha?",
+    "signIn": "Entrar"
   }
+  
 }

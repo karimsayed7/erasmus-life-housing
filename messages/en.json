@@ -90,5 +90,61 @@
     "testimonials": "Testimonials",
     "reservationProcess": "Reservation Process",
     "copyright": "All rights reserved."
+  },
+  "SignIn": {
+    "title": "Sign in",
+    "subtitle": "Welcome back! Please enter your details.",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email",
+    "password": "Password",
+    "rememberMe": "Remember for 30 days",
+    "forgotPassword": "Forgot password?",
+    "signIn": "Sign in",
+    "signingIn": "Signing in...",
+    "continueWithGoogle": "Continue with Google",
+    "continueAsDemoAdmin": "Continue as Demo Admin",
+    "dontHaveAccount": "Don't have an account?",
+    "signUp": "Sign up"
+  },
+  "SignUp": {
+    "title": "Sign up",
+    "subtitle": "Create your account to get started.",
+    "name": "Name",
+    "namePlaceholder": "Enter your name",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email",
+    "phone": "Phone Number",
+    "phonePlaceholder": "535 123 45 67",
+    "password": "Password",
+    "agreeTerms": "I agree to the Terms & Conditions",
+    "signUp": "Sign up",
+    "creatingAccount": "Creating account...",
+    "alreadyHaveAccount": "Already have an account?",
+    "signIn": "Sign in",
+    "successMessage": "Account created! Check your email to confirm your account.",
+    "goToSignIn": "Go to Sign in →"
+  },
+   "ResetPassword": {
+    "title": "Set new password",
+    "subtitle": "Please enter your new password below.",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm New Password",
+    "updatePassword": "Update password",
+    "updatingPassword": "Updating password...",
+    "successMessage": "Password updated successfully! You can now log in with your new password.",
+    "goToSignIn": "Go to Sign in"
+  },
+  "ForgotPassword": {
+    "title": "Reset password",
+    "subtitle": "Enter your email and we'll send you a password reset link.",
+    "email": "Email address",
+    "emailPlaceholder": "Enter your email",
+    "sendResetLink": "Send reset link",
+    "sendingLink": "Sending link...",
+    "successMessage": "Verification link sent! Please check your email (including spam/junk folder) to reset your password.",
+    "backToSignIn": "← Back to Sign in",
+    "rememberPassword": "Remember your password?",
+    "signIn": "Sign in"
   }
+
 }

@@ -37,7 +37,6 @@ function Footer() {
           </h3>
           <ul className="space-y-3 text-[16px]">
             <li><a href="#hero" className="hover:underline hover:text-blue-200 block">Home</a></li>
-            <li><Link href="/dashboard" className="hover:underline hover:text-blue-200 block">Dashboard</Link></li>
             <li><a href="#about" className="hover:underline hover:text-blue-200 block">About</a></li>
             <li><a href="#rooms" className="hover:underline hover:text-blue-200 block">Finest Rooms</a></li>
             <li><a href="#testimonials" className="hover:underline hover:text-blue-200 block">Testimonials</a></li>
