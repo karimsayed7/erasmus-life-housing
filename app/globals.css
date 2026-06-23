@@ -127,7 +127,14 @@
     scroll-behavior: smooth;
   }
 }
+aside::-webkit-scrollbar {
+  display: none;
+}
 
+aside {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 @keyframes scroll {
   from {
     transform: translateX(0);

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import CountUp from "react-countup";
-import {SearchBar} from "./SearchBar";
+import { SearchBar } from "./SearchBar";
 import {useTranslations} from 'next-intl';
 
 export default function Hero() {

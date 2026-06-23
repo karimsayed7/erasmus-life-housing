@@ -28,14 +28,14 @@ async function Testimonias() {
 
   return (
     <section id="testimonials" className="text-center">
-      <p className="text-xl text-blue-800">{t("eyebrow")}</p>
-      <h1 className="text-2xl font-semibold pb-8 pt-3">{t("heading")}</h1>
+      <p className="text-2xl text-blue-800 mt-10">{t("eyebrow")}</p>
+      <h1 className="text-2xl font-semibold pb-20 pt-3">{t("heading")}</h1>
       <div className="overflow-hidden w-full">
         <div className="flex w-max animate-scroll gap-10">
           {[...cards, ...cards].map((card, index) => (
             <div
               key={index}
-              className="flex h-50 max-w-100 gap-4 p-5 pb-15 rounded-lg bg-blue-900 text-white text-md "
+              className="flex h-50 max-w-100 gap-4 p-5 pb-15 rounded-lg bg-blue-900 text-white text-lg "
             >
               <div className="overflow-hidden w-40">
                 <Image
@@ -47,7 +47,7 @@ async function Testimonias() {
                 />
               </div>
               <div>
-                <p className="font-semibold text-left mb-3">{card.name}</p>
+                <p className="font-semibold  text-left mb-3">{card.name}</p>
                 <p className="text-left text-sm">{card.opinion}</p>
               </div>
             </div>

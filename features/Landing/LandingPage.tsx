@@ -1,11 +1,11 @@
 import React from 'react'
-import Header from './components/Header/Header'
-import Hero from './components/Hero/Hero'
+import Header from '../../components/shared/Header/Header'
+import Hero from './components/Hero'
 import About from './components/About'
 import Rooms from './components/Rooms'
 import Testimonias from './components/Testimonias'
 import Process from './components/Process'
-import Footer from './components/Footer'
+import Footer from '../../components/shared/Footer'
 
 function LandingPage() {
   return (

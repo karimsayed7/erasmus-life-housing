@@ -29,14 +29,14 @@ async function Process() {
   return (
     <section
       id="proccess"
-      className="max-w-[1580px] mx-auto text-center mt-40 px-20"
+      className="max-w-[1580px] mx-auto text-center my-40  px-20"
       aria-labelledby="process-heading"
     >
-      <p className="text-xl text-blue-800" aria-label={t("ariaLabel")}>
+      <p className="text-2xl text-blue-800" aria-label={t("ariaLabel")}>
         {t("eyebrow")}
       </p>
 
-      <h1 id="process-heading" className="text-2xl font-semibold pb-8 pt-3">
+      <h1 id="process-heading" className="text-2xl font-semibold pb-20 pt-3">
         {t("heading")}
       </h1>
 

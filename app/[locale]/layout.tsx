@@ -5,6 +5,7 @@ import QueryProvider from "@/providers/query-provider";
 import {NextIntlClientProvider, hasLocale} from 'next-intl';
 import {notFound} from 'next/navigation';
 import {routing} from '@/i18n/routing';
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,8 +42,10 @@ export default async function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <QueryProvider>
-          <NextIntlClientProvider>
+        <NextIntlClientProvider>
+        <NuqsAdapter>
           {children}
+        </NuqsAdapter>
         </NextIntlClientProvider>
         </QueryProvider>
       </body>

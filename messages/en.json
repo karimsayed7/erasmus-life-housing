@@ -2,11 +2,8 @@
   "Header": {
     "goHome": "Go to Home Page",
     "home": "Home",
-    "dashboard": "Dashboard",
-    "about": "About",
-    "finestRooms": "Finest Rooms",
-    "testimonials": "Testimonials",
-    "process": "Process",
+    "dashboard": "Admin",
+    "about": "About Us",
     "rentRoom": "Rent a Room",
     "signIn": "Sign In",
     "signUp": "Sign Up",
