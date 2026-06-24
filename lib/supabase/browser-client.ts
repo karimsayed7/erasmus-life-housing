@@ -2,45 +2,46 @@
 
 import { createBrowserClient } from "@supabase/ssr";
 import type { SupabaseClient } from "@supabase/supabase-js";
+import { Database } from "@/features/types/database";
 
-type SupabaseSchema = {
-  public: {
-    Tables: {
-      profiles: {
-        Row: {
-          id: string;
-          name: string | null;
-          email: string | null;
-          photo: string | null;
-          role: "admin" | "user" | null;
-        };
-        Insert: {
-          id: string;
-          name?: string | null;
-          email?: string | null;
-          photo?: string | null;
-          role?: "admin" | "user" | null;
-        };
-        Update: {
-          id?: string;
-          name?: string | null;
-          email?: string | null;
-          photo?: string | null;
-          role?: "admin" | "user" | null;
-        };
-        Relationships: [];
-      };
-    };
-    Views: Record<string, never>;
-    Functions: Record<string, never>;
-    Enums: Record<string, never>;
-    CompositeTypes: Record<string, never>;
-  };
-};
+// type SupabaseSchema = {
+//   public: {
+//     Tables: {
+//       profiles: {
+//         Row: {
+//           id: string;
+//           name: string | null;
+//           email: string | null;
+//           photo: string | null;
+//           role: "admin" | "user" | null;
+//         };
+//         Insert: {
+//           id: string;
+//           name?: string | null;
+//           email?: string | null;
+//           photo?: string | null;
+//           role?: "admin" | "user" | null;
+//         };
+//         Update: {
+//           id?: string;
+//           name?: string | null;
+//           email?: string | null;
+//           photo?: string | null;
+//           role?: "admin" | "user" | null;
+//         };
+//         Relationships: [];
+//       };
+//     };
+//     Views: Record<string, never>;
+//     Functions: Record<string, never>;
+//     Enums: Record<string, never>;
+//     CompositeTypes: Record<string, never>;
+//   };
+// };
 
-let client: SupabaseClient<SupabaseSchema> | null = null;
+let client: SupabaseClient<Database> | null = null;
 
-export function getSupabaseBrowserClient(): SupabaseClient<SupabaseSchema> {
+export function getSupabaseBrowserClient(): SupabaseClient<Database> {
   if (client) {
     return client;
   }
@@ -54,6 +55,6 @@ export function getSupabaseBrowserClient(): SupabaseClient<SupabaseSchema> {
     );
   }
 
-  client = createBrowserClient<SupabaseSchema>(supabaseUrl, supabaseAnonKey);
+  client = createBrowserClient<Database>(supabaseUrl, supabaseAnonKey);
   return client;
 }

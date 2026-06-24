@@ -34,7 +34,7 @@ export function UserDropdown({ profile, onLogout }: Props) {
     <ChevronDownIcon className="w-4 h-4 text-gray-500 flex-shrink-0" />
   </button>
 </DropdownMenuTrigger>
-<DropdownMenuContent align="center" className="w-45 z-30 rounded-tr-none rounded-tl-none -mt-1">
+<DropdownMenuContent align="center" className="w-45 z-70 rounded-tr-none rounded-tl-none -mt-1">
   {/* <div className="flex items-center gap-3 px-2 py-2.5">
     <UserAvatar profile={profile} size={36} />
     <div className="flex flex-col min-w-0">
