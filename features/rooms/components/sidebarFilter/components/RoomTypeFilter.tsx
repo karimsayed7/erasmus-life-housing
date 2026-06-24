@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslations } from 'next-intl';
 
 interface RoomTypeFilterProps {
   roomTypes: string[];
@@ -8,9 +9,11 @@ interface RoomTypeFilterProps {
 const RoomTypeList = ["Studio", "Apartment", "Private Room"];
 
 export function RoomTypeFilter({ roomTypes, toggleRoomTypes }: RoomTypeFilterProps) {
+  const t = useTranslations('RentARoom');
+
   return (
     <div>
-      <h3 className='font-bold mb-3 text-[16px]'>Room Type</h3>
+      <h3 className='font-bold mb-3 text-[16px]'>{t('Filters.roomType')}</h3>
       {RoomTypeList.map((r, index) => (
         <div key={index} className='flex items-center gap-2 mb-2'>
           <input 
@@ -21,7 +24,9 @@ export function RoomTypeFilter({ roomTypes, toggleRoomTypes }: RoomTypeFilterPro
             checked={roomTypes.includes(r)}
             onChange={() => toggleRoomTypes(r)}
           />
-          <label className='text-md text-gray-500 cursor-pointer' htmlFor={r}>{r}</label>
+          <label className='text-md text-gray-500 cursor-pointer' htmlFor={r}>
+            {t(`RoomTypesList.${r}`)}
+          </label>
         </div>
       ))}
     </div>

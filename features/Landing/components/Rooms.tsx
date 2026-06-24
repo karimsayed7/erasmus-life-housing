@@ -12,16 +12,14 @@ import {
 } from "@/components/ui/card";
 import { getLocale } from "next-intl/server";
 import { createSupabaseServerClient } from "@/lib/supabase/server-client";
-// import { useLocale } from "next-intl";
+import { ScrollReveal } from "@/features/Landing/animations/ScrollReveal";
+import { StaggerReveal } from "@/features/Landing/animations/StaggerReveal";
 
 export async function Rooms() {
-  const locale =await getLocale();
+  const locale = await getLocale();
   const t = await getTranslations("Rooms");
   const supabase = await createSupabaseServerClient();
-  const { data: rooms, error } = await supabase
-    .from("rooms")
-    .select("*")
-    .limit(6);
+  const { data: rooms, error } = await supabase.from("rooms").select("*").limit(6);
 
   if (error) {
     return <h1>{t("error")}</h1>;
@@ -29,11 +27,17 @@ export async function Rooms() {
 
   return (
     <section id="rooms" className="px-6 md:px-12 lg:px-20 max-w-[1580px] mx-auto mt-10 mb-30">
-      <h1 className="mb-10 text-2xl font-bold">{t("heading")}</h1>
-      <div className="grid grid-cols-1 gap-12 lg:gap-18 sm:grid-cols-2 lg:grid-cols-3">
+      <ScrollReveal direction="up">
+        <h1 className="mb-10 text-2xl font-bold">{t("heading")}</h1>
+      </ScrollReveal>
+
+      <StaggerReveal
+        className="grid grid-cols-1 gap-12 lg:gap-18 sm:grid-cols-2 lg:grid-cols-3"
+        staggerDelay={0.1}
+      >
         {rooms.map((room) => (
           <Link key={room.id} href={`/rooms/${room.id}`}>
-            <Card className="overflow-hidden border-2 border-gray-300 pt-0 h-full hover:shadow-lg transition-shadow duration-300">
+            <Card className="overflow-hidden border-2 border-gray-300 pt-0 h-full hover:shadow-lg transition-shadow duration-300 hover:scale-[1.02] transition-transform">
               <div className="relative h-57 w-full bg-gray-100">
                 {room.images?.[0] ? (
                   <Image
@@ -52,7 +56,6 @@ export async function Rooms() {
               <CardHeader>
                 <CardTitle className="flex justify-between items-center mb-5">
                   <p className="font-semibold line-clamp-1">{room.title[locale]}</p>
-
                   <Heart className="cursor-pointer flex shrink-0 hover:text-red-600" />
                 </CardTitle>
 
@@ -74,7 +77,7 @@ export async function Rooms() {
             </Card>
           </Link>
         ))}
-      </div>
+      </StaggerReveal>
     </section>
   );
 }

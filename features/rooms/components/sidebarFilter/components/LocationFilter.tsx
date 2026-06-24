@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslations } from 'next-intl';
 
 interface LocationFilterProps {
   locations: string[];
@@ -8,9 +9,11 @@ interface LocationFilterProps {
 const locs = ["Porto", "Lisbon"];
 
 export function LocationFilter({ locations, toggleLocation }: LocationFilterProps) {
+  const t = useTranslations('RentARoom');
+
   return (
     <div>
-      <h3 className='font-bold mb-3 text-[16px]'>Location</h3>
+      <h3 className='font-bold mb-3 text-[16px]'>{t('Filters.location')}</h3>
       {locs.map((loc, index) => (
         <div key={index} className='flex items-center gap-2 mb-2'>
           <input 

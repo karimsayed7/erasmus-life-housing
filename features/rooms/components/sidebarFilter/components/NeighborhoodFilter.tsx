@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslations } from 'next-intl';
 
 interface NeighborhoodFilterProps {
   neighborhoods: string[];
@@ -8,9 +9,11 @@ interface NeighborhoodFilterProps {
 const neighborhoodList = ["Almada", "Anjos", "Amadora"]; 
 
 export function NeighborhoodFilter({ neighborhoods, toggleNeighborhoods }: NeighborhoodFilterProps) {
+  const t = useTranslations('RentARoom');
+
   return (
     <div>
-      <h3 className='font-bold my-2 mb-3 text-[16px]'>Neighborhood</h3>
+      <h3 className='font-bold my-2 mb-3 text-[16px]'>{t('Filters.neighborhood')}</h3>
       {neighborhoodList.map((n, index) => (
         <div key={index} className='flex items-center gap-2 mb-2'>
           <input 

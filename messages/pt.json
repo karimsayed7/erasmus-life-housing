@@ -30,7 +30,11 @@
     "porto": "Porto",
     "budgetLabel": "Orçamento",
     "budgetPlaceholder": "Orçamento",
-    "checkInLabel": "Data de entrada",
+    "roomtypeLabel": "Tipo de Quarto",
+    "roomtypePlaceholder": "Tipo de Quarto",
+    "apartment": "Apartamento",
+    "studio": "Estúdio",
+    "privateroom": "Quarto Privado",
     "submit": "Procurar"
   },
   "About": {
@@ -142,6 +146,36 @@
     "backToSignIn": "← Voltar para Entrar",
     "rememberPassword": "Lembrou sua senha?",
     "signIn": "Entrar"
+  },
+  "RentARoom": {
+    "Filters": {
+      "amenities": "Comodidades",
+      "budget": "Orçamento",
+      "dates": "Datas",
+      "location": "Localização",
+      "neighborhood": "Bairro",
+      "roomType": "Tipo de Quarto",
+      "min": "Mín",
+      "max": "Máx",
+      "from": "De",
+      "to": "Até",
+      "rooms":"Quartos",
+      "verified":"Verificado pela ELL",
+      "noImage":"Sem imagem disponível"
+    },
+    "AmenitiesList": {
+      "Heating": "Aquecimento",
+      "Dryer": "Secador",
+      "Air conditioning": "Ar condicionado",
+      "Washing Machine": "Máquina de lavar roupa",
+      "Dishwasher": "Máquina de lavar louça",
+      "Private bathroom": "Casa de banho privada"
+    },
+    "RoomTypesList": {
+      "Studio": "Estúdio",
+      "Apartment": "Apartamento",
+      "Private Room": "Quarto Privado"
+    }
   }
   
 }

@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getLocale } from "next-intl/server";
 import PaginationControls from '../roomsGrid/PaginationControls';
 import Link from "next/link";
+import RoomImage from "../roomsGrid/RoomImage"
 
 const PAGE_SIZE = 6;
 
@@ -18,7 +19,7 @@ type Props = {
 
 async function RoomsGrid({ rooms, page }: Props) {
   const locale = await getLocale();
-  const t = await getTranslations("Rooms");
+  const t = await getTranslations("RentARoom");
 
   const currentPage = Math.max(1, parseInt(page ?? '1', 10));
   const totalPages = Math.ceil(rooms.length / PAGE_SIZE);
@@ -27,25 +28,27 @@ async function RoomsGrid({ rooms, page }: Props) {
 
   return (
     <div>
-      <h1 className="my-5 text-lg font-bold">{rooms.length} Rooms</h1>
+      <h1 className="my-5 text-lg font-bold">{rooms.length} {t('Filters.rooms')}</h1>
+      
       <div className="grid grid-cols-1 gap-6 lg:gap-10 sm:grid-cols-2 lg:grid-cols-3 px-15">
         {paginatedRooms.map((room) => (
           <Link key={room.id} href={`/rooms/${room.id}`}>
-            <Card  className="overflow-hidden p-2 h-full hover:shadow-lg transition-shadow duration-300 cursor-pointer border border-gray-300 relative">
+            <Card className="overflow-hidden p-2 h-full hover:shadow-lg transition-shadow duration-300 cursor-pointer border border-gray-300 relative">
+              
               <div className="relative h-50 overflow-hidden rounded-lg bg-gray-100">
                 {room.images?.[0] ? (
-                  <Image
+                  <RoomImage
                     src={room.images[0]}
                     alt={getLocalized(room.title, locale)}
-                    fill
-                    className="object-cover"
+                    noImageText={t("Filters.noImage")}
                   />
                 ) : (
-                  <div className="h-full w-full flex items-center justify-center text-gray-500">
-                    {t("noImage")}
+                  <div className="h-full w-full flex items-center justify-center text-gray-500 text-sm font-medium">
+                    {t("Filters.noImage")}
                   </div>
                 )}
               </div>
+              
               <Heart size={30} className="absolute top-5 right-5 cursor-pointer shrink-0 text-white fill-black hover:fill-red-500 transition-colors"/>
             
               <CardHeader>
@@ -62,7 +65,7 @@ async function RoomsGrid({ rooms, page }: Props) {
                 <p className="text-gray-500 mb-2">{getLocalized(room.location, locale)}</p>
                 <div className="px-2 py-1 mb-2 mt-3 w-fit rounded-full flex items-center gap-2 bg-gray-200 text-white">
                   <BadgeCheck size={16} fill="#1e2939" />
-                  <p className="text-gray-800">{t("verified")}</p>
+                  <p className="text-gray-800">{t("Filters.verified")}</p>
                 </div>
               </CardContent>
             </Card>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslations } from 'next-intl';
 
 interface AmentitiesFilterProps {
   amenities: string[];
@@ -8,9 +9,11 @@ interface AmentitiesFilterProps {
 const amenitiesList = ["Heating", "Dryer", "Air conditioning", "Washing Machine", "Dishwasher", "Private bathroom"];
 
 export function AmentitiesFilter({ amenities, toggleAmenities }: AmentitiesFilterProps) {
+  const t = useTranslations('RentARoom');
+
   return (
     <div>
-      <h3 className='font-bold mb-3 text-[16px]'>Amenities</h3>
+      <h3 className='font-bold mb-3 text-[16px]'>{t('Filters.amenities')}</h3>
       {amenitiesList.map((a, index) => (
         <div key={index} className='flex items-center gap-2 mb-2'>
           <input 
@@ -21,7 +24,9 @@ export function AmentitiesFilter({ amenities, toggleAmenities }: AmentitiesFilte
             checked={amenities.includes(a)}
             onChange={() => toggleAmenities(a)}
           />
-          <label className='text-md text-gray-500 cursor-pointer' htmlFor={a}>{a}</label>
+          <label className='text-md text-gray-500 cursor-pointer' htmlFor={a}>
+            {t(`AmenitiesList.${a}`)}
+          </label>
         </div>
       ))}
     </div>

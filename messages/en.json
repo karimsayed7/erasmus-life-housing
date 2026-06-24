@@ -30,7 +30,11 @@
     "porto": "Porto",
     "budgetLabel": "Budget",
     "budgetPlaceholder": "Budget",
-    "checkInLabel": "Check-in Date",
+    "roomtypeLabel": "Room Type",
+    "roomtypePlaceholder": "Room Type",
+    "apartment": "Apartment",
+    "studio": "Studio",
+    "privateroom": "Private Room",
     "submit": "Search"
   },
   "About": {
@@ -142,6 +146,36 @@
     "backToSignIn": "← Back to Sign in",
     "rememberPassword": "Remember your password?",
     "signIn": "Sign in"
+  },
+  "RentARoom": {
+    "Filters": {
+      "amenities": "Amenities",
+      "budget": "Budget",
+      "dates": "Dates",
+      "location": "Location",
+      "neighborhood": "Neighborhood",
+      "roomType": "Room Type",
+      "min": "Min",
+      "max": "Max",
+      "from": "From",
+      "to": "To",
+      "rooms": "Rooms",
+      "verified":"ELL Verified",
+      "noImage":"No image available"
+    },
+    "AmenitiesList": {
+      "Heating": "Heating",
+      "Dryer": "Dryer",
+      "Air conditioning": "Air conditioning",
+      "Washing Machine": "Washing Machine",
+      "Dishwasher": "Dishwasher",
+      "Private bathroom": "Private bathroom"
+    },
+    "RoomTypesList": {
+      "Studio": "Studio",
+      "Apartment": "Apartment",
+      "Private Room": "Private Room"
+    }
   }
 
 }

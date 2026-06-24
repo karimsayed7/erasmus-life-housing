@@ -86,7 +86,8 @@ export default function Map({ rooms }: MapProps) {
       const marker = L.marker([room.lat, room.lng], { icon });
 
       const tooltipContent = `
-        <div class="p-2 w-55 rounded-lg"> <div class="overflow-hidden h-25 rounded-lg mb-3"> <img src="${room.images?.[0] ?? ""}" class="object-cover rounded-lg" /> </div> <h1 class="font-bold text-[14px] mb-2.5"> ${title?.[locale] ?? title?.en ?? ""} </h1> <div class="flex gap-3 justify-between "> <p class="text-gray-400 text-wrap"> ${location?.[locale] ?? location?.en ?? ""} </p> <p class="font-extrabold text-[16px]">${room.price}€</p> </div> </div>
+        <div class="p-2 w-55 rounded-lg">
+         <div class="overflow-hidden h-25 rounded-lg mb-3"> <img src="${room.images?.[0] ?? ""}" class="object-cover rounded-lg" /> </div> <h1 class="font-bold text-[14px] mb-2.5"> ${title?.[locale] ?? title?.en ?? ""} </h1> <div class="flex gap-3 justify-between "> <p class="text-gray-400 text-wrap"> ${location?.[locale] ?? location?.en ?? ""} </p> <p class="font-extrabold text-[16px]">${room.price}€</p> </div> </div>
       `;
 
       const getDirection = (point: L.Point, size: L.Point) => {

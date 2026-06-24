@@ -1,6 +1,7 @@
 import React from 'react';
 import { Range, getTrackBackground } from "react-range";
-import { useQueryState, parseAsArrayOf, parseAsInteger, parseAsString } from "nuqs";
+import { useQueryState, parseAsInteger } from "nuqs";
+import { useTranslations } from 'next-intl';
 
 interface BudgetFilterProps {
   minPrice: number;
@@ -13,8 +14,9 @@ const MIN = 100;
 const MAX = 1000;
 
 export function BudgetFilter({ minPrice, setMinPrice, maxPrice, setMaxPrice }: BudgetFilterProps) {
+  const t = useTranslations('RentARoom');
   const priceValues = [minPrice, maxPrice];
-  const sharedOptions = { shallow: false }
+  const sharedOptions = { shallow: false };
   const [, setPage] = useQueryState('page', parseAsInteger.withDefault(1).withOptions(sharedOptions));
 
   const handleRangeChange = (values: number[]) => {
@@ -25,12 +27,12 @@ export function BudgetFilter({ minPrice, setMinPrice, maxPrice, setMaxPrice }: B
 
   return (
     <div>
-      <h3 className='font-bold mt-3 mb-3 text-[16px]'>Budget</h3>
+      <h3 className='font-bold mt-3 mb-3 text-[16px]'>{t('Filters.budget')}</h3>
       <div className='flex gap-2 mb-3'>
         <input 
           type="number" 
           className='p-2 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-gray-500 border border-gray-400 w-25 rounded-lg' 
-          placeholder='Min'
+          placeholder={t('Filters.min')}
           value={minPrice}
           min={MIN}
           max={maxPrice}
@@ -39,7 +41,7 @@ export function BudgetFilter({ minPrice, setMinPrice, maxPrice, setMaxPrice }: B
         <input 
           type="number" 
           className='p-2 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-gray-500 border border-gray-400 w-25 rounded-lg' 
-          placeholder='Max'
+          placeholder={t('Filters.max')}
           value={maxPrice}
           min={minPrice}
           max={MAX}
@@ -87,14 +89,14 @@ export function BudgetFilter({ minPrice, setMinPrice, maxPrice, setMaxPrice }: B
             className="absolute top-3 p-1 border shadow-lg border-gray-500 rounded-lg text-sm -translate-x-1/2"
             style={{ left: `calc(${((minPrice - MIN) / (MAX - MIN)) * 100}% )` }}
           >
-            ${minPrice}
+            €{minPrice}
           </span>
 
           <span
             className="absolute top-3 p-1 border shadow-lg border-gray-500 rounded-lg text-sm -translate-x-1/2"
             style={{ left: `calc(${((maxPrice - MIN) / (MAX - MIN)) * 100}% )` }}
           >
-            ${maxPrice}
+            €{maxPrice}
           </span>
         </div>
       </div>
