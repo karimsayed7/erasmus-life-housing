@@ -176,6 +176,24 @@
       "Apartment": "Apartment",
       "Private Room": "Private Room"
     }
+  },
+  "roomPage": {
+    "availability": "Availability",
+    "availableFrom": "Available From",
+    "minimumStay": "Minimum Stay",
+    "maximumStay": "Maximum Stay",
+    "unlimited": "unlimited",
+    "calendarUpdated": "Calendar Updated",
+    "weeksAgo": "weeks ago",
+    "landlordRules": "Landlord Rules",
+    "facilities": "Facilities",
+    "description": "Description",
+    "month": "month",
+    "bookingRequest": "Booking Request",
+    "checkIn": "Check In",
+    "checkOut": "Check Out",
+    "checkBooking": "Check Booking",
+    "similarRooms": "Similar Rooms in Lisbon"
   }
 
 }

@@ -15,7 +15,7 @@ export default function RoomImage({ src, alt, noImageText }: Props) {
 
   if (error) {
     return (
-      <div className="h-full w-full flex items-center justify-center text-gray-500 text-sm font-medium">
+      <div className="h-full w-full flex items-center justify-center bg-gray-100 text-gray-500 text-sm font-medium">
         {noImageText}
       </div>
     )
@@ -26,7 +26,7 @@ export default function RoomImage({ src, alt, noImageText }: Props) {
       src={src}
       alt={alt}
       fill
-      className="object-cover"
+      className="object-cover "
       onError={() => setError(true)}
     />
   )

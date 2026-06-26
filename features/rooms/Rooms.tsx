@@ -1,6 +1,6 @@
 
 import SidebarFilters from './components/sidebarFilter/SidebarFilter'
-import MapClient from './components/map/MapClient'
+import MapClient from '@/components/shared/map/MapClient'
 import RoomsGrid from './components/roomsGrid/RoomsGrid'
 import { RoomSearchParams } from './types/room-search-params'
 import { getRooms } from './services/GetRooms'
