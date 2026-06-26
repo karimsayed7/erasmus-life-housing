@@ -2,7 +2,7 @@
 
 import { createBrowserClient } from "@supabase/ssr";
 import type { SupabaseClient } from "@supabase/supabase-js";
-import { Database } from "@/features/types/database";
+import { Database } from "@/types/database";
 
 // type SupabaseSchema = {
 //   public: {

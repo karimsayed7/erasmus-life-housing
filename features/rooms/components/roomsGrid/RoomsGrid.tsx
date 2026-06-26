@@ -1,14 +1,14 @@
 import React from 'react'
-import { Database } from '@/features/types/database'
+import { Database } from '@/types/database'
 import Image from "next/image";
 import { BadgeCheck, Heart } from "lucide-react";
 import { getTranslations } from "next-intl/server";
-import { getLocalized } from '../../../types/GetLocalized';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { getLocale } from "next-intl/server";
 import PaginationControls from '../roomsGrid/PaginationControls';
 import Link from "next/link";
-import RoomImage from "../roomsGrid/RoomImage"
+import { getLocale } from "next-intl/server";
+import { getLocalized } from '../../../../types/GetLocalized';
+import RoomImage from "../../../../components/shared/RoomCard/RoomImage"
 
 const PAGE_SIZE = 6;
 

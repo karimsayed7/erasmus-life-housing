@@ -1,5 +1,6 @@
 import React from 'react'
 import {createSupabaseServerClient} from "@/lib/supabase/server-client"
+import RoomPage from '@/features/roomPage/RoomPage';
 type Props = {
   params: Promise<{
     id: string;
@@ -19,7 +20,7 @@ async function page({ params }: Props) {
 
   return (
     <div>
-      {room.images}
+      <RoomPage room={room}/>
     </div>
   )
 }

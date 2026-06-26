@@ -1,0 +1,87 @@
+"use client";
+
+import { useState } from "react";
+import { useTranslations } from "next-intl";
+import Link from "next/link";
+
+function addOneMonth(date: Date): Date {
+  const d = new Date(date);
+  d.setMonth(d.getMonth() + 1);
+  return d;
+}
+
+function formatDateValue(date: Date): string {
+  return date.toISOString().split("T")[0];
+}
+interface Prop {
+  id: string
+}
+
+export default function BookRequest({id} : Prop) {
+  const t = useTranslations('roomPage');
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const [checkIn, setCheckIn] = useState<Date>(today);
+  const [checkOut, setCheckOut] = useState<Date>(addOneMonth(today));
+
+  const handleCheckInChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newCheckIn = new Date(e.target.value);
+    setCheckIn(newCheckIn);
+    setCheckOut(addOneMonth(newCheckIn));
+  };
+
+  const handleCheckOutChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCheckOut(new Date(e.target.value));
+  };
+
+  const minCheckOut = addOneMonth(checkIn);
+
+  return (
+    <div className="flex flex-col justify-between border h-125 border-gray-200 rounded-xl p-4 shadow-sm bg-white w-full">
+      <div>
+        {/* Header */}
+        <div className="mb-5">
+          <h2 className="text-lg font-semibold text-gray-900">{t('bookingRequest')}</h2>
+        </div>
+        
+        {/* Date Inputs */}
+        <div className="flex gap-3 mb-5">
+          {/* Check In */}
+          <div className="flex-1 border border-gray-200 rounded-lg p-3 hover:border-blue-400 transition-colors">
+            <p className="text-md text-gray-500 mb-2">{t('checkIn')}:</p>
+            <div>
+              <input
+                type="date"
+                min={formatDateValue(today)}       
+                value={formatDateValue(checkIn)}
+                onChange={handleCheckInChange}
+                className="text-md font-medium text-gray-800 border-none outline-none w-full bg-transparent cursor-pointer"
+              />
+            </div>
+          </div>
+        
+          {/* Check Out */}
+          <div className="flex-1 border border-gray-200 rounded-lg p-3 hover:border-blue-400 transition-colors">
+            <p className="text-md text-gray-500 mb-2">{t('checkOut')}:</p>
+            <div className="flex items-center gap-2">
+              <input
+                type="date"
+                min={formatDateValue(minCheckOut)} 
+                value={formatDateValue(checkOut)}
+                onChange={handleCheckOutChange}
+                className="text-md font-medium text-gray-800 border-none outline-none w-full bg-transparent cursor-pointer"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* CTA Button */}
+      <Link href={`/rooms/${id}/booking?checkIn=${formatDateValue(checkIn)}&checkOut=${formatDateValue(checkOut)}`} className="w-full bg-[#25409C] hover:bg-[#1e3380] cursor-pointer text-white text-center font-semibold py-3 rounded-lg transition-colors">
+        {t('checkBooking')}
+      </Link>
+    </div>
+  );
+}

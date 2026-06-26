@@ -2,6 +2,7 @@ import Image from "next/image";
 import { BadgeCheck, Heart } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import Link from "next/link";
+import RoomImage from "@/components/shared/RoomCard/RoomImage"
 
 import {
   Card,
@@ -18,6 +19,7 @@ import { StaggerReveal } from "@/features/Landing/animations/StaggerReveal";
 export async function Rooms() {
   const locale = await getLocale();
   const t = await getTranslations("Rooms");
+  const t2 = await getTranslations("RentARoom");
   const supabase = await createSupabaseServerClient();
   const { data: rooms, error } = await supabase.from("rooms").select("*").limit(6);
 
@@ -40,17 +42,16 @@ export async function Rooms() {
             <Card className="overflow-hidden border-2 border-gray-300 pt-0 h-full hover:shadow-lg transition-shadow duration-300 hover:scale-[1.02] transition-transform">
               <div className="relative h-57 w-full bg-gray-100">
                 {room.images?.[0] ? (
-                  <Image
-                    src={room.images[0]}
-                    alt={room.title[locale]}
-                    fill
-                    className="object-cover hover:scale-105 transition-transform duration-300 cursor-pointer"
-                  />
-                ) : (
-                  <div className="h-full w-full flex items-center justify-center text-gray-500">
-                    {t("noImage")}
-                  </div>
-                )}
+                                  <RoomImage
+                                    src={room.images[0]}
+                                    alt={room.title}
+                                    noImageText={t2("Filters.noImage")}
+                                  />
+                                ) : (
+                                  <div className="h-full w-full flex items-center justify-center text-gray-500 text-sm font-medium">
+                                    {t2("Filters.noImage")}
+                                  </div>
+                                )}
               </div>
 
               <CardHeader>

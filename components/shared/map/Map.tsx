@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { useLocale } from "next-intl";
-import { Database } from "@/features/types/database";
+import { Database } from "@/types/database";
 import { useRouter } from "next/navigation";
 
 type Room = Database["public"]["Tables"]["rooms"]["Row"];
@@ -107,7 +107,28 @@ export default function Map({ rooms }: MapProps) {
         router.push(`/${locale}/rooms/${room.id}`);
       });
 
-      marker.on("mouseover", () => {
+      if (rooms.length > 1) {
+        marker.on("mouseover", () => {
+          const point = map.latLngToContainerPoint(marker.getLatLng());
+          const size = map.getSize();
+          const { dir, offset } = getDirection(point, size);
+
+          marker.unbindTooltip();
+          marker.bindTooltip(tooltipContent, {
+            permanent: false,
+            direction: dir as L.Direction,
+            offset,
+            className: "erasmus-tooltip",
+          });
+
+          marker.openTooltip();
+        });
+
+        marker.on("mouseout", () => {
+          marker.closeTooltip();
+        });
+
+         marker.on("mouseover", () => {
         const point = map.latLngToContainerPoint(marker.getLatLng());
         const size = map.getSize();
 
@@ -124,6 +145,9 @@ export default function Map({ rooms }: MapProps) {
 
         marker.openTooltip();
       });
+      }
+
+     
 
       marker.on("mouseout", () => {
         marker.closeTooltip();
@@ -134,6 +158,9 @@ export default function Map({ rooms }: MapProps) {
 
     mapRef.current = map;
 
+    if (rooms.length === 1 && rooms[0].lat && rooms[0].lng) {
+  map.setView([rooms[0].lat, rooms[0].lng], 15);
+}
     return () => {
       map.remove();
       mapRef.current = null;

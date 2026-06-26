@@ -176,6 +176,24 @@
       "Apartment": "Apartamento",
       "Private Room": "Quarto Privado"
     }
+  },
+  "roomPage": {
+    "availability": "Disponibilidade",
+    "availableFrom": "Disponível a partir de",
+    "minimumStay": "Estadia Mínima",
+    "maximumStay": "Estadia Máxima",
+    "unlimited": "ilimitado",
+    "calendarUpdated": "Calendário Atualizado",
+    "weeksAgo": "semanas atrás",
+    "landlordRules": "Regras do Proprietário",
+    "facilities": "Comodidades",
+    "description": "Descrição",
+    "month": "mês",
+    "bookingRequest": "Pedido de Reserva",
+    "checkIn": "Check-in",
+    "checkOut": "Check-out",
+    "checkBooking": "Verificar Reserva",
+    "similarRooms": "Quartos Semelhantes em Lisboa"
   }
   
 }
