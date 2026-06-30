@@ -5,6 +5,7 @@ import {NextIntlClientProvider, hasLocale} from 'next-intl';
 import {notFound} from 'next/navigation';
 import {routing} from '@/i18n/routing';
 import { NuqsAdapter } from "nuqs/adapters/next/app";
+import { Toaster } from "@/components/ui/sonner" 
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -34,6 +35,7 @@ export default async function RootLayout({
         <NextIntlClientProvider>
         <NuqsAdapter>
           {children}
+          <Toaster position="top-center" richColors />
         </NuqsAdapter>
         </NextIntlClientProvider>
         </QueryProvider>

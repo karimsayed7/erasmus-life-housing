@@ -13,7 +13,7 @@ async function Rooms({ searchParams }: { searchParams: RoomSearchParams }) {
   return (
     <>
       <Header />
-      <div className="flex gap-4  mb-20">
+      <div className="flex gap-0 md:gap-4  mb-20">
         {/* Sidebar */}
         <SidebarFilters />        
       

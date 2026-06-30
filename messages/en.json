@@ -194,6 +194,95 @@
     "checkOut": "Check Out",
     "checkBooking": "Check Booking",
     "similarRooms": "Similar Rooms in Lisbon"
+  },
+  "bookingProcess": {
+    "toast": {
+      "authRequired": "Authentication required",
+      "authRequiredDesc": "You must be logged in to complete a booking.",
+      "verifyError": "Something went wrong.",
+      "verifyErrorDesc": "Could not verify room status. Please try again.",
+      "alreadyBooked": "Already booked!",
+      "alreadyBookedDesc": "You have already booked this room.",
+      "roomUnavailable": "Room unavailable",
+      "roomUnavailableDesc": "This room has already been booked by someone else.",
+      "confirming": "Confirming your booking...",
+      "confirmed": "Booking confirmed! 🎉",
+      "error": "Something went wrong. Please try again."
+    },
+    "contactInfo": {
+      "title": "1. Contact Information",
+      "sectionTitle": "Room Application Form",
+      "name": "Name",
+      "surname": "Surname",
+      "email": "Email",
+      "emailPlaceholder": "user@gmail.com",
+      "phone": "Phone Number",
+      "phonePlaceholder": "+1 (555) 000-0000",
+      "comingAloneQuestion": "Are you coming alone?",
+      "comingAloneYes": "Yes",
+      "comingAloneNo": "No",
+      "studyOrWorkQuestion": "Do you study or work?",
+      "studyOrWorkStudy": "Study",
+      "studyOrWorkWork": "Work",
+      "universityQuestion": "At which university do you study?",
+      "universityPlaceholder": "Select your university",
+      "universityList": {
+        "university-of-lisbon": "University of Lisbon",
+        "nova-university-lisbon": "NOVA University Lisbon",
+        "university-of-porto": "University of Porto",
+        "porto-polytechnic": "Polytechnic Institute of Porto"
+      },
+      "aboutYou": "Tell us about yourself (optional)",
+      "aboutYouPlaceholder": "Enter a description..."
+    },
+    "payment": {
+      "title": "2. Payment",
+      "creditCard": "Credit Card",
+      "cardTypes": "MasterCard, Visa, AmericanAmex",
+      "cardNumber": "Card Number",
+      "cardNumberPlaceholder": "Card Number",
+      "expiryDate": "Expiry Date",
+      "securityNumber": "Security Number",
+      "useDemoCard": "Use demo card"
+    },
+    "policies": {
+      "title": "3. Cancellation Policy",
+      "agreement1": "By selecting the button below, I agree to the Erasmus Life Housing rules, Booking and Refund rules.",
+      "agreement2Prefix": "I also agree to the ",
+      "termsOfService": "updated Terms of Service, Payments Terms of Service,",
+      "agreement2Middle": " and I acknowledge the ",
+      "privacyPolicy": "Privacy Policy.",
+      "confirmAndBook": "Confirm and Book",
+      "processing": "Processing...",
+      "validationError": "Please fill in all required fields before booking."
+    },
+    "roomCard": {
+      "priceDetails": "Price Details",
+      "checkIn": "Check in",
+      "checkOut": "Check out",
+      "monthly": "Monthly (for 1 person)",
+      "bills": "Bills (Gas, Media, Cleaning)",
+      "fee": "Fee",
+      "total": "Total",
+      "discountApplied": "{discount}% discount applied 🎉",
+      "addPromoCode": "Add Promo Code",
+      "promoPlaceholder": "3XP6NLKM4C",
+      "apply": "Apply",
+      "invalidPromo": "Invalid promo code",
+      "demoPromoCode": "Demo promo code:"
+    },
+    "validation": {
+      "name": "Name must be at least 2 characters",
+      "surname": "Surname must be at least 2 characters",
+      "email": "Please enter a valid email address",
+      "phone": "Please enter a valid phone number",
+      "alone": "Please select an option",
+      "occupation": "Please select an option",
+      "university": "Please select your university",
+      "about": "Tell us a bit more (at least 10 characters)",
+      "cardNumber": "Card number must contain exactly 16 digits",
+      "expiryDate": "Expiry date must be in MM/YY format",
+      "securityNumber": "CVV must contain exactly 3 digits"
+    }
   }
-
 }

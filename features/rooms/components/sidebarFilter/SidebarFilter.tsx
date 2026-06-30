@@ -67,11 +67,11 @@ function SidebarFilters() {
           scrollbar-hide
           
           xl:w-80
-          ${expanded ? "w-80" : "w-20"}
+          ${expanded ? "w-80" : "w-15 lg:w-20"}
         `}
       >
         {/* Mobile / Tablet Toggle */}
-        <div className="xl:hidden ml-2 pb-4 pt-0">
+        <div className="xl:hidden ml-0 md:ml-2 pb-4 pt-0">
           <Button
             size="icon"
             onClick={() => setExpanded((prev) => !prev)}
