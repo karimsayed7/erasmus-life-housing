@@ -10,6 +10,7 @@ import { getLocale } from "next-intl/server";
 import { getLocalized } from '../../../../types/GetLocalized';
 import RoomImage from "../../../../components/shared/RoomCard/RoomImage"
 
+
 const PAGE_SIZE = 6;
 
 type Props = {
@@ -30,7 +31,7 @@ async function RoomsGrid({ rooms, page }: Props) {
     <div>
       <h1 className="my-5 text-lg font-bold">{rooms.length} {t('Filters.rooms')}</h1>
       
-      <div className="grid grid-cols-1 gap-6 lg:gap-10 sm:grid-cols-2 lg:grid-cols-3 px-15">
+      <div className="grid grid-cols-1 gap-6 lg:gap-10 sm:grid-cols-2 lg:grid-cols-3 px-3 md:px-15">
         {paginatedRooms.map((room) => (
           <Link key={room.id} href={`/rooms/${room.id}`}>
             <Card className="overflow-hidden p-2 h-full hover:shadow-lg transition-shadow duration-300 cursor-pointer border border-gray-300 relative">

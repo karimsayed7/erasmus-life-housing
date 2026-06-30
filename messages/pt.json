@@ -194,6 +194,95 @@
     "checkOut": "Check-out",
     "checkBooking": "Verificar Reserva",
     "similarRooms": "Quartos Semelhantes em Lisboa"
+  },
+  "bookingProcess": {
+    "toast": {
+      "authRequired": "Autenticação necessária",
+      "authRequiredDesc": "Você deve estar logado para concluir uma reserva.",
+      "verifyError": "Algo deu errado.",
+      "verifyErrorDesc": "Não foi possível verificar o status do quarto. Por favor, tente novamente.",
+      "alreadyBooked": "Já reservado!",
+      "alreadyBookedDesc": "Você já reservou este quarto.",
+      "roomUnavailable": "Quarto indisponível",
+      "roomUnavailableDesc": "Este quarto já foi reservado por outra pessoa.",
+      "confirming": "Confirmando sua reserva...",
+      "confirmed": "Reserva confirmada! 🎉",
+      "error": "Algo deu errado. Por favor, tente novamente."
+    },
+    "contactInfo": {
+      "title": "1. Informações de Contacto",
+      "sectionTitle": "Formulário de Candidatura ao Quarto",
+      "name": "Nome",
+      "surname": "Apelido",
+      "email": "E-mail",
+      "emailPlaceholder": "utilizador@gmail.com",
+      "phone": "Número de Telefone",
+      "phonePlaceholder": "+351 (555) 000-0000",
+      "comingAloneQuestion": "Vem sozinho/a?",
+      "comingAloneYes": "Sim",
+      "comingAloneNo": "Não",
+      "studyOrWorkQuestion": "Estuda ou trabalha?",
+      "studyOrWorkStudy": "Estuda",
+      "studyOrWorkWork": "Trabalha",
+      "universityQuestion": "Em qual universidade estuda?",
+      "universityPlaceholder": "Selecione a sua universidade",
+      "universityList": {
+        "university-of-lisbon": "Universidade de Lisboa",
+        "nova-university-lisbon": "Universidade NOVA de Lisboa",
+        "university-of-porto": "Universidade do Porto",
+        "porto-polytechnic": "Instituto Politécnico do Porto"
+      },
+      "aboutYou": "Fale-nos sobre si (opcional)",
+      "aboutYouPlaceholder": "Introduza uma descrição..."
+    },
+    "payment": {
+      "title": "2. Pagamento",
+      "creditCard": "Cartão de Crédito",
+      "cardTypes": "MasterCard, Visa, AmericanAmex",
+      "cardNumber": "Número do Cartão",
+      "cardNumberPlaceholder": "Número do Cartão",
+      "expiryDate": "Data de Validade",
+      "securityNumber": "Código de Segurança",
+      "useDemoCard": "Usar cartão de demonstração"
+    },
+    "policies": {
+      "title": "3. Política de Cancelamento",
+      "agreement1": "Ao selecionar o botão abaixo, concordo com as regras da Erasmus Life Housing, e as regras de Reserva e Reembolso.",
+      "agreement2Prefix": "Também concordo com os ",
+      "termsOfService": "Termos de Serviço atualizados, Termos de Serviço de Pagamentos,",
+      "agreement2Middle": " e tomo conhecimento da ",
+      "privacyPolicy": "Política de Privacidade.",
+      "confirmAndBook": "Confirmar e Reservar",
+      "processing": "A processar...",
+      "validationError": "Por favor, preencha todos os campos obrigatórios antes de reservar."
+    },
+    "roomCard": {
+      "priceDetails": "Detalhes do Preço",
+      "checkIn": "Check-in",
+      "checkOut": "Check-out",
+      "monthly": "Mensal (para 1 pessoa)",
+      "bills": "Despesas (Gás, Média, Limpeza)",
+      "fee": "Taxa",
+      "total": "Total",
+      "discountApplied": "{discount}% de desconto aplicado 🎉",
+      "addPromoCode": "Adicionar Código Promocional",
+      "promoPlaceholder": "3XP6NLKM4C",
+      "apply": "Aplicar",
+      "invalidPromo": "Código promocional inválido",
+      "demoPromoCode": "Código promocional demo:"
+    },
+    "validation": {
+      "name": "O nome deve ter pelo menos 2 caracteres",
+      "surname": "O apelido deve ter pelo menos 2 caracteres",
+      "email": "Por favor, insira um endereço de e-mail válido",
+      "phone": "Por favor, insira um número de telefone válido",
+      "alone": "Por favor, selecione uma opção",
+      "occupation": "Por favor, selecione uma opção",
+      "university": "Por favor, selecione a sua universidade",
+      "about": "Fale-nos um pouco mais (pelo menos 10 caracteres)",
+      "cardNumber": "O número do cartão deve conter exatamente 16 dígitos",
+      "expiryDate": "A data de validade deve ser no formato MM/AA",
+      "securityNumber": "O código CVV deve conter exatamente 3 dígitos"
+    }
   }
-  
 }
