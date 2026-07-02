@@ -6,6 +6,7 @@ import { usePathname, useRouter } from "@/i18n/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { UserDropdown } from "@/features/auth/components/profile/UserDropdown";
 import type { UserProfile } from "@/features/auth/hooks/profile/useAuthProfile";
+import { useSearchParams } from "next/navigation";
 
 type Props = {
   profile: UserProfile | null;
@@ -20,14 +21,19 @@ export function HeaderDesktopActions({ profile, isLoading, onLogout }: Props) {
   const t = useTranslations("Header");
   const nextLocale = locale === "en" ? "pt" : "en";
   const nextLocaleLabel = nextLocale.toUpperCase();
+  const searchParams = useSearchParams();
 
-  const toggleLocale = () => {
-    router.replace(pathname, { locale: nextLocale });
-  };
-
+const toggleLocale = () => {
+  router.replace(
+    {
+      pathname,
+      query: Object.fromEntries(searchParams.entries()),
+    },
+    { locale: nextLocale }
+  );
+};
   return (
     <div className="hidden xl:flex gap-5 items-center">
-      {/* Language toggle — same style as the old Rent a Room button */}
       <button
         onClick={toggleLocale}
         aria-label={t("toggleLocale", { locale: nextLocaleLabel })}

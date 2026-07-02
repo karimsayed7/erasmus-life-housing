@@ -4,9 +4,6 @@ import path from "node:path";
 
 const withNextIntl = createNextIntlPlugin();
 
-// const nextConfig = {};
-
-
 const nextConfig: NextConfig = {
   turbopack: {
     root: path.resolve(__dirname),
@@ -18,9 +15,13 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "picsum.photos" },
       { protocol: "https", hostname: "example.com" },
       { protocol: "https", hostname: "lh3.googleusercontent.com" },
+      {
+        protocol: "https",
+        hostname: "kvlpcvsdjmqmsdnqlnqa.supabase.co",
+        pathname: "/storage/v1/object/public/**",
+      },
     ],
   },
 };
 
 export default withNextIntl(nextConfig);
-// export default nextConfig;

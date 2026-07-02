@@ -1,9 +1,14 @@
-// features/auth/components/UserAvatar.tsx
+
 import Image from "next/image";
-import type { UserProfile } from "../../hooks/profile/useAuthProfile";
+
+type AvatarProfile = {
+  name?: string | null;
+  email?: string | null;
+  photo?: string | null;
+};
 
 type Props = {
-  profile: UserProfile;
+  profile: AvatarProfile;
   size?: number;
 };
 

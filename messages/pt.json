@@ -284,5 +284,50 @@
       "expiryDate": "A data de validade deve ser no formato MM/AA",
       "securityNumber": "O código CVV deve conter exatamente 3 dígitos"
     }
+  },
+   "account": {
+    "basicInfo": {
+      "title": "Informações Básicas",
+      "firstName": "Primeiro nome",
+      "lastName": "Sobrenome",
+      "gender": "Género",
+      "email": "Email",
+      "phone_number": "Número de Telefone",
+      "nationality": "Nacionalidade",
+      "current_address": "Morada Atual",
+      "genderOptions": {
+        "male": "Masculino",
+        "female": "Feminino"
+      }
+    },
+    "requestMessage": {
+      "title": "Mensagem de Pedido de Reserva",
+      "bookingRequestMessage": "Mensagem de Pedido de Reserva"
+    },
+    "additionalDetails": {
+      "title": "Detalhes Adicionais",
+      "employment_status": "Estuda ou Trabalha?",
+      "where_you_study": "Onde Estuda?",
+      "funding_source": "Como Vai Financiar a Sua Estadia?",
+      "about_yourself": "Fale-nos Sobre Si",
+      "employmentOptions": {
+        "study": "Estudo",
+        "work": "Trabalho"
+      }
+    },
+    "personDetails": {
+      "uploadPhoto": "Carregar Nova Foto",
+      "uploading": "A carregar..."
+    },
+    "actions": {
+      "edit": "Editar",
+      "save": "Guardar",
+      "saving": "A guardar...",
+      "cancel": "Cancelar"
+    },
+    "toast": {
+      "saveError": "Ocorreu um erro ao guardar os dados",
+      "saveSuccess": "Guardado com sucesso"
+    }
   }
 }
