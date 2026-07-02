@@ -45,7 +45,7 @@ function useSignIn() {
     const supabase = getSupabaseBrowserClient();
     const { error } = await supabase.auth.signInWithPassword({
         email: 'admin@gmail.com',
-        password: '011500600', // ← ضع الـ password هنا
+        password: '011500600', 
     });
     if (error) {
         setError(error.message);

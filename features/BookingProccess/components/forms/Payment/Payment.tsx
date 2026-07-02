@@ -3,10 +3,10 @@
 import {FormProp} from "@/types/BookingProps"
 import { CircleCheck } from 'lucide-react';
 import Image from "next/image"
-import CardNumber from "./components/CardNumber"
-import ExpiryDate from "./components/ExpiryDate";
-import SecurityNumber from "./components/SecurityNumber";
-import UseDemoCard from "./components/UseDemoCard";
+import CardNumber from "./inputs/CardNumber"
+import ExpiryDate from "./inputs/ExpiryDate";
+import SecurityNumber from "./inputs/SecurityNumber";
+import UseDemoCard from "./inputs/UseDemoCard";
 import { useTranslations } from "next-intl";
 import {
   AccordionContent,

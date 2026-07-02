@@ -1,13 +1,8 @@
 "use client"
 
 import {FormProp} from "@/types/BookingProps"
-import Name_Surname from "./components/Name_Surname"
-import Email from "./components/Email"
-import Phone from "./components/Phone"
-import RadioAloneQ from "./components/RadioAloneQ"
-import RadioOccupatioeQ from "./components/RadioOccupatioeQ"
-import University from "./components/University"
-import AboutYou from "./components/AboutYou"
+import RadioAloneQ from "./radio_inputs/RadioAloneQ"
+import RadioOccupatioeQ from "./radio_inputs/RadioOccupatioeQ"
 import { useTranslations } from "next-intl"
 import {
   AccordionContent,
@@ -17,6 +12,9 @@ import {
 import {
   FieldGroup,
 } from "@/components/ui/field"
+import InputField from "@/components/shared/fields/InputField"
+import SelectField from "@/components/shared/fields/SelectField"
+import TextareaField from "@/components/shared/fields/TextareaField"
 
 export default function ContactInfos({ form }: FormProp) {
   const t = useTranslations("bookingProcess.contactInfo");
@@ -27,15 +25,18 @@ export default function ContactInfos({ form }: FormProp) {
             <AccordionContent>
               <FieldGroup>
                 <div  className="flex gap-5">
-                  <Name_Surname form={form}/>
+                  <InputField form={form} label="name" name="name" transilation="bookingProcess.contactInfo"/>
+                  <InputField form={form} label="surname" name="surname" transilation="bookingProcess.contactInfo"/>
                 </div>
-                <Email form={form}/>
-                <Phone form={form}/>
+                <InputField form={form} label="email" name="email" transilation="bookingProcess.contactInfo"/>
+                <InputField form={form} label="phone" name="phone" transilation="bookingProcess.contactInfo"/>
                 <h3 className="font-bold text-lg">{t("sectionTitle")}</h3>
                 <RadioAloneQ form={form}/>
                 <RadioOccupatioeQ form={form}/>
-                <University form={form}/>
-                <AboutYou form={form}/>
+                <SelectField form={form} label="universityQuestion" name="university" transilation="bookingProcess.contactInfo" arr={["university-of-lisbon","nova-university-lisbon", "university-of-porto" , "porto-polytechnic"]}/>
+                <div className="mb-4">
+                  <TextareaField form={form} label="aboutYou" name="about" transilation="bookingProcess.contactInfo"/>
+                </div>
               </FieldGroup>
             </AccordionContent>
         </AccordionItem>

@@ -47,7 +47,7 @@ export default function Polices({ form }: FormProp) {
           </Button>
           {hasErrors && (
             <p className="flex items-center justify-center gap-2 text-md text-red-500 text-center">
-              <span className="-mt-1">⚠️</span> {t("validationError")}
+               {t("validationError")}
             </p>
           )}
         </div>

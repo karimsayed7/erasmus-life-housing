@@ -284,5 +284,50 @@
       "expiryDate": "Expiry date must be in MM/YY format",
       "securityNumber": "CVV must contain exactly 3 digits"
     }
+  },
+  "account": {
+    "basicInfo": {
+      "title": "Basic Info",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "gender": "Gender",
+      "email": "Email",
+      "phone_number": "Phone Number",
+      "nationality": "Nationality",
+      "current_address": "Current Address",
+      "genderOptions": {
+        "male": "Male",
+        "female": "Female"
+      }
+    },
+    "requestMessage": {
+      "title": "Booking Request Message",
+      "bookingRequestMessage": "Booking Request Message"
+    },
+    "additionalDetails": {
+      "title": "Additional Details",
+      "employment_status": "Do you Study or Work?",
+      "where_you_study": "Where Are You Studying?",
+      "funding_source": "How Will You Fund Your Stay?",
+      "about_yourself": "Tell Us About Yourself",
+      "employmentOptions": {
+        "study": "Study",
+        "work": "Work"
+      }
+    },
+    "personDetails": {
+      "uploadPhoto": "Upload new Picture",
+      "uploading": "Uploading..."
+    },
+    "actions": {
+      "edit": "Edit",
+      "save": "Save",
+      "saving": "Saving...",
+      "cancel": "Cancel"
+    },
+    "toast": {
+      "saveError": "An error occurred while saving data",
+      "saveSuccess": "Saved successfully"
+    }
   }
 }

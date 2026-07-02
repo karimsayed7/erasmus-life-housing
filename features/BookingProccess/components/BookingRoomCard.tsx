@@ -1,9 +1,11 @@
 "use client"
 import React, { useState } from 'react'
 import { BookingRoomProcessProps } from "@/types/BookingProps";
-import RoomImage from "../../../../components/shared/RoomCard/RoomImage"
+// import RoomImage from "../../../../components/shared/RoomCard/RoomImage"
+import RoomImage from '@/components/shared/RoomCard/RoomImage';
 import { useLocale } from "next-intl";
-import { getLocalized } from '../../../../types/GetLocalized';
+// import { getLocalized } from '../../../../types/GetLocalized';
+import { getLocalized } from '@/types/GetLocalized';
 import { useTranslations } from "next-intl";
 import { MapPinPen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
