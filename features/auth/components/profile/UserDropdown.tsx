@@ -46,7 +46,7 @@ export function UserDropdown({ profile, onLogout }: Props) {
     </Link>
   </DropdownMenuItem>
   <DropdownMenuItem asChild>
-    <Link href="/favorites" className="cursor-pointer gap-2">
+    <Link href="/favourites" className="cursor-pointer gap-2">
       <HeartIcon className="w-4 h-4" /> {t('favorites')}
     </Link>
   </DropdownMenuItem>

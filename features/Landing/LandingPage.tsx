@@ -6,6 +6,7 @@ import Rooms from './components/Rooms'
 import Testimonias from './components/Testimonias'
 import Process from './components/Process'
 import Footer from '../../components/shared/Footer'
+import { FavoritesProvider } from "@/providers/FavoritesProvider";
 
 function LandingPage() {
   return (
@@ -13,7 +14,9 @@ function LandingPage() {
       <Header />
       <Hero />
       <About/>
-      <Rooms/>
+       <FavoritesProvider>
+        <Rooms/>
+       </FavoritesProvider>
       <Testimonias/>
       <Process/>
       <Footer/>

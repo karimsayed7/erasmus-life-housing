@@ -5,7 +5,7 @@ import RoomsGrid from './components/roomsGrid/RoomsGrid'
 import { RoomSearchParams } from './types/room-search-params'
 import { getRooms } from './services/GetRooms'
 import Header from '../../components/shared/Header/Header'
-
+import { FavoritesProvider } from "@/providers/FavoritesProvider";
 
 async function Rooms({ searchParams }: { searchParams: RoomSearchParams }) {
   const data = await getRooms(searchParams)
@@ -20,7 +20,9 @@ async function Rooms({ searchParams }: { searchParams: RoomSearchParams }) {
         {/* Main content */}
         <div className="flex flex-col pr-4 flex-1 z-20">
           <MapClient rooms={data} />
-          <RoomsGrid rooms={data} page={searchParams.page}/>
+          <FavoritesProvider>
+            <RoomsGrid rooms={data} page={searchParams.page}/>
+          </FavoritesProvider>
         </div>
       </div>
     </>
