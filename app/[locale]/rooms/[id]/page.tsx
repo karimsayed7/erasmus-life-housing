@@ -1,6 +1,7 @@
 import React from 'react'
 import {createSupabaseServerClient} from "@/lib/supabase/server-client"
 import RoomPage from '@/features/roomPage/RoomPage';
+import { FavoritesProvider } from "@/providers/FavoritesProvider";
 type Props = {
   params: Promise<{
     id: string;
@@ -20,7 +21,9 @@ async function page({ params }: Props) {
 
   return (
     <div>
-      <RoomPage room={room}/>
+      <FavoritesProvider>
+        <RoomPage room={room}/>
+      </FavoritesProvider>
     </div>
   )
 }

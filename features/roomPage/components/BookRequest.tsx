@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
+import { useFavorites } from "@/features/favourites/useFavorites";
+import { Heart } from "lucide-react";
 
 function addOneMonth(date: Date): Date {
   const d = new Date(date);
@@ -19,6 +21,7 @@ interface Prop {
 
 export default function BookRequest({id} : Prop) {
   const t = useTranslations('roomPage');
+  const { isFavorite, toggleFavorite } = useFavorites()
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
@@ -42,8 +45,19 @@ export default function BookRequest({id} : Prop) {
     <div className="flex flex-col justify-between border h-125 border-gray-200 rounded-xl p-4 shadow-sm bg-white w-full">
       <div>
         {/* Header */}
-        <div className="mb-5">
+        <div className="flex items-center justify-between mb-5">
           <h2 className="text-lg font-semibold text-gray-900">{t('bookingRequest')}</h2>
+          <button
+            onClick={(e) => {
+              e.preventDefault(); 
+              e.stopPropagation(); 
+              toggleFavorite(id);
+            }}
+          >
+            <Heart
+              className={`cursor-pointer flex shrink-0 hover:fill-red-500 ${isFavorite(id) ? "fill-red-500 text-red-500" : ""}`}
+            />
+          </button>
         </div>
         
         {/* Date Inputs */}

@@ -1,12 +1,13 @@
+"use client"
 import React from 'react'
 import { Database } from '@/types/database'
-import Image from "next/image";
+import { useFavorites } from "@/features/favourites/useFavorites";
 import { BadgeCheck, Heart } from "lucide-react";
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import PaginationControls from '../roomsGrid/PaginationControls';
 import Link from "next/link";
-import { getLocale } from "next-intl/server";
+import { useLocale } from "next-intl";
 import { getLocalized } from '../../../../types/GetLocalized';
 import RoomImage from "../../../../components/shared/RoomCard/RoomImage"
 
@@ -18,9 +19,10 @@ type Props = {
   page?: string;
 }
 
-async function RoomsGrid({ rooms, page }: Props) {
-  const locale = await getLocale();
-  const t = await getTranslations("RentARoom");
+ function RoomsGrid({ rooms, page }: Props) {
+  const locale = useLocale();
+  const t = useTranslations("RentARoom");
+  const { isFavorite, toggleFavorite } = useFavorites()
 
   const currentPage = Math.max(1, parseInt(page ?? '1', 10));
   const totalPages = Math.ceil(rooms.length / PAGE_SIZE);
@@ -50,7 +52,15 @@ async function RoomsGrid({ rooms, page }: Props) {
                 )}
               </div>
               
-              <Heart size={30} className="absolute top-5 right-5 cursor-pointer shrink-0 text-white fill-black hover:fill-red-500 transition-colors"/>
+              <button
+                    onClick={(e) => {
+                        e.preventDefault(); 
+                        e.stopPropagation(); 
+                        toggleFavorite(room.id);
+                    }}
+              >
+                <Heart size={30} className={`absolute top-5 right-5 cursor-pointer shrink-0 text-white fill-black hover:fill-red-500 ${isFavorite(room.id) ? "fill-red-500 text-red-500" : ""} transition-colors`}/>
+              </button>
             
               <CardHeader>
                 <CardTitle className="flex justify-between items-center -mb-1">
