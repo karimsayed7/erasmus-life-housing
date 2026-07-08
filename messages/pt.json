@@ -9,7 +9,7 @@
     "signUp": "Criar conta",
     "account": "Conta",
     "applications": "Candidaturas a quartos",
-    "favorites": "Comparar favoritos",
+    "favorites": "favoritos",
     "signOut": "Sair",
     "toggleLocale": "Mudar idioma para {locale}"
   },
@@ -329,5 +329,23 @@
       "saveError": "Ocorreu um erro ao guardar os dados",
       "saveSuccess": "Guardado com sucesso"
     }
-  }
+  },
+  "favourites and applications": {
+  "favourites": "Favoritos",
+  "room applications": "Solicitações de Quartos",
+  "no rooms yet": "Ainda Não Há Solicitações de Quartos",
+  "cancel": "Cancelar Solicitação",
+  "request": "solicitação",
+  "are you sure": "Tem certeza de que deseja excluir isto?",
+  "room": "Quarto",
+  "price": "Preço",
+  "location": "Localização",
+  "room type": "Tipo de Quarto",
+  "application date": "Data da Solicitação",
+  "more": "Mais",
+  "description": "Descrição:",
+  "tenants hosted": "Inquilinos Hospedados:",
+  "date from": "Data de Início:",
+  "date to": "Data de Término:"
+}
 }
