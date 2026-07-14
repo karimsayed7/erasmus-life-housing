@@ -193,7 +193,8 @@
     "checkIn": "Check In",
     "checkOut": "Check Out",
     "checkBooking": "Check Booking",
-    "similarRooms": "Similar Rooms in Lisbon"
+    "similarRooms": "Similar Rooms in Lisbon",
+    "room type": "Room Type"
   },
   "bookingProcess": {
     "toast": {
@@ -347,6 +348,36 @@
     "tenants hosted": "Tenants hosted:",
     "date from": "Date from:",
     "date to": "Date to:"
+  },
+  "Dsidebar": {
+    "Dashboard": "Dashboard",
+    "Property Management": "Property Management",
+    "Booking Requests": "Booking Requests"
+  },
+  "dashboard": {
+    "welcome back": "Welcome back",
+    "track": "Track, manage and forecast your properties",
+    "rooms": "Rooms",
+    "occupied": "Occupied Rooms",
+    "booked": "Booked",
+    "requests": "Booking Requests",
+    "pending": "Pending",
+    "add room": "Add Room",
+    "search": "Search",
+    "room": "Room",
+    "price": "Price",
+    "location": "Location",
+    "room type": "Room Type",
+    "date": "Date Puplished",
+    "status": "Status",
+    "tenants": "Tenants",
+    "approve confirmation": "Sure you want to approve this tenant ?",
+    "approve description": "All requests sent by others to the same room will be rejected",
+    "approve": "Approve",
+    "reject confirmation": "Sure you want to reject this tenant ?",
+    "reject description": "Request will be deleted",
+    "reject": "Reject",
+    "cancel": "Cancel"
   }
-  
+
 }

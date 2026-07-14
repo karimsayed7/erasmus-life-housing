@@ -17,12 +17,13 @@ type Props = {
 };
 
 export default function PaginationControls({ currentPage, totalPages }: Props) {
+  
   const [, setPage] = useQueryState(
     'page',
     parseAsInteger.withDefault(1).withOptions({ shallow: false })
   );
 
-  // بنحسب الـ page numbers اللي هتتعرض
+  
   const getPageNumbers = () => {
     if (totalPages <= 5) {
       return Array.from({ length: totalPages }, (_, i) => i + 1);
