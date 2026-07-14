@@ -5,7 +5,7 @@ import { useFavorites } from "@/features/favourites/useFavorites";
 import { BadgeCheck, Heart } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import PaginationControls from '../roomsGrid/PaginationControls';
+import PaginationControls from '../../../../components/shared/PaginationControls'
 import Link from "next/link";
 import { useLocale } from "next-intl";
 import { getLocalized } from '../../../../types/GetLocalized';
@@ -84,7 +84,7 @@ type Props = {
         ))}
       </div>
 
-      {/* ✅ Pagination */}
+      {/* Pagination */}
       {totalPages > 1 && (
         <PaginationControls currentPage={currentPage} totalPages={totalPages} />
       )}

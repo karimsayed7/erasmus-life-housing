@@ -24,8 +24,8 @@ export function useNavLinks(): NavLink[] {
       ? [
           {
             name: t("dashboard"),
-            href: "/dashboard",
-            active: pathname === "/dashboard",
+            href: "/admin",
+            active: pathname === "/admin" || pathname === "/admin/PropertyManagement" || pathname === "/admin/BookingRequests",
           },
         ]
       : []),

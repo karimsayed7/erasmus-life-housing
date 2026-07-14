@@ -8,4 +8,5 @@ export type RoomSearchParams = {
   minPrice?: string;
   maxPrice?: string;
   page?: string;
+  q?: string;
 };

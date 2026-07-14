@@ -4,7 +4,6 @@ import Header from "@/components/shared/Header/Header";
 import ContactInfos from "./components/forms/ContactInfo/ContactInfos";
 import Payment from "./components/forms/Payment/Payment";
 import Polices from "./components/forms/Polices/Polices";
-// import BookingRoomCard from "./components/BookingRoomCard/BookingRoomCard";
 import BookingRoomCard from "./components/BookingRoomCard";
 import { BookingProcessProps } from "@/types/BookingProps";
 import { Accordion } from "@/components/ui/accordion";
@@ -12,9 +11,11 @@ import { bookingSchema, getBookingSchema } from "../../schema/BookingSchema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { getSupabaseBrowserClient } from "@/lib/supabase/browser-client";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
+import { useTransition } from "react";
+// import { bookRoomAction } from "@/actions/bookRoom";
+import { bookRoomAction } from "./bookRoom";
 
 export default function BookingProccess({
   room,
@@ -22,6 +23,7 @@ export default function BookingProccess({
   checkOut,
 }: BookingProcessProps) {
   const t = useTranslations("bookingProcess");
+  const [isPending, startTransition] = useTransition();
 
   const form = useForm<z.infer<typeof bookingSchema>>({
     resolver: zodResolver(getBookingSchema(t)),
@@ -43,66 +45,28 @@ export default function BookingProccess({
     },
   });
 
-  async function onSubmit() {
-    const supabase = getSupabaseBrowserClient();
-
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-
-    if (authError || !user) {
-      toast.error(t("toast.authRequired"), {
-        description: t("toast.authRequiredDesc"),
+  function onSubmit() {
+    startTransition(async () => {
+      const toastId = toast.loading(t("toast.confirming"), {
         style: { minWidth: "360px" },
       });
-      return;
-    }
 
-    const { data: currentRoom, error: fetchError } = await supabase
-      .from("rooms")
-      .select("owner_id")
-      .eq("id", room.id)
-      .single();
+      const result = await bookRoomAction(room.id);
 
-    if (fetchError) {
-      toast.error(t("toast.verifyError"), {
-        description: t("toast.verifyErrorDesc"),
-        style: { minWidth: "360px" },
-      });
-      return;
-    }
-
-    if (currentRoom?.owner_id === user.id) {
-      toast.warning(t("toast.alreadyBooked"), {
-        description: t("toast.alreadyBookedDesc"),
-        style: { minWidth: "360px" },
-      });
-      return;
-    }
-
-    if (currentRoom?.owner_id !== null) {
-      toast.error(t("toast.roomUnavailable"), {
-        description: t("toast.roomUnavailableDesc"),
-        style: { minWidth: "360px" },
-      });
-      return;
-    }
-
-    toast.promise(
-      Promise.resolve(
-        supabase
-          .from("rooms")
-          .update({ owner_id: user.id })
-          .eq("id", room.id)
-          .then(({ error }) => {
-            if (error) throw error;
-          })
-      ),
-      {
-        loading: t("toast.confirming"),
-        success: t("toast.confirmed"),
-        error: (err) => err?.message ?? t("toast.error"),
-        style: { minWidth: "360px" },
+      if (!result.success) {
+        const messages: Record<string, { title: string; desc: string }> = {
+          AUTH_REQUIRED: { title: t("toast.authRequired"), desc: t("toast.authRequiredDesc") },
+          VERIFY_FAILED: { title: t("toast.verifyError"), desc: t("toast.verifyErrorDesc") },
+          ALREADY_BOOKED: { title: t("toast.alreadyBooked"), desc: t("toast.alreadyBookedDesc") },
+          ROOM_UNAVAILABLE: { title: t("toast.roomUnavailable"), desc: t("toast.roomUnavailableDesc") },
+        };
+        const msg = messages[result.error] ?? { title: t("toast.error"), desc: "" };
+        toast.error(msg.title, { id: toastId, description: msg.desc, style: { minWidth: "360px" } });
+        return;
       }
-    );
+
+      toast.success(t("toast.confirmed"), { id: toastId, style: { minWidth: "360px" } });
+    });
   }
 
   return (

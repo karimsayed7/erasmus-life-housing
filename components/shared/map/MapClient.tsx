@@ -13,11 +13,11 @@ const LeafletMap = dynamic(() => import('./Map'), {
 type Room = Database['public']['Tables']['rooms']['Row']
 
 type Props = {
-  rooms: Room | Room[]  // ← يقبل الاتنين
+  rooms: Room | Room[]  
 }
 
 function MapClient({ rooms }: Props) {
-  // ← حول لـ array دايمًا
+  
   const normalizedRooms = Array.isArray(rooms) ? rooms : [rooms]
   const validRooms = normalizedRooms.filter(Boolean)
 

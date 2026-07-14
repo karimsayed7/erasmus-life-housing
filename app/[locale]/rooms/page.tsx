@@ -1,6 +1,6 @@
 import React from 'react'
 import Rooms from '../../../features/rooms/Rooms'
-import { RoomSearchParams } from '../../../features/rooms/types/room-search-params';
+import { RoomSearchParams } from '../../../types/room-search-params';
 
 export default async function Page({
   searchParams,

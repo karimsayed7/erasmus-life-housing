@@ -193,7 +193,8 @@
     "checkIn": "Check-in",
     "checkOut": "Check-out",
     "checkBooking": "Verificar Reserva",
-    "similarRooms": "Quartos Semelhantes em Lisboa"
+    "similarRooms": "Quartos Semelhantes em Lisboa",
+    "room type": "Tipo de Quarto"
   },
   "bookingProcess": {
     "toast": {
@@ -347,5 +348,36 @@
   "tenants hosted": "Inquilinos Hospedados:",
   "date from": "Data de Início:",
   "date to": "Data de Término:"
-}
+},
+"Dsidebar": {
+  "Dashboard": "Painel de Controle",
+  "Property Management": "Gestão de Propriedades",
+  "Booking Requests": "Pedidos de Reserva"
+},
+  "dashboard": {
+    "welcome back": "Bem-vindo de volta",
+    "track": "Acompanhe, gerencie e preveja suas propriedades",
+    "rooms": "Quartos",
+    "occupied": "Quartos Ocupados",
+    "booked": "Reservados",
+    "requests": "Solicitações de Reserva",
+    "pending": "Pendentes",
+    "add room": "Adicionar Quarto",
+    "search": "Pesquisar",
+    "room": "Quarto",
+    "price": "Preço",
+    "location": "Localização",
+    "room type": "Tipo de Quarto",
+    "date": "Data de Publicação",
+    "status": "Status",
+    "tenants": "Inquilinos",
+    "approve confirmation": "Tem certeza de que deseja aprovar este inquilino?",
+    "approve description": "Todos os pedidos enviados por outras pessoas para o mesmo quarto serão rejeitados",
+    "approve": "Aprovar",
+    "reject confirmation": "Tem certeza de que deseja rejeitar este inquilino?",
+    "reject description": "O pedido será excluído",
+    "reject": "Rejeitar",
+    "cancel": "Cancelar"
+  }
+
 }

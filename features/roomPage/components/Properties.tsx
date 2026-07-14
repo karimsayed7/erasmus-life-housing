@@ -48,11 +48,18 @@ async function Properties({ room }: Props) {
         </p>
       </div>
 
+      {/* room type */}
+      <div className='my-3'>
+        <span className='text-lg font-semibold'>{t("room type")}:</span>
+        <span className='ml-2 text-md text-gray-500'>{getLocalized(room.room_type, locale)}</span>
+      </div>
+
       {/* location */}
       <div className='flex items-center gap-3 mb-1'>
         <MapPinPen fill='#1e2939' className='text-white' size={30}/>
         <p className='text-lg text-gray-500'>{getLocalized(room.title, locale)}</p>
       </div>
+
 
       {/* attributes */}
       <div className="flex items-center gap-3 flex-wrap mb-2">

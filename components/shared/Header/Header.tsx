@@ -9,15 +9,22 @@ import { useNavLinks } from "./useNavLinks";
 import { HeaderNav } from "./HeaderNav";
 import { HeaderDesktopActions } from "./HeaderDesktopActions";
 import { HeaderMobileMenu } from "./HeaderMobileMenu";
+import { cn } from "@/lib/utils";
+interface HProp {
+  className?: string
+}
 
-function Header() {
+function Header({className} : HProp) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const t = useTranslations("Header");
   const { profile, isLoading, handleLogout } = useAuthProfile();
   const navLinks = useNavLinks();
 
   return (
-    <header className="z-60 relative w-full bg-white border-b border-gray-100 ">
+    <header className={cn(
+        "relative z-[10000] w-full border-b border-gray-100 bg-white",
+        className
+      )}>
       <div className="flex justify-between px-6 md:px-10 items-center py-4 text-[#A7A7A7]">
         <Link href="/" aria-label={t("goHome")} className="shrink-0">
           <Image src="/icons/logo.svg" alt="Brand Logo" width={140} height={45} priority />

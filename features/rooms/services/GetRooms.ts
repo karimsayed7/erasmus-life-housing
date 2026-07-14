@@ -1,6 +1,6 @@
 
 import { createSupabaseServerClient } from '@/lib/supabase/server-client';
-import { RoomSearchParams } from '../types/room-search-params';
+import { RoomSearchParams } from '../../../types/room-search-params';
 
 export async function getRooms(params: RoomSearchParams) {
   const supabase = await createSupabaseServerClient();
