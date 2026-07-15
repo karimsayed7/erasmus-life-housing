@@ -378,6 +378,26 @@
     "reject description": "Request will be deleted",
     "reject": "Reject",
     "cancel": "Cancel"
+  },
+  "add edit room": {
+    "add room": "Add Room",
+    "upload photo": "Upload Room Photos",
+    "drag & drop": "Drag and Drop here",
+    "browse files": "Browse Files",
+    "price/per month": "Price/Per month",
+    "fees": "Fees",
+    "bills": "Bills",
+    "total": "Total",
+    "title": "Title",
+    "room type": "Room Type",
+    "location": "Location",
+    "lat": "Lat",
+    "lng": "Lng",
+    "description": "Description",
+    "bedrooms": "Bedrooms",
+    "bathrooms": "Bathrooms",
+    "size": "Size(m²)",
+    "facilities": "Facilities",
+"landlordRules": "Landlord Rules"
   }
-
 }

@@ -7,3 +7,4 @@ export type RoomsProp ={
 export type RoomProp ={
   room: Database['public']['Tables']['rooms']['Row'];
 }
+

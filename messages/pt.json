@@ -378,6 +378,27 @@
     "reject description": "O pedido será excluído",
     "reject": "Rejeitar",
     "cancel": "Cancelar"
-  }
+  },
+  "add edit room": {
+    "add room": "Adicionar Quarto",
+    "upload photo": "Enviar Fotos do Quarto",
+    "drag & drop": "Arraste e solte aqui",
+    "browse files": "Procurar Arquivos",
+    "price/per month": "Preço/Por mês",
+    "fees": "Taxas",
+    "bills": "Contas",
+    "total": "Total",
+    "title": "Título",
+    "room type": "Tipo de Quarto",
+    "location": "Localização",
+    "lat": "Lat",
+    "lng": "Lng",
+    "description": "Descrição",
+    "bedrooms": "Quartos",
+    "bathrooms": "Casas de banho",
+    "size": "Área (m²)",
+    "facilities": "Comodidades",
+"landlordRules": "Regras do Proprietário"
+}
 
 }
