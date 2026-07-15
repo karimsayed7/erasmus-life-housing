@@ -3,12 +3,12 @@
 import {FormProp} from "@/types/BookingProps"
 import RadioAloneQ from "./radio_inputs/RadioAloneQ"
 import RadioOccupatioeQ from "./radio_inputs/RadioOccupatioeQ"
-import { useTranslations } from "next-intl"
 import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
+import { useTranslations } from "next-intl"
 import {
   FieldGroup,
 } from "@/components/ui/field"

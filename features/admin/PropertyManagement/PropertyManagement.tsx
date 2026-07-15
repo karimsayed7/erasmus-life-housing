@@ -40,7 +40,7 @@ export default async function PropertyManagement({
   return (
     <div className='border-l-2'>
       <div className="p-8 flex gap-5 items-center justify-end">
-        <Link href={"#"} className='py-2 px-4 bg-blue-900 text-[15px] text-white rounded-lg cursor-pointer transition hover:shadow-lg'>
+        <Link href={"/addRoom"} className='py-2 px-4 bg-blue-900 text-[15px] text-white rounded-lg cursor-pointer transition hover:shadow-lg'>
           Add Room
         </Link>
         <RoomSearchBar />
