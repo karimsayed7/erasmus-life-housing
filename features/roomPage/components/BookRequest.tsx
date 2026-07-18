@@ -15,13 +15,16 @@ function addOneMonth(date: Date): Date {
 function formatDateValue(date: Date): string {
   return date.toISOString().split("T")[0];
 }
+
 interface Prop {
-  id: string
+  id: string;
+  isLoggedIn: boolean;
+  approvalStatusEn: string; // room.approval_status.en
 }
 
-export default function BookRequest({id} : Prop) {
+export default function BookRequest({ id, isLoggedIn, approvalStatusEn }: Prop) {
   const t = useTranslations('roomPage');
-  const { isFavorite, toggleFavorite } = useFavorites()
+  const { isFavorite, toggleFavorite } = useFavorites();
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
@@ -41,6 +44,11 @@ export default function BookRequest({id} : Prop) {
 
   const minCheckOut = addOneMonth(checkIn);
 
+  const isBooked = approvalStatusEn === "approved";
+  const isDisabled = !isLoggedIn || isBooked;
+
+  const buttonLabel = isBooked ? t('booked') : t('checkBooking');
+
   return (
     <div className="flex flex-col justify-between border h-125 border-gray-200 rounded-xl p-4 shadow-sm bg-white w-full">
       <div>
@@ -49,8 +57,8 @@ export default function BookRequest({id} : Prop) {
           <h2 className="text-lg font-semibold text-gray-900">{t('bookingRequest')}</h2>
           <button
             onClick={(e) => {
-              e.preventDefault(); 
-              e.stopPropagation(); 
+              e.preventDefault();
+              e.stopPropagation();
               toggleFavorite(id);
             }}
           >
@@ -59,7 +67,7 @@ export default function BookRequest({id} : Prop) {
             />
           </button>
         </div>
-        
+
         {/* Date Inputs */}
         <div className="flex gap-3 mb-5">
           {/* Check In */}
@@ -68,24 +76,26 @@ export default function BookRequest({id} : Prop) {
             <div>
               <input
                 type="date"
-                min={formatDateValue(today)}       
+                min={formatDateValue(today)}
                 value={formatDateValue(checkIn)}
                 onChange={handleCheckInChange}
-                className="text-md font-medium text-gray-800 border-none outline-none w-full bg-transparent cursor-pointer"
+                disabled={isDisabled}
+                className="text-md font-medium text-gray-800 border-none outline-none w-full bg-transparent cursor-pointer disabled:cursor-not-allowed disabled:opacity-60"
               />
             </div>
           </div>
-        
+
           {/* Check Out */}
           <div className="flex-1 border border-gray-200 rounded-lg p-3 hover:border-blue-400 transition-colors">
             <p className="text-md text-gray-500 mb-2">{t('checkOut')}:</p>
             <div className="flex items-center gap-2">
               <input
                 type="date"
-                min={formatDateValue(minCheckOut)} 
+                min={formatDateValue(minCheckOut)}
                 value={formatDateValue(checkOut)}
                 onChange={handleCheckOutChange}
-                className="text-md font-medium text-gray-800 border-none outline-none w-full bg-transparent cursor-pointer"
+                disabled={isDisabled}
+                className="text-md font-medium text-gray-800 border-none outline-none w-full bg-transparent cursor-pointer disabled:cursor-not-allowed disabled:opacity-60"
               />
             </div>
           </div>
@@ -93,9 +103,21 @@ export default function BookRequest({id} : Prop) {
       </div>
 
       {/* CTA Button */}
-      <Link href={`/rooms/${id}/booking?checkIn=${formatDateValue(checkIn)}&checkOut=${formatDateValue(checkOut)}`} className="w-full bg-[#25409C] hover:bg-[#1e3380] cursor-pointer text-white text-center font-semibold py-3 rounded-lg transition-colors">
-        {t('checkBooking')}
-      </Link>
+      {isDisabled ? (
+        <span
+          aria-disabled="true"
+          className="w-full bg-gray-300 cursor-not-allowed text-gray-600 text-center font-semibold py-3 rounded-lg"
+        >
+          {buttonLabel}
+        </span>
+      ) : (
+        <Link
+          href={`/rooms/${id}/booking?checkIn=${formatDateValue(checkIn)}&checkOut=${formatDateValue(checkOut)}`}
+          className="w-full bg-[#25409C] hover:bg-[#1e3380] cursor-pointer text-white text-center font-semibold py-3 rounded-lg transition-colors"
+        >
+          {buttonLabel}
+        </Link>
+      )}
     </div>
   );
 }

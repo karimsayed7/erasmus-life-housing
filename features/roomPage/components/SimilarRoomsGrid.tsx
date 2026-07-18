@@ -1,11 +1,6 @@
-import React from 'react'
-import { getLocale } from "next-intl/server";
+
 import { createSupabaseServerClient } from "@/lib/supabase/server-client";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { getTranslations } from "next-intl/server";
-import Link from 'next/link';
-import RoomImage from '@/components/shared/RoomCard/RoomImage';
-import RoomPage from '../RoomPage';
 import RoomCard from '@/components/shared/RoomCard/RoomCard';
 
 interface Props {
@@ -15,7 +10,7 @@ interface Props {
 
 export default async function SimilarRoomsGrid({ city, currentRoomId }: Props) {
   const supabase = await createSupabaseServerClient();
-  const { data: rooms } = await supabase.from("rooms").select("*").eq("city->>en", city).neq("id", currentRoomId).limit(4);
+  const { data: rooms } = await supabase.from("rooms").select("*").eq("city->>en", city).neq("id", currentRoomId).eq('is_hidden', false).limit(4);
   const roomsList = rooms ?? [];
   const tRoomPage = await getTranslations("roomPage");
 

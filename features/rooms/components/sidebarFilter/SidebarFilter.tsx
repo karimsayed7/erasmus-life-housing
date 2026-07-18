@@ -53,19 +53,18 @@ function SidebarFilters() {
           sticky top-0
           pt-8
           pl-4
-          h-screen
           border-r
           border-gray-200
           bg-white
-          overflow-y-auto
           transition-all
           duration-300
           shrink-0
           z-50
-          h-screen
+          h-full
           overflow-y-auto
           scrollbar-hide
-          
+          mr-2
+          lg:mr-10
           xl:w-80
           ${expanded ? "w-80" : "w-15 lg:w-20"}
         `}

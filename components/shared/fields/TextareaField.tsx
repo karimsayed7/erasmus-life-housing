@@ -27,7 +27,6 @@ export default function TextareaField<TFieldValues extends FieldValues = FieldVa
               {...field}
               id={`rhf-${name}`}
               aria-invalid={fieldState.invalid}
-              placeholder="Enter a Description"
               className="min-h-[200px]"
               readOnly={!isEditing}
             />

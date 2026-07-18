@@ -1,32 +1,39 @@
 "use client";
 
-import Image from 'next/image';
-import Link from 'next/link';
-import { useState } from 'react';
-import useSignIn from '../hooks/use-sign-in';
+import Image from "next/image";
+import Link from "next/link";
+import { useMemo } from "react";
+import { useForm, Controller } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import useSignIn from "../hooks/use-sign-in";
 import { useTranslations } from "next-intl";
+import { createSignInSchema, SignInFormData } from "@/schema/AuthSchema";
+import InputField from "@/components/shared/fields/InputField";
+import PasswordField from "@/components/shared/fields/PasswordField";
 
 function Sign_in() {
   const t = useTranslations("SignIn");
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const tValidation = useTranslations("Validation");
+  const { handleDemoAdmin, handleGoogleLogin, handleSignIn, error, loading } = useSignIn();
 
-  const {handleDemoAdmin, handleGoogleLogin, handleSignIn, error, loading} = useSignIn();
+  const signInSchema = useMemo(() => createSignInSchema(tValidation), [tValidation]);
+
+  const form = useForm<SignInFormData>({
+    resolver: zodResolver(signInSchema),
+    defaultValues: { email: "", password: "", rememberMe: false },
+    mode: "onTouched",
+  });
+
+  const onSubmit = (data: SignInFormData) => {
+    handleSignIn(data.email, data.password);
+  };
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row w-full bg-white">
-      {/* Left side: Hero Image */}
       <div className="hidden md:block md:w-1/2 relative min-h-screen">
-        <Image
-          src="/assets/sign in.png"
-          alt="Erasmus Life Housing"
-          fill
-          preload
-          className="object-cover"
-        />
+        <Image src="/assets/sign in.png" alt="Erasmus Life Housing" fill className="object-cover" />
       </div>
 
-      {/* Right side: Sign In Form */}
       <div className="w-full md:w-1/2 flex flex-col justify-between min-h-screen p-4 md:p-6 lg:p-8 xl:p-10 bg-white">
         <div className="hidden md:block h-8" />
 
@@ -36,40 +43,10 @@ function Sign_in() {
             <p className="text-gray-500 text-sm font-medium">{t("subtitle")}</p>
           </div>
 
-          <form className="space-y-5" onSubmit={(e) => {
-            handleSignIn(e,email, password);
-          }}>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5" htmlFor="email">
-                {t("email")}
-              </label>
-              <input
-                id="email"
-                type="email"
-                placeholder={t("emailPlaceholder")}
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition text-sm text-gray-900 placeholder-gray-400"
-                required
-              />
-            </div>
+          <form className="space-y-5" onSubmit={form.handleSubmit(onSubmit)}>
+            <InputField form={form} name="email" label="email" transilation="SignIn" />
+            <PasswordField form={form} name="password" label="password" transilation="SignIn" />
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5" htmlFor="password">
-                {t("password")}
-              </label>
-              <input
-                id="password"
-                type="password"
-                placeholder="••••••••"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition text-sm text-gray-900 placeholder-gray-400"
-                required
-              />
-            </div>
-
-            {/* Error message */}
             {error && (
               <p className="text-sm text-red-500 bg-red-50 border border-red-200 rounded-lg px-4 py-2">
                 {error}
@@ -78,9 +55,17 @@ function Sign_in() {
 
             <div className="flex items-center justify-between text-xs sm:text-sm">
               <label className="flex items-center text-gray-600 cursor-pointer select-none">
-                <input
-                  type="checkbox"
-                  className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mr-2 cursor-pointer"
+                <Controller
+                  name="rememberMe"
+                  control={form.control}
+                  render={({ field }) => (
+                    <input
+                      type="checkbox"
+                      checked={field.value}
+                      onChange={field.onChange}
+                      className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mr-2 cursor-pointer"
+                    />
+                  )}
                 />
                 {t("rememberMe")}
               </label>
@@ -103,8 +88,8 @@ function Sign_in() {
                 className="flex items-center justify-center py-2.5 px-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition cursor-pointer"
                 onClick={handleGoogleLogin}
               >
-                <Image src="/assets/google.png" alt="Google" width={30} height={20} className=" w-auto object-contain" />
-                <p className='text-blue-900'>{t("continueWithGoogle")}</p>
+                <Image src="/assets/google.png" alt="Google" width={30} height={20} className="w-auto object-contain" />
+                <p className="text-blue-900">{t("continueWithGoogle")}</p>
               </button>
               <button
                 type="button"
@@ -112,9 +97,7 @@ function Sign_in() {
                 disabled={loading}
                 className="flex items-center justify-center py-2.5 px-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition cursor-pointer disabled:opacity-60"
               >
-                <p>
-                  {t("continueAsDemoAdmin")}
-                </p>
+                <p>{t("continueAsDemoAdmin")}</p>
               </button>
             </div>
 
@@ -127,9 +110,7 @@ function Sign_in() {
           </form>
         </div>
 
-        <div className="text-center text-xs text-gray-400 pt-8">
-          © ErasmusLifeHousing
-        </div>
+        <div className="text-center text-xs text-gray-400 pt-8">© ErasmusLifeHousing</div>
       </div>
     </div>
   );

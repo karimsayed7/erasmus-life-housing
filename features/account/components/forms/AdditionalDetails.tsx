@@ -10,7 +10,7 @@ export default function AdditionalDetails({ form, isEditing }: FormProp) {
   const t = useTranslations('account.additionalDetails')
 
   return (
-    <div className='space-y-5 mt-5'>
+    <div className='space-y-5 mt-15'>
       <h1 className='font-extrabold text-[18px]'>{t('title')}</h1>
       <SelectField form={form} isEditing={isEditing} label='employment_status' name='employment_status' arr={['study', 'work']} transilation='account.additionalDetails'/>
       <InputField form={form} isEditing={isEditing} label='where_you_study' name='where_you_study' transilation='account.additionalDetails'/>

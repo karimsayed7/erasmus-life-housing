@@ -8,7 +8,7 @@ import { StaggerReveal } from "@/features/Landing/animations/StaggerReveal";
 export async function Rooms() {
   const t = await getTranslations("Rooms");
   const supabase = await createSupabaseServerClient();
-  const { data: rooms, error } = await supabase.from("rooms").select("*").limit(6);
+  const { data: rooms, error } = await supabase.from("rooms").select("*").eq('is_hidden', false).limit(6);
 
   
   if (error) {

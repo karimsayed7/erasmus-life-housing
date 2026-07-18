@@ -8,7 +8,7 @@ const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp"]
 const facilityKeys = FACILITIES_OPTIONS.map((o) => o.key) as [string, ...string[]]
 const landlordRuleKeys = LANDLORD_RULES_OPTIONS.map((o) => o.key) as [string, ...string[]]
 
-const baseRoomFields = {
+export const baseRoomFields = {
   title: z.string().min(5, { error: "Title must be at least 5 characters" }).max(100, { error: "Title is too long" }),
   roomType: z.enum(["Studio", "Apartment", "Private Room"], { error: "Please select a room type" }),
   description: z.string().min(20, { error: "Description must be at least 20 characters" }).max(2000, { error: "Description is too long" }),
@@ -28,7 +28,7 @@ const baseRoomFields = {
   landlordRules: z.array(z.enum(landlordRuleKeys)), // no .default() — input/output types must match for zodResolver + useForm<T>
 }
 
-const totalMatchesSum = (data: { price: number; fees: number; bills: number; total: number }) =>
+export const totalMatchesSum = (data: { price: number; fees: number; bills: number; total: number }) =>
   data.total === data.price + data.fees + data.bills
 
 export const addRoomSchema = z
@@ -49,7 +49,6 @@ export const addRoomSchema = z
 export type AddRoomFormValues = z.infer<typeof addRoomSchema>
 export type AddRoomProp = { form: UseFormReturn<AddRoomFormValues> }
 
-
 export const createRoomSchema = z
   .object({
     imageUrls: z.array(z.string().url()).min(1).max(4),
@@ -58,3 +57,6 @@ export const createRoomSchema = z
   .refine(totalMatchesSum, { message: "Total must equal the sum of price, fee, and bills", path: ["total"] })
 
 export type CreateRoomInput = z.infer<typeof createRoomSchema>
+
+export type RoomSharedFields = Omit<AddRoomFormValues, "images">
+export { MAX_FILE_SIZE, ACCEPTED_IMAGE_TYPES }

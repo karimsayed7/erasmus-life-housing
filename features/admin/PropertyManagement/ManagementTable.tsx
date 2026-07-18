@@ -14,8 +14,9 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import PaginationControls from "@/components/shared/PaginationControls";
-import { deleteRoom } from "../action";
+import { deleteRoom } from "./action";
 import RoomImage from "@/components/shared/RoomCard/RoomImage";
+import Link from "next/link";
 
 type Props = {
   rooms: Database["public"]["Tables"]["rooms"]["Row"][];
@@ -115,9 +116,12 @@ export default function ManagementTable({ rooms, error, currentPage, totalPages 
                   >
                     <Trash2 size={20} />
                   </button>
+                  
+                <Link href={`/editRoom?id=${room.id}`}>
                   <button type="button" aria-label={"edit"} className="cursor-pointer">
                     <Pencil size={20} />
                   </button>
+                </Link>
                 </div>
               </TableCell>
             </TableRow>

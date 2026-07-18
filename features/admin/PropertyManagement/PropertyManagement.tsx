@@ -1,6 +1,6 @@
 import React from 'react'
 import { RoomSearchParams } from '@/types/room-search-params'
-import ManagementTable from './components/ManagementTable'
+import ManagementTable from './ManagementTable'
 import RoomSearchBar from '../../../components/shared/RoomSearchBar'
 import { createSupabaseServerClient } from '@/lib/supabase/server-client'
 import Link from 'next/link'

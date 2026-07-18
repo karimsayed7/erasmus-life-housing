@@ -13,12 +13,12 @@ async function Rooms({ searchParams }: { searchParams: RoomSearchParams }) {
   return (
     <>
       <Header />
-      <div className="flex gap-0 md:gap-4  mb-20">
+      <div className="flex gap-0 md:gap-4">
         {/* Sidebar */}
         <SidebarFilters />        
       
         {/* Main content */}
-        <div className="flex flex-col pr-4 flex-1 z-20">
+        <div className="flex flex-col pr-4 flex-1 z-20 pb-20">
           <MapClient rooms={data} />
           <FavoritesProvider>
             <RoomsGrid rooms={data} page={searchParams.page}/>

@@ -147,6 +147,17 @@
     "rememberPassword": "Lembrou sua senha?",
     "signIn": "Entrar"
   },
+  "Validation": {
+  "emailRequired": "O email é obrigatório",
+  "emailInvalid": "Introduza um endereço de email válido",
+  "nameRequired": "O nome deve ter pelo menos 2 caracteres",
+  "phoneInvalid": "Introduza um número de telefone válido",
+  "passwordRequired": "A palavra-passe é obrigatória",
+  "passwordMinLength": "A palavra-passe deve ter pelo menos 8 caracteres",
+  "mustAgreeTerms": "Deve concordar com os Termos e Condições",
+  "confirmPasswordRequired": "Confirme a sua palavra-passe",
+  "passwordsDontMatch": "As palavras-passe não coincidem"
+},
   "RentARoom": {
     "Filters": {
       "amenities": "Comodidades",
@@ -194,7 +205,8 @@
     "checkOut": "Check-out",
     "checkBooking": "Verificar Reserva",
     "similarRooms": "Quartos Semelhantes em Lisboa",
-    "room type": "Tipo de Quarto"
+    "room type": "Tipo de Quarto",
+    "booked":"Reservados"
   },
   "bookingProcess": {
     "toast": {
@@ -244,7 +256,8 @@
       "cardNumberPlaceholder": "Número do Cartão",
       "expiryDate": "Data de Validade",
       "securityNumber": "Código de Segurança",
-      "useDemoCard": "Usar cartão de demonstração"
+      "useDemoCard": "Usar cartão de demonstração",
+      "inst": "O valor será retido temporariamente no seu cartão assim que você enviar a solicitação, aguardando a aprovação do administrador. O pagamento só será cobrado oficialmente se o seu pedido for aceito; caso contrário, a retenção será cancelada e você não será cobrado."
     },
     "policies": {
       "title": "3. Política de Cancelamento",
@@ -296,10 +309,8 @@
       "phone_number": "Número de Telefone",
       "nationality": "Nacionalidade",
       "current_address": "Morada Atual",
-      "genderOptions": {
-        "male": "Masculino",
-        "female": "Feminino"
-      }
+      "male": "Masculino",
+      "female": "Feminino"
     },
     "requestMessage": {
       "title": "Mensagem de Pedido de Reserva",
@@ -311,10 +322,8 @@
       "where_you_study": "Onde Estuda?",
       "funding_source": "Como Vai Financiar a Sua Estadia?",
       "about_yourself": "Fale-nos Sobre Si",
-      "employmentOptions": {
-        "study": "Estudo",
-        "work": "Trabalho"
-      }
+      "study": "Estudo",
+      "work": "Trabalho"
     },
     "personDetails": {
       "uploadPhoto": "Carregar Nova Foto",
@@ -347,7 +356,9 @@
   "description": "Descrição:",
   "tenants hosted": "Inquilinos Hospedados:",
   "date from": "Data de Início:",
-  "date to": "Data de Término:"
+  "date to": "Data de Término:",
+  "must sign in": "Você precisa fazer login primeiro.",
+  "wrong": "Algo deu errado."
 },
 "Dsidebar": {
   "Dashboard": "Painel de Controle",
@@ -381,6 +392,7 @@
   },
   "add edit room": {
     "add room": "Adicionar Quarto",
+    "edit room": "Edit Room",
     "upload photo": "Enviar Fotos do Quarto",
     "drag & drop": "Arraste e solte aqui",
     "browse files": "Procurar Arquivos",
@@ -398,7 +410,8 @@
     "bathrooms": "Casas de banho",
     "size": "Área (m²)",
     "facilities": "Comodidades",
-"landlordRules": "Regras do Proprietário"
+    "landlordRules": "Regras do Proprietário",
+    "save changes": "Save changes"
 }
 
 }

@@ -11,34 +11,45 @@ import { useTranslations } from "next-intl"
 import "swiper/css"
 import "swiper/css/navigation"
 
+// String = existing uploaded image (already a public URL, e.g. edit mode)
+// File   = a newly picked file that hasn't been uploaded yet
+type ImageItem = File | string
+
 interface Props {
-  images: File[]
+  images: ImageItem[]
   onAddFiles: (files: FileList | File[]) => void
   onRemove: (index: number) => void
 }
 
-export default function ImageUploadPreview({ images, onAddFiles, onRemove }: Props) {
+function isFile(item: ImageItem): item is File {
+  return item instanceof File
+}
 
+export default function ImageUploadPreview({ images, onAddFiles, onRemove }: Props) {
   const t = useTranslations("add edit room")
   const [swiper, setSwiper] = useState<SwiperType | null>(null)
   const [activeIndex, setActiveIndex] = useState(0)
-  
+
+  // Only File items need an object URL — string items are already a usable src.
   const previews = useMemo(
-    () => images.map((file) => URL.createObjectURL(file)),
+    () => images.map((item) => (isFile(item) ? URL.createObjectURL(item) : item)),
     [images]
   )
 
-    useEffect(() => {
-        return () => {
-            previews.forEach((url) => URL.revokeObjectURL(url))
-        }
-    }, [previews])
-
-    useEffect(() => {
-    if (swiper) {
-        swiper.update()
+  useEffect(() => {
+    return () => {
+      images.forEach((item, i) => {
+        if (isFile(item)) URL.revokeObjectURL(previews[i])
+      })
     }
-    }, [images.length, swiper])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [previews])
+
+  useEffect(() => {
+    if (swiper) {
+      swiper.update()
+    }
+  }, [images.length, swiper])
 
   const safeActiveIndex = Math.min(activeIndex, Math.max(images.length - 1, 0))
 
@@ -94,13 +105,13 @@ export default function ImageUploadPreview({ images, onAddFiles, onRemove }: Pro
         onSwiper={setSwiper}
         onSlideChange={(s) => setActiveIndex(s.activeIndex)}
         className="mb-4 rounded-xl overflow-hidden h-55"
-        >
+      >
         {previews.map((src, index) => (
-            <SwiperSlide key={src}>
+          <SwiperSlide key={src}>
             <div className="relative w-full h-full overflow-hidden">
-                <Image src={src} alt={`Room image ${index + 1}`} fill className="object-cover" />
+              <Image src={src} alt={`Room image ${index + 1}`} fill className="object-cover" />
             </div>
-            </SwiperSlide>
+          </SwiperSlide>
         ))}
       </Swiper>
 

@@ -49,7 +49,7 @@ export default function SelectField<TFieldValues extends FieldValues = FieldValu
                 {
                     arr?.map((item) => (
                         <div key={item}>
-                            <SelectItem value={item}>{item}</SelectItem>
+                            <SelectItem value={item}>{t(item)}</SelectItem>
                         </div>
                     ))
                 }
