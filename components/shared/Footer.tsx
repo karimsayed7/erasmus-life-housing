@@ -1,7 +1,11 @@
 import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link'; 
-import { Music2 } from 'lucide-react'; 
+import Image from 'next/image'; 
+import {
+  FaFacebook,
+  FaInstagram,
+  FaWhatsapp,
+  FaXTwitter,
+} from "react-icons/fa6";
 
 function Footer() {
   return (
@@ -23,10 +27,10 @@ function Footer() {
           </p>
           
           <div className="flex gap-5 text-white mt-2">
-            <a href="#" className="hover:text-blue-300 transition-colors"><Music2 size={22} /></a>
-            <a href="#" className="hover:text-blue-300 transition-colors"><Music2 size={22} /></a>
-            <a href="#" className="hover:text-blue-300 transition-colors"><Music2 size={22} /></a>
-            <a href="#" className="hover:text-blue-300 transition-colors"><Music2 size={22} /></a>
+            <a href="#" className="hover:text-blue-300 transition-colors"><FaFacebook size={22} /></a>
+            <a href="#" className="hover:text-blue-300 transition-colors"><FaInstagram size={22} /></a>
+            <a href="#" className="hover:text-blue-300 transition-colors"><FaXTwitter size={22} /></a>
+            <a href="#" className="hover:text-blue-300 transition-colors"><FaWhatsapp size={22} /></a>
           </div>
         </div>
 
@@ -36,11 +40,12 @@ function Footer() {
             Navigation
           </h3>
           <ul className="space-y-3 text-[16px]">
-            <li><a href="#hero" className="hover:underline hover:text-blue-200 block">Home</a></li>
-            <li><a href="#about" className="hover:underline hover:text-blue-200 block">About</a></li>
-            <li><a href="#rooms" className="hover:underline hover:text-blue-200 block">Finest Rooms</a></li>
-            <li><a href="#testimonials" className="hover:underline hover:text-blue-200 block">Testimonials</a></li>
-            <li><a href="#proccess" className="hover:underline hover:text-blue-200 block">Reservation Proccess</a></li>
+            <li><a href="#" className="hover:underline hover:text-blue-200 block">FAQ</a></li>
+            <li><a href="#" className="hover:underline hover:text-blue-200 block">About</a></li>
+            <li><a href="#" className="hover:underline hover:text-blue-200 block">Finest Room</a></li>
+            <li><a href="#" className="hover:underline hover:text-blue-200 block">Terms & conditions</a></li>
+            <li><a href="#" className="hover:underline hover:text-blue-200 block">Housing Guide</a></li>
+            <li><a href="#" className="hover:underline hover:text-blue-200 block">Privacy Policy</a></li>
           </ul>
         </div>
 

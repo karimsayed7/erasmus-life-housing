@@ -81,17 +81,17 @@
     "keysDescription": "Your accommodation is reserved. Get ready to move as soon as possible and check in on your chosen date."
   },
   "Footer": {
-    "tagline": "Find Your Dream Accommodation",
-    "navigation": "Navigation",
-    "resources": "Resources",
-    "home": "Home",
-    "dashboard": "Dashboard",
-    "about": "About",
-    "finestRooms": "Finest Rooms",
-    "testimonials": "Testimonials",
-    "reservationProcess": "Reservation Process",
-    "copyright": "All rights reserved."
-  },
+  "tagline": "Find Your Dream Accommodation",
+  "navigation": "Navigation",
+  "resources": "Contact",
+  "faq": "FAQ",
+  "about": "About",
+  "finest rooms": "Finest Rooms",
+  "terms": "Terms & Conditions",
+  "housing guide": "Housing Guide",
+  "privacy policy": "Privacy Policy",
+  "copyright": "All rights reserved."
+},
   "SignIn": {
     "title": "Sign in",
     "subtitle": "Welcome back! Please enter your details.",
@@ -423,5 +423,15 @@
     "Studio": "Studio",
 "Apartment": "Apartment",
 "Private Room": "Private Room"
-  }
+  },
+  "about": {
+  "about us": "About Us",
+  "hero title": "Erasmus Life Housing – your go-to hub for finding the perfect home for students, by students.",
+  "hero description 1": "Whether you are coming to Lisbon for Erasmus, Exchange, Traineeship, Full Masters or Work, we have a room, studio or apartment that perfectly suits your needs.",
+  "hero description 2": "Our mission is to make Lisbon the number one destination for international students and young professionals by providing a simple, safe and enjoyable accommodation experience.",
+  "achievements": "Our achievements",
+  "achievements description": "Since 2013, we have helped thousands of students find the ideal place to live. Our platform offers carefully selected rooms, studios and apartments in the best neighborhoods, making it easier to choose a comfortable home and enjoy an unforgettable experience in Lisbon.",
+  "team title": "Meet our team",
+  "team description": "Our philosophy is simple — hire passionate people and build a culture that empowers everyone to do their best work."
+}
 }
