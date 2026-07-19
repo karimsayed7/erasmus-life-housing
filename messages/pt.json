@@ -81,17 +81,17 @@
     "keysDescription": "O seu alojamento está reservado. Prepare-se para mudar assim que possível e fazer o check-in na data escolhida."
   },
   "Footer": {
-    "tagline": "Encontre o seu alojamento de sonho",
-    "navigation": "Navegação",
-    "resources": "Contactos",
-    "home": "Início",
-    "dashboard": "Painel",
-    "about": "Sobre nós",
-    "finestRooms": "Melhores quartos",
-    "testimonials": "Testemunhos",
-    "reservationProcess": "Processo de reserva",
-    "copyright": "Todos os direitos reservados."
-  },
+  "tagline": "Encontre o seu alojamento ideal",
+  "navigation": "Navegação",
+  "resources": "Contato",
+  "faq": "Perguntas Frequentes",
+  "about": "Sobre",
+  "finest rooms": "Melhores Quartos",
+  "terms": "Termos e Condições",
+  "housing guide": "Guia de Habitação",
+  "privacy policy": "Política de Privacidade",
+  "copyright": "Todos os direitos reservados."
+},
   "SignIn": {
     "title": "Entrar",
     "subtitle": "Bem-vindo de volta! Por favor, insira seus dados.",
@@ -422,6 +422,16 @@
     "Studio": "Estúdio",
 "Apartment": "Apartamento",
 "Private Room": "Quarto Privado"
+},
+"about": {
+  "about us": "Sobre Nós",
+  "hero title": "Erasmus Life Housing — o seu lugar ideal para encontrar a casa perfeita para estudantes, feita por estudantes.",
+  "hero description 1": "Se vem para Lisboa em Erasmus, Intercâmbio, Estágio, Mestrado ou Trabalho, temos um quarto, estúdio ou apartamento perfeito para si.",
+  "hero description 2": "A nossa missão é tornar Lisboa o principal destino para estudantes internacionais e jovens profissionais, oferecendo uma experiência de alojamento simples, segura e agradável.",
+  "achievements": "As nossas conquistas",
+  "achievements description": "Desde 2013, ajudámos milhares de estudantes a encontrar o lugar ideal para viver. A nossa plataforma oferece quartos, estúdios e apartamentos cuidadosamente selecionados nos melhores bairros, facilitando a escolha de uma casa confortável para uma experiência inesquecível em Lisboa.",
+  "team title": "Conheça a nossa equipa",
+  "team description": "A nossa filosofia é simples: reunir pessoas apaixonadas e criar uma cultura que permita a todos dar o seu melhor."
 }
 
 }
