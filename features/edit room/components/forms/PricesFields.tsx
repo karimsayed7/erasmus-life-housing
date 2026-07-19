@@ -6,14 +6,14 @@ import { FieldGroup } from "@/components/ui/field"
 import InputField from "@/components/shared/fields/InputField"
 import type { RoomSharedFields } from "@/schema/AddRoomSchema"
 
-interface PricesFieldsProps<TFieldValues extends RoomSharedFields & FieldValues> {
-  form: UseFormReturn<TFieldValues>
+interface PricesFieldsProps {
+  form: UseFormReturn<any>
 }
 
-export default function PricesFields<TFieldValues extends RoomSharedFields & FieldValues>({
+export default function PricesFields({
   form,
-}: PricesFieldsProps<TFieldValues>) {
-  const name = <K extends Path<RoomSharedFields>>(key: K) => key as unknown as Path<TFieldValues>
+}: PricesFieldsProps) {
+  const name = (key: string) => key as any
 
   const price = form.watch(name("price"))
   const fees = form.watch(name("fees"))
@@ -27,10 +27,11 @@ export default function PricesFields<TFieldValues extends RoomSharedFields & Fie
   return (
     <div>
       <FieldGroup>
-        <InputField form={form} label="price/per month" name={name("price")} transilation="add edit room" />
-        <InputField form={form} label="fees" name={name("fees")} transilation="add edit room" />
-        <InputField form={form} label="bills" name={name("bills")} transilation="add edit room" />
+        <InputField type="number" form={form} label="price/per month" name={name("price")} transilation="add edit room" />
+        <InputField type="number" form={form} label="fees" name={name("fees")} transilation="add edit room" />
+        <InputField type="number" form={form} label="bills" name={name("bills")} transilation="add edit room" />
         <InputField
+          type="number"
           form={form}
           label="total"
           name={name("total")}

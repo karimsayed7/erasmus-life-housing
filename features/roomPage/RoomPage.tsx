@@ -5,6 +5,7 @@ import Properties from './components/Properties';
 import BookRequest from './components/BookRequest';
 import MapClient from '@/components/shared/map/MapClient';
 import SimilarRoomsGrid from './components/SimilarRoomsGrid';
+import { createSupabaseServerClient } from '@/lib/supabase/server-client';
 
 interface Props {
   room: Database['public']['Tables']['rooms']['Row'];
@@ -12,6 +13,38 @@ interface Props {
 }
 
 async function RoomPage({ room, isLoggedIn }: Props) {
+  const supabase = await createSupabaseServerClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  // is the room already taken by someone (approved)?
+  const { data: approvedBooking } = await supabase
+    .from('bookings')
+    .select('id')
+    .eq('room_id', room.id)
+    .eq('status', 'approved')
+    .maybeSingle();
+
+  // does the current user have their own request on this room?
+  let myBookingStatus: 'none' | 'pending' | 'approved' | 'rejected' = 'none';
+  if (user) {
+    const { data: myBooking } = await supabase
+      .from('bookings')
+      .select('status')
+      .eq('room_id', room.id)
+      .eq('user_id', user.id)
+      .in('status', ['pending', 'approved', 'rejected'])
+      .order('created_at', { ascending: false })
+      .limit(1)
+      .maybeSingle();
+
+    myBookingStatus = (myBooking?.status as typeof myBookingStatus) ?? 'none';
+  }
+
+  const isRoomBooked = !!approvedBooking;
+
   return (
     <>
       <Header />
@@ -27,11 +60,8 @@ async function RoomPage({ room, isLoggedIn }: Props) {
           <BookRequest
             id={room.id}
             isLoggedIn={isLoggedIn}
-            approvalStatusEn={
-              room.approval_status && typeof room.approval_status === 'object' && 'en' in room.approval_status
-                ? (room.approval_status as { en?: string }).en ?? 'none'
-                : 'none'
-            }
+            isRoomBooked={isRoomBooked}
+            myBookingStatus={myBookingStatus}
           />
           <div className='hidden lg:block'>
             <MapClient rooms={room} />

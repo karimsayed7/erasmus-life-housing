@@ -51,11 +51,11 @@ export default function AddRoom() {
     title: "Cozy Studio Near Downtown",
     description:
       "A bright and quiet studio, fully renovated, close to public transport and cafes. Perfect for students looking for a peaceful place to focus and relax.",
-    images: [], // files can't be faked — you'll still need to upload manually
+    images: [],
     roomType: "Studio",
-    location: "R. Braancamp 14, 1250-050 Lisboa",
-    lat: 38.7223,
-    lng: -9.1393,
+    location: "R. de Cedofeita 123, 4050-179 Porto",
+    lat: 41.1496,
+    lng: -8.6109,
     attrs: { bedrooms: 1, bathrooms: 1, size: 22 },
     price: 650,
     fees: 50,

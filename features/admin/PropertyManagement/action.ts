@@ -14,6 +14,17 @@ export async function deleteRoom(roomId: string): Promise<DeleteRoomResult> {
 
   const supabase = await createSupabaseServerClient()
 
+  const { data: approvedBooking } = await supabase
+    .from('bookings')
+    .select('id')
+    .eq('room_id', roomId)
+    .eq('status', 'approved')
+    .maybeSingle()
+
+  if (approvedBooking) {
+    return { success: false, error: 'ROOM_CURRENTLY_BOOKED' }
+  }
+
   const { error } = await supabase
     .from('rooms')
     .update({ is_hidden: true })
@@ -23,7 +34,7 @@ export async function deleteRoom(roomId: string): Promise<DeleteRoomResult> {
     return { success: false, error: error.message }
   }
 
-  revalidatePath('/admin/PropertyManagement') 
+  revalidatePath('/admin/PropertyManagement')
 
   return { success: true }
 }

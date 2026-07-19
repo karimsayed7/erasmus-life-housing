@@ -1,4 +1,4 @@
-// features/auth/hooks/useAuthProfile.ts
+
 "use client";
 import { useState, useEffect } from "react";
 import { getSupabaseBrowserClient } from "@/lib/supabase/browser-client";
@@ -15,21 +15,29 @@ export function useAuthProfile() {
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
 
-  useEffect(() => {
-    const supabase = getSupabaseBrowserClient();
+ useEffect(() => {
+  console.log("1. effect started");
+  const supabase = getSupabaseBrowserClient();
 
-    const fetchProfile = async () => {
+  const fetchProfile = async () => {
+    try {
+      console.log("2. fetching session...");
       const { data: { session } } = await supabase.auth.getSession();
+      console.log("3. session:", session);
+      
       if (!session) {
         setProfile(null);
-        setIsLoading(false);
         return;
       }
-      const { data } = await supabase
+      
+      console.log("4. fetching profile row...");
+      const { data, error } = await supabase
         .from("profiles")
         .select("name, email, photo")
         .eq("id", session.user.id)
         .single();
+      
+      console.log("5. profile data:", data, "error:", error);
 
       setProfile(
         data ?? {
@@ -38,17 +46,18 @@ export function useAuthProfile() {
           photo: null,
         }
       );
+    } catch (err) {
+      console.error("6. caught error:", err);
+      setProfile(null);
+    } finally {
+      console.log("7. finally - setting isLoading false");
       setIsLoading(false);
-    };
+    }
+  };
 
-    fetchProfile();
-
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(() => {
-      fetchProfile();
-    });
-
-    return () => subscription?.unsubscribe();
-  }, []);
+  fetchProfile();
+  // ...
+}, []);
 
   const handleLogout = async () => {
     const supabase = getSupabaseBrowserClient();

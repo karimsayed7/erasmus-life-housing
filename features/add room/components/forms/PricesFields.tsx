@@ -20,10 +20,11 @@ export default function PricesFields({ form }: PricesFieldsProp) {
   return (
     <div>
       <FieldGroup>
-        <InputField form={form} label="price/per month" name="price" transilation="add edit room" />
-        <InputField form={form} label="fees" name="fees" transilation="add edit room" />
-        <InputField form={form} label="bills" name="bills" transilation="add edit room" />
+        <InputField type="number" form={form} label="price/per month" name="price" transilation="add edit room" />
+        <InputField type="number" form={form} label="fees" name="fees" transilation="add edit room" />
+        <InputField type="number" form={form} label="bills" name="bills" transilation="add edit room" />
         <InputField
+          type="number"
           form={form}
           label="total"
           name="total"

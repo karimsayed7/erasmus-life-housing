@@ -3,14 +3,14 @@ import CheckboxGroupField from "@/components/shared/fields/CheckboxGroupField"
 import { FACILITIES_OPTIONS, LANDLORD_RULES_OPTIONS } from "@/lib/constants/roomOptions"
 import type { RoomSharedFields } from "@/schema/AddRoomSchema"
 
-interface CheckboxesFieldsProps<TFieldValues extends RoomSharedFields & FieldValues> {
-  form: UseFormReturn<TFieldValues>
+interface CheckboxesFieldsProps {
+  form: UseFormReturn<any>
 }
 
-export default function CheckboxesFields<TFieldValues extends RoomSharedFields & FieldValues>({
+export default function CheckboxesFields({
   form,
-}: CheckboxesFieldsProps<TFieldValues>) {
-  const name = <K extends Path<RoomSharedFields>>(key: K) => key as unknown as Path<TFieldValues>
+}: CheckboxesFieldsProps) {
+  const name = (key: string) => key as any
 
   return (
     <div className="mt-8 space-y-8">

@@ -4,7 +4,7 @@ import { Database } from "@/types/database";
 import { useLocale, useTranslations } from "next-intl";
 import { getLocalized } from "@/types/GetLocalized";
 import { useOptimistic, useTransition } from "react";
-import { Trash2, Pencil } from "lucide-react";
+import { Pencil } from "lucide-react";
 import {
   Table,
   TableBody,
@@ -17,9 +17,17 @@ import PaginationControls from "@/components/shared/PaginationControls";
 import { deleteRoom } from "./action";
 import RoomImage from "@/components/shared/RoomCard/RoomImage";
 import Link from "next/link";
+import DelPopup from "./DelPopup";
+
+type Room = Database["public"]["Tables"]["rooms"]["Row"] & {
+  approvedBooking: Pick<
+    Database["public"]["Tables"]["bookings"]["Row"],
+    "date_from" | "date_to"
+  > | null;
+};
 
 type Props = {
-  rooms: Database["public"]["Tables"]["rooms"]["Row"][];
+  rooms: Room[];
   error: string | null;
   currentPage: number;
   totalPages: number;
@@ -63,69 +71,52 @@ export default function ManagementTable({ rooms, error, currentPage, totalPages 
           </TableRow>
         </TableHeader>
         <TableBody>
-          {optimisticRooms.map((room) => (
-            <TableRow key={room.id} className="even:bg-gray-50 hover:bg-transparent even:hover:bg-gray-50">
-              <TableCell className="pl-9 flex items-center gap-3">
-                <div className="relative h-12 w-20 overflow-hidden rounded-md">
-                  {room.images?.[0] ? (
-                    <RoomImage
-                      src={room.images[0]}
-                      alt={getLocalized(room.title, locale)}
-                      noImageText="no img"
-                    />
+          {optimisticRooms.map((room) => {
+            const isBooked = !!room.approvedBooking;
+            return (
+              <TableRow key={room.id} className="even:bg-gray-50 hover:bg-transparent even:hover:bg-gray-50">
+                <TableCell className="pl-9 flex items-center gap-3">
+                  <div className="relative h-12 w-20 overflow-hidden rounded-md">
+                    {room.images?.[0] ? (
+                      <RoomImage
+                        src={room.images[0]}
+                        alt={getLocalized(room.title, locale)}
+                        noImageText="no img"
+                      />
+                    ) : (
+                      <div className="flex h-full items-center bg-gray-200 justify-center text-gray-500 text-sm">
+                        no img
+                      </div>
+                    )}
+                  </div>
+                  {getLocalized(room.title, locale)}
+                </TableCell>
+                <TableCell>{getLocalized(room.room_type, locale)}</TableCell>
+                <TableCell className="px-5">{room.price}€</TableCell>
+                <TableCell>{getLocalized(room.location, locale)}</TableCell>
+                <TableCell>{room.date_from}</TableCell>
+                <TableCell className="text-center">
+                  {isBooked ? (
+                    <span className="py-1 px-3 rounded-full bg-green-100 text-green-700">
+                      {t("booked")}
+                    </span>
                   ) : (
-                    <div className="flex h-full items-center bg-gray-200 justify-center text-gray-500 text-sm">
-                      no img
-                    </div>
+                    <span>-</span>
                   )}
-                </div>
-                {getLocalized(room.title, locale)}
-              </TableCell>
-              <TableCell>{getLocalized(room.room_type, locale)}</TableCell>
-              <TableCell className="px-5">{room.price}€</TableCell>
-              <TableCell>{getLocalized(room.location, locale)}</TableCell>
-              <TableCell>{room.date_from}</TableCell>
-              <TableCell className="text-center">
-                {(() => {
-                  switch ((room.approval_status as { en: string; pt: string } | null)?.en) {
-                    case "approved":
-                      return (
-                        <span className="py-1 px-3 rounded-full bg-green-600 text-white">
-                          {getLocalized(room.approval_status, locale)}
-                        </span>
-                      );
-                    case "waiting approval":
-                      return (
-                        <span className="flex items-center gap-1 py-1 px-3 rounded-full bg-yellow-100 text-yellow-600">
-                          {getLocalized(room.approval_status, locale)}
-                        </span>
-                      );
-                    default:
-                      return <span>-</span>;
-                  }
-                })()}
-              </TableCell>
-              <TableCell>
-                <div className="flex gap-5 items-center px-5">
-                  <button
-                    type="button"
-                    onClick={() => handleDelete(room.id)}
-                    disabled={isPending}
-                    className="disabled:opacity-50 cursor-pointer"
-                    aria-label="delete"
-                  >
-                    <Trash2 size={20} />
-                  </button>
-                  
-                <Link href={`/editRoom?id=${room.id}`}>
-                  <button type="button" aria-label={"edit"} className="cursor-pointer">
-                    <Pencil size={20} />
-                  </button>
-                </Link>
-                </div>
-              </TableCell>
-            </TableRow>
-          ))}
+                </TableCell>
+                <TableCell>
+                  <div className="flex gap-5 items-center px-5">
+                    <DelPopup room={room} handleDelete={handleDelete} isPending={isPending} />
+                    <Link href={`/editRoom?id=${room.id}`}>
+                      <button type="button" aria-label={"edit"} className="cursor-pointer">
+                        <Pencil size={20} />
+                      </button>
+                    </Link>
+                  </div>
+                </TableCell>
+              </TableRow>
+            );
+          })}
         </TableBody>
       </Table>
       {totalPages > 1 && (

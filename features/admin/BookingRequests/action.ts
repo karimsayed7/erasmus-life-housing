@@ -6,48 +6,51 @@ import { revalidatePath } from "next/cache";
 
 type ActionResult = { success: true } | { success: false; error: string };
 
-type RoomWithOwnerEmail = {
+type BookingWithRoomAndApplicant = {
   id: string;
-  title: { en?: string; pt?: string } | null;
-  owner: { id: string; name: string | null; email: string | null } | null;
+  room: { id: string; title: { en?: string; pt?: string } | null };
+  applicant: { id: string; name: string | null; email: string | null } | null;
 };
 
-export async function approveBooking(roomId: string): Promise<ActionResult> {
+export async function approveBooking(bookingId: string): Promise<ActionResult> {
   const supabase = await createSupabaseServerClient();
 
-  const { data: room, error: fetchError } = await supabase
-    .from("rooms")
-    .select("id, title, owner:profiles!rooms_owner_id_fkey(id, name, email)")
-    .eq("id", roomId)
+  const { data: booking, error: fetchError } = await supabase
+    .from("bookings")
+    .select("id, room:rooms(id, title), applicant:profiles!bookings_user_id_fkey(id, name, email)")
+    .eq("id", bookingId)
+    .eq("status", "pending")
     .single()
-    .overrideTypes<RoomWithOwnerEmail, { merge: false }>();
+    .overrideTypes<BookingWithRoomAndApplicant, { merge: false }>();
 
-  if (fetchError || !room) {
-    return { success: false, error: fetchError?.message ?? "Room not found" };
+  if (fetchError || !booking) {
+    return { success: false, error: fetchError?.message ?? "Booking not found or already handled" };
   }
 
-  if (!room.owner) {
-    return { success: false, error: "This room has no pending request to approve" };
+  if (!booking.applicant?.email) {
+    return { success: false, error: "This booking has no applicant email on file" };
   }
 
   const { error: updateError } = await supabase
-    .from("rooms")
-    .update({ approval_status: { en: "approved", pt: "aprovado" } })
-    .eq("id", roomId);
+    .from("bookings")
+    .update({ status: "approved", approval_status: { en: "booked", pt: "Reservado" } })
+    .eq("id", bookingId);
+  // The DB trigger (reject_other_pending_bookings) auto-rejects every other
+  // pending booking on this room the moment this update lands.
 
   if (updateError) {
     return { success: false, error: updateError.message };
   }
 
-  const roomTitle = room.title?.en ?? "your room";
+  const roomTitle = booking.room.title?.en ?? "your room";
 
   try {
     await transporter.sendMail({
       from: `"ErasmusLife" <${process.env.GMAIL_USER}>`,
-      to: room.owner.email!,
+      to: booking.applicant.email,
       subject: "Your booking request has been approved 🎉",
       html: `
-        <p>Hi ${room.owner.name ?? "there"},</p>
+        <p>Hi ${booking.applicant.name ?? "there"},</p>
         <p>Great news — your booking request for <strong>${roomTitle}</strong> has been <strong>approved</strong>.</p>
         <p>Welcome to ErasmusLife!</p>
       `,
@@ -60,44 +63,43 @@ export async function approveBooking(roomId: string): Promise<ActionResult> {
   return { success: true };
 }
 
-export async function rejectBooking(roomId: string): Promise<ActionResult> {
+export async function rejectBooking(bookingId: string): Promise<ActionResult> {
   const supabase = await createSupabaseServerClient();
 
-  const { data: room, error: fetchError } = await supabase
-    .from("rooms")
-    .select("id, title, owner:profiles!rooms_owner_id_fkey(id, name, email)")
-    .eq("id", roomId)
+  const { data: booking, error: fetchError } = await supabase
+    .from("bookings")
+    .select("id, room:rooms(id, title), applicant:profiles!bookings_user_id_fkey(id, name, email)")
+    .eq("id", bookingId)
+    .eq("status", "pending")
     .single()
-    .overrideTypes<RoomWithOwnerEmail, { merge: false }>();
+    .overrideTypes<BookingWithRoomAndApplicant, { merge: false }>();
 
-  if (fetchError || !room) {
-    return { success: false, error: fetchError?.message ?? "Room not found" };
+  if (fetchError || !booking) {
+    return { success: false, error: fetchError?.message ?? "Booking not found or already handled" };
   }
 
-  if (!room.owner) {
-    return { success: false, error: "This room has no pending request to reject" };
+  if (!booking.applicant?.email) {
+    return { success: false, error: "This booking has no applicant email on file" };
   }
-
-  const ownerEmail = room.owner.email;
-  const ownerName = room.owner.name;
-  const roomTitle = room.title?.en ?? "your room";
 
   const { error: updateError } = await supabase
-    .from("rooms")
-    .update({ owner_id: null, approval_status: null })
-    .eq("id", roomId);
+    .from("bookings")
+    .update({ status: "rejected", approval_status: { en: "rejected", pt: "Rejeitado" } })
+    .eq("id", bookingId);
 
   if (updateError) {
     return { success: false, error: updateError.message };
   }
 
+  const roomTitle = booking.room.title?.en ?? "your room";
+
   try {
     await transporter.sendMail({
       from: `"ErasmusLife" <${process.env.GMAIL_USER}>`,
-      to: ownerEmail!,
+      to: booking.applicant.email,
       subject: "Your booking request has been Rejected",
       html: `
-        <p>Hi ${ownerName ?? "there"},</p>
+        <p>Hi ${booking.applicant.name ?? "there"},</p>
         <p>Unfortunately your booking request for <strong>${roomTitle}</strong> was <strong>rejected</strong>.</p>
         <p>Feel free to browse other available rooms on ErasmusLife.</p>
       `,

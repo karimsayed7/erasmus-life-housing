@@ -206,7 +206,8 @@
     "checkBooking": "Check Booking",
     "similarRooms": "Similar Rooms in Lisbon",
     "room type": "Room Type",
-    "booked":"Booked"
+    "booked":"Booked",
+    "pendingApproval": "Waiting Approval"
   },
   "bookingProcess": {
     "toast": {
@@ -367,30 +368,36 @@
     "Booking Requests": "Booking Requests"
   },
   "dashboard": {
-    "welcome back": "Welcome back",
-    "track": "Track, manage and forecast your properties",
-    "rooms": "Rooms",
-    "occupied": "Occupied Rooms",
-    "booked": "Booked",
-    "requests": "Booking Requests",
-    "pending": "Pending",
-    "add room": "Add Room",
-    "search": "Search",
-    "room": "Room",
-    "price": "Price",
-    "location": "Location",
-    "room type": "Room Type",
-    "date": "Date Puplished",
-    "status": "Status",
-    "tenants": "Tenants",
-    "approve confirmation": "Sure you want to approve this tenant ?",
-    "approve description": "All requests sent by others to the same room will be rejected",
-    "approve": "Approve",
-    "reject confirmation": "Sure you want to reject this tenant ?",
-    "reject description": "Request will be deleted",
-    "reject": "Reject",
-    "cancel": "Cancel"
-  },
+  "welcome back": "Welcome back",
+  "track": "Track, manage and forecast your properties",
+  "rooms": "Rooms",
+  "occupied": "Occupied Rooms",
+  "booked": "Booked",
+  "requests": "Booking Requests",
+  "pending": "Pending",
+  "add room": "Add Room",
+  "search": "Search Room...",
+  "room": "Room",
+  "price": "Price",
+  "location": "Location",
+  "room type": "Room Type",
+  "date": "Date Published",
+  "status": "Status",
+  "tenants": "Tenants",
+  "approve confirmation": "Sure you want to approve this tenant?",
+  "approve description": "All requests sent by others to the same room will be rejected",
+  "approve": "Approve",
+  "reject confirmation": "Sure you want to reject this tenant?",
+  "reject description": "Request will be deleted",
+  "reject": "Reject",
+  "cancel": "Cancel",
+  "delete": "Delete",
+  "delete confirmation": "Are you sure you want to delete this room?",
+  "delete description": "This action cannot be undone.",
+  "cannot delete booked room": "This room cannot be deleted because it has an active booking.",
+  "booked until": "Booked from {from} to {to}.",
+  "close": "Close"
+},
   "add edit room": {
     "add room": "Add Room",
     "edit room": "Edit Room",
@@ -412,6 +419,9 @@
     "size": "Size(m²)",
     "facilities": "Facilities",
     "landlordRules": "Landlord Rules",
-    "save changes": "Save changes"
+    "save changes": "Save changes",
+    "Studio": "Studio",
+"Apartment": "Apartment",
+"Private Room": "Private Room"
   }
 }

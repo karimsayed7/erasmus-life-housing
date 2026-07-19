@@ -206,7 +206,8 @@
     "checkBooking": "Verificar Reserva",
     "similarRooms": "Quartos Semelhantes em Lisboa",
     "room type": "Tipo de Quarto",
-    "booked":"Reservados"
+    "booked":"Reservados",
+    "pendingApproval": "Aguardando aprovação"
   },
   "bookingProcess": {
     "toast": {
@@ -366,30 +367,36 @@
   "Booking Requests": "Pedidos de Reserva"
 },
   "dashboard": {
-    "welcome back": "Bem-vindo de volta",
-    "track": "Acompanhe, gerencie e preveja suas propriedades",
-    "rooms": "Quartos",
-    "occupied": "Quartos Ocupados",
-    "booked": "Reservados",
-    "requests": "Solicitações de Reserva",
-    "pending": "Pendentes",
-    "add room": "Adicionar Quarto",
-    "search": "Pesquisar",
-    "room": "Quarto",
-    "price": "Preço",
-    "location": "Localização",
-    "room type": "Tipo de Quarto",
-    "date": "Data de Publicação",
-    "status": "Status",
-    "tenants": "Inquilinos",
-    "approve confirmation": "Tem certeza de que deseja aprovar este inquilino?",
-    "approve description": "Todos os pedidos enviados por outras pessoas para o mesmo quarto serão rejeitados",
-    "approve": "Aprovar",
-    "reject confirmation": "Tem certeza de que deseja rejeitar este inquilino?",
-    "reject description": "O pedido será excluído",
-    "reject": "Rejeitar",
-    "cancel": "Cancelar"
-  },
+  "welcome back": "Bem-vindo de volta",
+  "track": "Acompanhe, gerencie e preveja suas propriedades",
+  "rooms": "Quartos",
+  "occupied": "Quartos Ocupados",
+  "booked": "Reservados",
+  "requests": "Solicitações de Reserva",
+  "pending": "Pendentes",
+  "add room": "Adicionar Quarto",
+  "room": "Quarto",
+  "price": "Preço",
+  "location": "Localização",
+  "room type": "Tipo de Quarto",
+  "date": "Data de Publicação",
+  "status": "Status",
+  "tenants": "Inquilinos",
+  "approve confirmation": "Tem certeza de que deseja aprovar este inquilino?",
+  "approve description": "Todas as outras solicitações para o mesmo quarto serão rejeitadas",
+  "approve": "Aprovar",
+  "reject confirmation": "Tem certeza de que deseja rejeitar este inquilino?",
+  "reject description": "A solicitação será excluída",
+  "reject": "Rejeitar",
+  "cancel": "Cancelar",
+  "delete": "Excluir",
+  "search": "Pesquisar quarto...",
+  "delete confirmation": "Tem certeza de que deseja excluir este quarto?",
+  "delete description": "Esta ação não pode ser desfeita.",
+  "cannot delete booked room": "Este quarto não pode ser excluído porque possui uma reserva ativa.",
+  "booked until": "Reservado de {from} até {to}.",
+  "close": "Fechar"
+},
   "add edit room": {
     "add room": "Adicionar Quarto",
     "edit room": "Edit Room",
@@ -411,7 +418,10 @@
     "size": "Área (m²)",
     "facilities": "Comodidades",
     "landlordRules": "Regras do Proprietário",
-    "save changes": "Save changes"
+    "save changes": "Save changes",
+    "Studio": "Estúdio",
+"Apartment": "Apartamento",
+"Private Room": "Quarto Privado"
 }
 
 }

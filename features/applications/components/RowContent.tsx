@@ -20,11 +20,12 @@ import { Button } from "@/components/ui/button"
 
 interface RowProps {
     room: Database["public"]["Tables"]["rooms"]["Row"];
-    handleCancel: (roomId : string) => void;
+    booking: Database["public"]["Tables"]["bookings"]["Row"];
+    handleCancel: (bookingId: string) => void;
     isPending: boolean;
 }
 
-export default function RowContent({room, handleCancel, isPending}: RowProps) {
+export default function RowContent({room, booking, handleCancel, isPending}: RowProps) {
   const locale = useLocale()  
   const t = useTranslations("favourites and applications");
 
@@ -102,7 +103,7 @@ export default function RowContent({room, handleCancel, isPending}: RowProps) {
                         </AlertDialogDescription>
                         <AlertDialogFooter className='bg-white border-0'>
                             <AlertDialogAction className='px-4 py-6 w-fit cursor-pointer mx-auto text-[16px] hover:bg-red-700 text-white bg-red-600 rounded-lg -mt-3' asChild>
-                                <Button disabled={isPending} onClick={() => handleCancel(room.id)}>{t("cancel")}</Button>
+                                <Button disabled={isPending} onClick={() => handleCancel(booking.id)}>{t("cancel")}</Button>
                             </AlertDialogAction>
                         </AlertDialogFooter>
                 </AlertDialogContent>

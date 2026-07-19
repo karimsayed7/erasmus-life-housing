@@ -19,10 +19,11 @@ function formatDateValue(date: Date): string {
 interface Prop {
   id: string;
   isLoggedIn: boolean;
-  approvalStatusEn: string; // room.approval_status.en
+  isRoomBooked: boolean;
+  myBookingStatus: "none" | "pending" | "approved" | "rejected";
 }
 
-export default function BookRequest({ id, isLoggedIn, approvalStatusEn }: Prop) {
+export default function BookRequest({ id, isLoggedIn, isRoomBooked, myBookingStatus }: Prop) {
   const t = useTranslations('roomPage');
   const { isFavorite, toggleFavorite } = useFavorites();
 
@@ -44,10 +45,16 @@ export default function BookRequest({ id, isLoggedIn, approvalStatusEn }: Prop) 
 
   const minCheckOut = addOneMonth(checkIn);
 
-  const isBooked = approvalStatusEn === "approved";
-  const isDisabled = !isLoggedIn || isBooked;
+  const isTaken = isRoomBooked;
+  const isMyRequestPending = myBookingStatus === "pending";
 
-  const buttonLabel = isBooked ? t('booked') : t('checkBooking');
+  const isDisabled = !isLoggedIn || isTaken || isMyRequestPending;
+
+  const buttonLabel = isTaken
+    ? t('booked')
+    : isMyRequestPending
+    ? t('pendingApproval')
+    : t('checkBooking');
 
   return (
     <div className="flex flex-col justify-between border h-125 border-gray-200 rounded-xl p-4 shadow-sm bg-white w-full">

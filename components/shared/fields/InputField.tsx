@@ -12,7 +12,7 @@ import { useTranslations } from "next-intl"
 import { FieldValues } from "react-hook-form"
 
 export default function InputField<TFieldValues extends FieldValues = FieldValues>({
-  form, isEditing = true, label, name, transilation
+  form, isEditing = true, label, name, transilation, type = "text"
 }: FieldProp<TFieldValues>) {
     const t = useTranslations(transilation);
   
@@ -29,6 +29,15 @@ export default function InputField<TFieldValues extends FieldValues = FieldValue
             <Input
               id={`rhf-${name}`}
               {...field}
+              type={type}
+              onChange={(e) => {
+                if (type === "number") {
+                  const val = e.target.valueAsNumber
+                  field.onChange(isNaN(val) ? "" : val)
+                } else {
+                  field.onChange(e.target.value)
+                }
+              }}
               readOnly={!isEditing}
               autoComplete="off"
               aria-invalid={fieldState.invalid}

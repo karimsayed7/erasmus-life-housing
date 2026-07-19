@@ -16,20 +16,22 @@ import {
 import { getLocalized } from '@/types/GetLocalized';
 import { useFavorites } from "@/features/favourites/useFavorites";
 
-interface RoomCardProps extends  RoomProp {
+interface RoomCardProps extends RoomProp {
   imgSize: number;
+  isBooked?: boolean;
 };
 
-export default function RoomCard({room, imgSize}: RoomCardProps) {
+export default function RoomCard({room, imgSize, isBooked = false}: RoomCardProps) {
   const t2 = useTranslations("RentARoom");
   const t = useTranslations("Rooms");
+  const t3 = useTranslations("roomPage");
   const locale = useLocale();
   const { isFavorite, toggleFavorite } = useFavorites()
 
   return (
     <div>
       <Link key={room.id} href={`/rooms/${room.id}`}>
-            <Card className="overflow-hidden border-2 border-gray-300 pt-0 h-full hover:shadow-lg transition-shadow duration-300 hover:scale-[1.02] transition-transform">
+            <Card className="overflow-hidden border-2 border-gray-300 pt-0 hover:shadow-lg transition-shadow duration-300 hover:scale-[1.02] transition-transform">
               <div className={`relative w-full bg-gray-100`} style={{ height: `${imgSize * 4}px` }}>
                 {room.images?.[0] ? (
                     <RoomImage
@@ -67,14 +69,23 @@ export default function RoomCard({room, imgSize}: RoomCardProps) {
                 </CardDescription>
               </CardHeader>
 
-              <CardContent className="flex justify-between items-center">
-                <p className="text-lg text-blue-800">
-                  {room.price} {t("currency")}
-                </p>
+              <CardContent>
+                <div className="flex justify-between items-center">
+                  <p className="text-lg text-blue-800">
+                    {room.price} {t("currency")}
+                  </p>
 
-                <div className="px-2 py-1 rounded-full flex items-center justif gap-2 bg-gray-200 text-white">
-                  <BadgeCheck size={16} fill="#1e2939" />
-                  <p className="text-gray-800">{t("verified")}</p>
+                  <div className='flex items-center gap-3'>
+                    {isBooked && (
+                      <p className="text-sm font-semibold w-fit px-4 py-1 rounded-lg bg-green-100 text-green-700">
+                        {t3("booked")}
+                      </p>
+                    )}
+                    <div className="px-2 py-1 rounded-full h-fit flex items-end gap-2 bg-gray-200 text-white">
+                      <BadgeCheck size={16} fill="#1e2939" />
+                      <p className="text-gray-800">{t("verified")}</p>
+                    </div>
+                  </div>
                 </div>
               </CardContent>
             </Card>

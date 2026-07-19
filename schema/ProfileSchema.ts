@@ -1,22 +1,24 @@
 import { z } from "zod";
 import { FieldValues, Path, UseFormReturn } from "react-hook-form";
 
+const optionalString = (schema: z.ZodString) =>
+  z.preprocess(
+    (value) => (value === "" ? undefined : value),
+    schema.optional()
+  );
+
+
 export const ProfileSchema = z.object({
-  firstName: z
-    .string()
-    .min(2, "First name is required")
-    .max(50, "First name is too long").optional(),
+  firstName: optionalString(
+    z.string().min(2, "First name is required").max(50, "First name is too long")
+  ),
 
-  lastName: z
-    .string()
-    .min(2, "Last name is required")
-    .max(50, "Last name is too long").optional(),
+  lastName: optionalString(
+    z.string().min(2, "Last name is required").max(50, "Last name is too long")
+  ),
 
-  email: z
-    .string()
-    .email("Invalid email address").optional(),
+  email: optionalString(z.string().email("Invalid email address")),
 
-  // سيتم تفعيل الـ validation لاحقًا عند إضافة الـ inputs
   gender: z.enum(["male", "female"]).optional(),
 
   phone_number: z.string().optional(),
@@ -25,21 +27,19 @@ export const ProfileSchema = z.object({
 
   current_address: z.string().optional(),
 
-  bookingRequestMessage: z
-    .string()
-    .max(1000, "Message is too long")
-    .optional(),
+  bookingRequestMessage: optionalString(
+    z.string().max(1000, "Message is too long")
+  ),
 
-  employment_status:z.enum(["study", "work"]).optional(),
+  employment_status: z.enum(["study", "work"]).optional(),
 
   where_you_study: z.string().optional(),
 
   funding_source: z.string().optional(),
 
-  about_yourself: z
-    .string()
-    .max(2000, "Description is too long")
-    .optional(),
+  about_yourself: optionalString(
+    z.string().max(2000, "Description is too long")
+  ),
 });
 
 export type ProfileFormType = z.infer<typeof ProfileSchema>;
@@ -57,4 +57,5 @@ export interface FieldProp<TFieldValues extends FieldValues = FieldValues> {
   name: Path<TFieldValues>;   
   arr?: string[];
   transilation?: string;
+  type?: string;
 }

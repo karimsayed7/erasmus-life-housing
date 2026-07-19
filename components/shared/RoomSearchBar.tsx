@@ -3,10 +3,11 @@
 import { useQueryState, parseAsInteger, parseAsString, debounce } from "nuqs";
 import { useTransition } from "react";
 import { Search } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export default function RoomSearchBar() {
   const [isPending, startTransition] = useTransition();
-
+  const t = useTranslations("dashboard")
   const [q, setQ] = useQueryState(
     "q",
     parseAsString.withDefault("").withOptions({
@@ -34,7 +35,7 @@ export default function RoomSearchBar() {
         type="text"
         value={q}
         onChange={(e) => handleChange(e.target.value)}
-        placeholder="Search Room..."
+        placeholder={t("search")}
         className="w-full pl-9 pr-3 py-2 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary"
       />
     </div>

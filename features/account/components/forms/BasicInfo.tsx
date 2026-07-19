@@ -11,7 +11,7 @@ export default function BasicInfo({ form, isEditing }: FormProp) {
   return (
     <div className='space-y-5'>
       <h1 className='font-extrabold text-[18px]'>{t('title')}</h1>
-      <div className='flex items-center gap-5'>
+      <div className='flex gap-5'>
         <InputField form={form} isEditing={isEditing} label='firstName' name='firstName' transilation='account.basicInfo'/>
         <InputField form={form} isEditing={isEditing} label='lastName' name='lastName' transilation='account.basicInfo'/>
       </div>

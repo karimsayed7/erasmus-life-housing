@@ -1,4 +1,4 @@
-// src/middleware.ts  ✅ لازم يكون الاسم ده بالظبط
+
 import createMiddleware from "next-intl/middleware";
 import type { NextRequest } from "next/server";
 
@@ -7,7 +7,7 @@ import { updateSession } from "@/lib/supabase/proxy";
 
 const handleI18nRouting = createMiddleware(routing);
 
-export async function middleware(request: NextRequest) {  // ✅ الاسم middleware مش proxy
+export async function proxy(request: NextRequest) {  
   const response = handleI18nRouting(request);
   return updateSession(request, response);
 }
