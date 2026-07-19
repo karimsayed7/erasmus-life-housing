@@ -1,7 +1,8 @@
 import React from 'react'
-import {createSupabaseServerClient} from "@/lib/supabase/server-client"
+import { createSupabaseServerClient } from "@/lib/supabase/server-client"
 import RoomPage from '@/features/roomPage/RoomPage';
 import { FavoritesProvider } from "@/providers/FavoritesProvider";
+
 type Props = {
   params: Promise<{
     id: string;
@@ -11,18 +12,17 @@ type Props = {
 async function page({ params }: Props) {
   const { id } = await params;
 
-   const supabase = await createSupabaseServerClient();
+  const supabase = await createSupabaseServerClient();
 
-  const { data: room } = await supabase
-    .from("rooms")
-    .select("*")
-    .eq("id", id)
-    .single();
+  const [{ data: room }, { data: { user } }] = await Promise.all([
+    supabase.from("rooms").select("*").eq("id", id).single(),
+    supabase.auth.getUser(),
+  ]);
 
   return (
     <div>
       <FavoritesProvider>
-        <RoomPage room={room}/>
+        <RoomPage room={room} isLoggedIn={!!user} />
       </FavoritesProvider>
     </div>
   )

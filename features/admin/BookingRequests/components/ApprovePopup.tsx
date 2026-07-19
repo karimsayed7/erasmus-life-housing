@@ -16,53 +16,59 @@ import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 
 interface RowProps {
-  room: Database["public"]["Tables"]["rooms"]["Row"] & {
-    owner: Pick<Database["public"]["Tables"]["profiles"]["Row"], "id" | "name" | "email" | "photo"> | null;
+  booking: Database["public"]["Tables"]["bookings"]["Row"] & {
+    room: Database["public"]["Tables"]["rooms"]["Row"];
+    applicant: Pick<
+      Database["public"]["Tables"]["profiles"]["Row"],
+      "id" | "name" | "email" | "photo"
+    > | null;
   };
-  handleApprove: (roomId: string) => void;
+  handleApprove: (bookingId: string, roomId: string) => void;
   isPending: boolean;
 }
 
-export default function ApprovePopup({ room, handleApprove, isPending }: RowProps) {
+export default function ApprovePopup({ booking, handleApprove, isPending }: RowProps) {
   const t = useTranslations("dashboard");
 
-  const isApproved =
-    (room.approval_status as { en?: string; pt?: string } | null)?.en === "approved";
-
+const isApproved = booking.status === "approved";
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild disabled={isApproved}>
         <DropdownMenuItem onSelect={(e) => e.preventDefault()} disabled={isApproved}>
           <button
-            className="cursor-pointer w-full text-left disabled:cursor-not-allowed disabled:opacity-50"
             disabled={isApproved}
+            className="w-full cursor-pointer text-left disabled:cursor-not-allowed disabled:opacity-50"
           >
-            {t("approve")}
+            {t("approve")} 
           </button>
         </DropdownMenuItem>
       </AlertDialogTrigger>
-      <AlertDialogContent className="text-center p-6">
-        <AlertDialogTitle className="font-semibold text-lg -mb-3">
-          <p>{room.owner?.name}</p>
+
+      <AlertDialogContent className="p-6 text-center">
+        <AlertDialogTitle className="mb-2 text-lg font-semibold">
+          {booking.applicant?.name}
         </AlertDialogTitle>
-        <AlertDialogDescription className="text-gray-400 text-[16px]">
-          <>
-            <p>{room.owner?.email}</p>
-            <p className="mt-8 text-black">{t("approve confirmation")}</p>
-            <p className="my-2 text-sm">{t("approve description")}</p>
-          </>
+
+        <AlertDialogDescription asChild>
+          <div className="space-y-2 text-[16px] text-gray-400">
+            <div>{booking.applicant?.email}</div>
+            <div className="pt-6 text-black">{t("approve confirmation")}</div>
+            <div className="text-sm">{t("approve description")}</div>
+          </div>
         </AlertDialogDescription>
-        <AlertDialogFooter className="bg-white border-0">
+
+        <AlertDialogFooter className="border-0 bg-white">
           <AlertDialogCancel asChild>
-            <Button className="px-4 py-6 w-fit cursor-pointer mx-auto text-[16px] hover:bg-gray-200 text-black bg-white border-2 border-black rounded-lg -mt-3">
+            <Button className="mx-auto -mt-3 w-fit cursor-pointer rounded-lg border-2 border-black bg-white px-4 py-6 text-[16px] text-black hover:bg-gray-200">
               {t("cancel")}
             </Button>
           </AlertDialogCancel>
+
           <AlertDialogAction asChild>
             <Button
               disabled={isPending}
-              onClick={() => handleApprove(room.id)}
-              className="px-4 py-6 w-fit cursor-pointer mx-auto text-[16px] hover:bg-blue-900 text-white bg-blue-800 rounded-lg -mt-3"
+              onClick={() => handleApprove(booking.id, booking.room.id)}
+              className="mx-auto -mt-3 w-fit cursor-pointer rounded-lg bg-blue-800 px-4 py-6 text-[16px] text-white hover:bg-blue-900"
             >
               {t("approve")}
             </Button>

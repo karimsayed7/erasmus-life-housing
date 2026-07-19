@@ -33,7 +33,7 @@ export default function ImageSlider({ roomImages }: Props) {
       >
         {roomImages.map((img, index) => (
           <SwiperSlide key={index}>
-            <div className="relative h-[250px] sm:h-[350px] md:h-[400px] overflow-hidden"> 
+            <div className="relative h-[250px] sm:h-[350px] md:h-[400px]  overflow-hidden"> 
               <RoomImage
                 src={img}
                 alt={`Room image ${index + 1}`}
@@ -55,7 +55,7 @@ export default function ImageSlider({ roomImages }: Props) {
               setActiveIndex(index);
             }}
             className={`
-              relative h-16 md:h-24 flex-1 overflow-hidden  
+              relative h-16 md:h-24 w-[250px] overflow-hidden  
               border-4 transition-all duration-200
               ${activeIndex === index ? "border-blue-500" : "border-transparent"}
             `}

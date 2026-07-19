@@ -8,7 +8,7 @@ import type { AddRoomFormValues } from "@/schema/AddRoomSchema"
 import { addRoomSchema } from "@/schema/AddRoomSchema"
 import { X } from "lucide-react"
 import Header from "@/components/shared/Header/Header"
-import ImageUploadPreview from "./components/ImageUploadPreview"
+import ImageUploadPreview from "../../components/shared/ImageUploadPreview"
 import PricesFields from "./components/forms/PricesFields"
 import { useTranslations } from "next-intl"
 import PropFields from "./components/forms/PropFields"
@@ -51,11 +51,11 @@ export default function AddRoom() {
     title: "Cozy Studio Near Downtown",
     description:
       "A bright and quiet studio, fully renovated, close to public transport and cafes. Perfect for students looking for a peaceful place to focus and relax.",
-    images: [], // files can't be faked — you'll still need to upload manually
+    images: [],
     roomType: "Studio",
-    location: "R. Braancamp 14, 1250-050 Lisboa",
-    lat: 38.7223,
-    lng: -9.1393,
+    location: "R. de Cedofeita 123, 4050-179 Porto",
+    lat: 41.1496,
+    lng: -8.6109,
     attrs: { bedrooms: 1, bathrooms: 1, size: 22 },
     price: 650,
     fees: 50,
@@ -117,16 +117,16 @@ export default function AddRoom() {
   return (
     <div>
       <Header />
-      <form onSubmit={form.handleSubmit(onSubmit)} className="px-20 pt-4 mb-20">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="px-5 lg:px-20 pt-4 mb-20">
         <div className="flex mb-5 items-center justify-between">
           <h1 className="mb-5 text-[26px] font-bold text-blue-900">{t("add room")}</h1>
           <Link href={"/admin/PropertyManagement"}>
             <X size={25} className="cursor-pointer text-gray-500" />
           </Link>
         </div>
-        <div className="flex gap-15 w-full">
-          <div className="w-[30%]">
-            <div className="mb-52">
+        <div className="flex flex-col md:flex-row gap-15 w-full">
+          <div className="w-full md:w-[30%]">
+            <div className="mb-30 md:mb-52">
               <p className="mb-2 text-[16px]">{t("upload photo")}</p>
               <ImageUploadPreview images={images} onAddFiles={addFiles} onRemove={handleRemove} />
               {form.formState.errors.images && (
@@ -137,7 +137,7 @@ export default function AddRoom() {
               <PricesFields form={form} />
             </div>
           </div>
-          <div className="w-[70%]">
+          <div className="w-full md:w-[70%]">
             <PropFields form={form} />
             <CheckboxesFields form={form} />
           </div>

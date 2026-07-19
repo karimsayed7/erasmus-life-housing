@@ -64,7 +64,7 @@ export default function CheckboxGroupField<TFieldValues extends FieldValues = Fi
                         checked ? "bg-blue-50 border-blue-600 text-blue-900" : "bg-gray-50 border-gray-200 text-gray-600"
                       }`}
                     >
-                      <Icon size={15} />
+                      <Icon size={15} className="shrink-0"/>
                       {text}
                     </button>
                   )
@@ -73,7 +73,7 @@ export default function CheckboxGroupField<TFieldValues extends FieldValues = Fi
                 return (
                   <label key={option.key} className="flex items-center gap-2 cursor-pointer text-base text-gray-700">
                     <Checkbox checked={checked} onCheckedChange={(v) => toggle(option.key, v === true)} />
-                    <Icon size={16} className="text-gray-500" />
+                    <Icon size={16} className="text-gray-500 shrink-0" />
                     {text}
                   </label>
                 )

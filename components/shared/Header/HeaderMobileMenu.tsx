@@ -37,7 +37,7 @@ export function HeaderMobileMenu({ links, profile, isLoading, onLogout, onClose 
       <HeaderNav links={links} onLinkClick={onClose} mobile />
 
       {/* Divider */}
-      <div className="my-3 border-t border-gray-100" />
+      {/* <div className="my-3 border-t border-gray-100" /> */}
 
       {/* Auth + locale section */}
       <div className="flex flex-col gap-3">

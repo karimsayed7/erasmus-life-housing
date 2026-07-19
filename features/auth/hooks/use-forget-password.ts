@@ -1,14 +1,15 @@
-import React from 'react'
+"use client";
 import { useState } from 'react';
+import { useLocale } from 'next-intl';
 import { getSupabaseBrowserClient } from '@/lib/supabase/browser-client';
 
 function useForgetPassword() {
-    const [error, setError] = useState<string | null>(null);
-    const [success, setSuccess] = useState(false);
-    const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const locale = useLocale();
 
-    const handleResetPassword = async (e: React.FormEvent, email: string) => {
-    e.preventDefault();
+  const handleResetPassword = async (email: string) => {
     setError(null);
     setSuccess(false);
     setLoading(true);
@@ -17,7 +18,7 @@ function useForgetPassword() {
       const supabase = getSupabaseBrowserClient();
       const origin = typeof window !== 'undefined' ? window.location.origin : '';
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: `${origin}/auth/callback?next=/reset_password`,
+        redirectTo: `${origin}/${locale}/callback?next=/${locale}/reset_password`,
       });
 
       if (error) {
@@ -34,7 +35,7 @@ function useForgetPassword() {
     }
   };
 
-  return {error, success, loading, handleResetPassword};
+  return { error, success, loading, handleResetPassword };
 }
 
-export default useForgetPassword
+export default useForgetPassword;

@@ -13,11 +13,12 @@ import { useProfileDetails } from './hooks/UseProfileDetails'
 import { splitName, joinName } from '@/lib/profile-name'
 import { toast } from "sonner"
 import { Profile } from '@/types/profile'
-import RequestMessage from './components/forms/RequestMessage'
+// import RequestMessage from './components/forms/RequestMessage'
 import AdditionalDetails from './components/forms/AdditionalDetails'
 import { useTranslations } from 'next-intl'
+import { z } from "zod";
 
-
+  
 function profileToFormValues(profile: Profile): ProfileFormType {
   const { firstName, lastName } = splitName(profile.name)
 
@@ -41,6 +42,7 @@ export default function Account() {
   const { profile, setProfile } = useProfileDetails()
   const [isEditing, setIsEditing] = useState(false)
   const t = useTranslations('account.actions')
+  const t2 = useTranslations('account.toast')
 
   const form = useForm<ProfileFormType>({
     resolver: zodResolver(ProfileSchema),
@@ -102,14 +104,14 @@ export default function Account() {
       .single()
 
     if (error || !updated) {
-      toast.error(t("saveError"))
+      toast.error(t2("saveError"))
       return
     }
 
     setProfile(updated)
     form.reset(profileToFormValues(updated))
     setIsEditing(false)
-    toast.success(t("saveSuccess"))
+    toast.success(t2("saveSuccess"))
   }
 
 
@@ -133,7 +135,7 @@ export default function Account() {
           
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <BasicInfo form={form} isEditing={isEditing}/>
-            <RequestMessage form={form} isEditing={isEditing}/>
+            {/* <RequestMessage form={form} isEditing={isEditing}/> */}
             <AdditionalDetails form={form} isEditing={isEditing}/>
 
             <div

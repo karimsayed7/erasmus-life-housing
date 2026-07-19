@@ -59,8 +59,14 @@ export default function BookingProccess({
           ALREADY_BOOKED: { title: t("toast.alreadyBooked"), desc: t("toast.alreadyBookedDesc") },
           ROOM_UNAVAILABLE: { title: t("toast.roomUnavailable"), desc: t("toast.roomUnavailableDesc") },
         };
+        
         const msg = messages[result.error] ?? { title: t("toast.error"), desc: "" };
-        toast.error(msg.title, { id: toastId, description: msg.desc, style: { minWidth: "360px" } });
+
+        if (result.error === "ALREADY_BOOKED") {
+          toast.warning(msg.title, { id: toastId, description: msg.desc, style: { minWidth: "360px" } });
+        } else {
+          toast.error(msg.title, { id: toastId, description: msg.desc, style: { minWidth: "360px" } });
+        }
         return;
       }
 

@@ -27,7 +27,7 @@ export async function getRooms(params: RoomSearchParams) {
 
   console.log('RPC params:', JSON.stringify(rpcParams, null, 2));
 
-  const { data, error } = await supabase.rpc('get_filtered_rooms', rpcParams);
+  const { data, error } = await supabase.rpc('get_filtered_rooms', rpcParams).eq('is_hidden', false);;
 
   if (error) {
     console.error('RPC error:', error);

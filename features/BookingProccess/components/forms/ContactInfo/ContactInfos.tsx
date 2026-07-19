@@ -33,7 +33,18 @@ export default function ContactInfos({ form }: FormProp) {
                 <h3 className="font-bold text-lg">{t("sectionTitle")}</h3>
                 <RadioAloneQ form={form}/>
                 <RadioOccupatioeQ form={form}/>
-                <SelectField form={form} label="universityQuestion" name="university" transilation="bookingProcess.contactInfo" arr={["university-of-lisbon","nova-university-lisbon", "university-of-porto" , "porto-polytechnic"]}/>
+                <SelectField 
+                  form={form} 
+                  label="universityQuestion" 
+                  name="university" 
+                  transilation="bookingProcess.contactInfo" 
+                  arr={[
+                    "universityList.university-of-lisbon",
+                    "universityList.nova-university-lisbon",
+                    "universityList.university-of-porto",
+                    "universityList.porto-polytechnic"
+                  ]}
+                />
                 <div className="mb-4">
                   <TextareaField form={form} label="aboutYou" name="about" transilation="bookingProcess.contactInfo"/>
                 </div>

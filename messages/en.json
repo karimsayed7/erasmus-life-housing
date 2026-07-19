@@ -147,6 +147,17 @@
     "rememberPassword": "Remember your password?",
     "signIn": "Sign in"
   },
+  "Validation": {
+  "emailRequired": "Email is required",
+  "emailInvalid": "Please enter a valid email address",
+  "nameRequired": "Name must be at least 2 characters",
+  "phoneInvalid": "Please enter a valid phone number",
+  "passwordRequired": "Password is required",
+  "passwordMinLength": "Password must be at least 8 characters",
+  "mustAgreeTerms": "You must agree to the Terms & Conditions",
+  "confirmPasswordRequired": "Please confirm your password",
+  "passwordsDontMatch": "Passwords do not match"
+  },
   "RentARoom": {
     "Filters": {
       "amenities": "Amenities",
@@ -194,7 +205,9 @@
     "checkOut": "Check Out",
     "checkBooking": "Check Booking",
     "similarRooms": "Similar Rooms in Lisbon",
-    "room type": "Room Type"
+    "room type": "Room Type",
+    "booked":"Booked",
+    "pendingApproval": "Waiting Approval"
   },
   "bookingProcess": {
     "toast": {
@@ -244,7 +257,8 @@
       "cardNumberPlaceholder": "Card Number",
       "expiryDate": "Expiry Date",
       "securityNumber": "Security Number",
-      "useDemoCard": "Use demo card"
+      "useDemoCard": "Use demo card",
+      "inst": "The amount will be temporarily held on your card once you submit your request, pending approval from the admin. The payment will only be officially charged if your request is accepted; otherwise, the hold will be released and you will not be billed."
     },
     "policies": {
       "title": "3. Cancellation Policy",
@@ -296,10 +310,8 @@
       "phone_number": "Phone Number",
       "nationality": "Nationality",
       "current_address": "Current Address",
-      "genderOptions": {
-        "male": "Male",
-        "female": "Female"
-      }
+      "male": "Male",
+      "female": "Female"
     },
     "requestMessage": {
       "title": "Booking Request Message",
@@ -308,13 +320,12 @@
     "additionalDetails": {
       "title": "Additional Details",
       "employment_status": "Do you Study or Work?",
+      "description": "Enter a Description",
       "where_you_study": "Where Are You Studying?",
       "funding_source": "How Will You Fund Your Stay?",
       "about_yourself": "Tell Us About Yourself",
-      "employmentOptions": {
-        "study": "Study",
-        "work": "Work"
-      }
+      "study": "Study",
+      "work": "Work"
     },
     "personDetails": {
       "uploadPhoto": "Upload new Picture",
@@ -347,7 +358,9 @@
     "description": "Description:",
     "tenants hosted": "Tenants hosted:",
     "date from": "Date from:",
-    "date to": "Date to:"
+    "date to": "Date to:",
+    "must sign in": "You must sign in first.",
+    "wrong": "Something went wrong."
   },
   "Dsidebar": {
     "Dashboard": "Dashboard",
@@ -355,32 +368,39 @@
     "Booking Requests": "Booking Requests"
   },
   "dashboard": {
-    "welcome back": "Welcome back",
-    "track": "Track, manage and forecast your properties",
-    "rooms": "Rooms",
-    "occupied": "Occupied Rooms",
-    "booked": "Booked",
-    "requests": "Booking Requests",
-    "pending": "Pending",
-    "add room": "Add Room",
-    "search": "Search",
-    "room": "Room",
-    "price": "Price",
-    "location": "Location",
-    "room type": "Room Type",
-    "date": "Date Puplished",
-    "status": "Status",
-    "tenants": "Tenants",
-    "approve confirmation": "Sure you want to approve this tenant ?",
-    "approve description": "All requests sent by others to the same room will be rejected",
-    "approve": "Approve",
-    "reject confirmation": "Sure you want to reject this tenant ?",
-    "reject description": "Request will be deleted",
-    "reject": "Reject",
-    "cancel": "Cancel"
-  },
+  "welcome back": "Welcome back",
+  "track": "Track, manage and forecast your properties",
+  "rooms": "Rooms",
+  "occupied": "Occupied Rooms",
+  "booked": "Booked",
+  "requests": "Booking Requests",
+  "pending": "Pending",
+  "add room": "Add Room",
+  "search": "Search Room...",
+  "room": "Room",
+  "price": "Price",
+  "location": "Location",
+  "room type": "Room Type",
+  "date": "Date Published",
+  "status": "Status",
+  "tenants": "Tenants",
+  "approve confirmation": "Sure you want to approve this tenant?",
+  "approve description": "All requests sent by others to the same room will be rejected",
+  "approve": "Approve",
+  "reject confirmation": "Sure you want to reject this tenant?",
+  "reject description": "Request will be deleted",
+  "reject": "Reject",
+  "cancel": "Cancel",
+  "delete": "Delete",
+  "delete confirmation": "Are you sure you want to delete this room?",
+  "delete description": "This action cannot be undone.",
+  "cannot delete booked room": "This room cannot be deleted because it has an active booking.",
+  "booked until": "Booked from {from} to {to}.",
+  "close": "Close"
+},
   "add edit room": {
     "add room": "Add Room",
+    "edit room": "Edit Room",
     "upload photo": "Upload Room Photos",
     "drag & drop": "Drag and Drop here",
     "browse files": "Browse Files",
@@ -398,6 +418,10 @@
     "bathrooms": "Bathrooms",
     "size": "Size(m²)",
     "facilities": "Facilities",
-"landlordRules": "Landlord Rules"
+    "landlordRules": "Landlord Rules",
+    "save changes": "Save changes",
+    "Studio": "Studio",
+"Apartment": "Apartment",
+"Private Room": "Private Room"
   }
 }

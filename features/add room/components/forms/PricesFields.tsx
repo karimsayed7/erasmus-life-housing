@@ -3,9 +3,11 @@
 import { useEffect } from "react"
 import { FieldGroup } from "@/components/ui/field"
 import InputField from "@/components/shared/fields/InputField"
-import { AddRoomProp } from "@/schema/AddRoomSchema"
+import { UseFormReturn } from "react-hook-form"
 
-export default function PricesFields({ form }: AddRoomProp) {
+type PricesFieldsProp = { form: UseFormReturn<any> }
+
+export default function PricesFields({ form }: PricesFieldsProp) {
   const price = form.watch("price")
   const fees = form.watch("fees")
   const bills = form.watch("bills")
@@ -18,10 +20,11 @@ export default function PricesFields({ form }: AddRoomProp) {
   return (
     <div>
       <FieldGroup>
-        <InputField form={form} label="price/per month" name="price" transilation="add edit room" />
-        <InputField form={form} label="fees" name="fees" transilation="add edit room" />
-        <InputField form={form} label="bills" name="bills" transilation="add edit room" />
+        <InputField type="number" form={form} label="price/per month" name="price" transilation="add edit room" />
+        <InputField type="number" form={form} label="fees" name="fees" transilation="add edit room" />
+        <InputField type="number" form={form} label="bills" name="bills" transilation="add edit room" />
         <InputField
+          type="number"
           form={form}
           label="total"
           name="total"

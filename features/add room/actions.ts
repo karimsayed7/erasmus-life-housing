@@ -25,9 +25,6 @@ export async function createRoom(input: CreateRoomInput): Promise<ActionResult> 
     return { success: false, error: "You must be signed in to add a room" }
   }
 
-  // The rooms_insert_admin RLS policy requires owner_id IS NULL *and* the
-  // caller to be an admin — check the role here too so a non-admin gets a
-  // clear message instead of a raw 42501 RLS error from Postgres.
   const { data: profile } = await supabase.from("profiles").select("role").eq("id", user.id).single()
 
   if (profile?.role !== "admin") {
@@ -49,18 +46,17 @@ export async function createRoom(input: CreateRoomInput): Promise<ActionResult> 
     ({ icon, en, pt }) => ({ icon, name_en: en, name_pt: pt })
   )
 
-  // yyyy-mm-dd — matches the `date` column type, no time component needed.
   const today = new Date().toISOString().split("T")[0]
 
   const { data: room, error } = await supabase
     .from("rooms")
     .insert({
-      owner_id: null, // admin-created listing, not tied to a landlord account yet
+      owner_id: null,
       title: { en: values.title, pt: titlePt },
       description: { en: values.description, pt: descriptionPt },
       location: { en: values.location, pt: values.location },
+      city: { en: "Porto", pt: "Porto" },
       room_type: { en: values.roomType, pt: ROOM_TYPE_PT[values.roomType] },
-      approval_status: { en: "none", pt: "nenhum" },
       attributes: [
         { icon: "BedDouble", value: values.attrs.bedrooms, name_en: "Bedrooms", name_pt: "Quartos" },
         { icon: "Maximize2", value: values.attrs.size, name_en: "m2", name_pt: "Área" },

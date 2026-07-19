@@ -38,6 +38,9 @@ export default function Payment({ form }: FormProp) {
                     <ExpiryDate form={form}/>
                     <SecurityNumber form={form}/>
                 </div>
+                <p className="font-semibold text-base underline mt-3">
+                  {t("inst")}
+                </p>
                 {/* demo data */}
                 <UseDemoCard form={form}/>
               </FieldGroup>

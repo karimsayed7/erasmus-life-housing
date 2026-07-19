@@ -147,6 +147,17 @@
     "rememberPassword": "Lembrou sua senha?",
     "signIn": "Entrar"
   },
+  "Validation": {
+  "emailRequired": "O email é obrigatório",
+  "emailInvalid": "Introduza um endereço de email válido",
+  "nameRequired": "O nome deve ter pelo menos 2 caracteres",
+  "phoneInvalid": "Introduza um número de telefone válido",
+  "passwordRequired": "A palavra-passe é obrigatória",
+  "passwordMinLength": "A palavra-passe deve ter pelo menos 8 caracteres",
+  "mustAgreeTerms": "Deve concordar com os Termos e Condições",
+  "confirmPasswordRequired": "Confirme a sua palavra-passe",
+  "passwordsDontMatch": "As palavras-passe não coincidem"
+},
   "RentARoom": {
     "Filters": {
       "amenities": "Comodidades",
@@ -194,7 +205,9 @@
     "checkOut": "Check-out",
     "checkBooking": "Verificar Reserva",
     "similarRooms": "Quartos Semelhantes em Lisboa",
-    "room type": "Tipo de Quarto"
+    "room type": "Tipo de Quarto",
+    "booked":"Reservados",
+    "pendingApproval": "Aguardando aprovação"
   },
   "bookingProcess": {
     "toast": {
@@ -244,7 +257,8 @@
       "cardNumberPlaceholder": "Número do Cartão",
       "expiryDate": "Data de Validade",
       "securityNumber": "Código de Segurança",
-      "useDemoCard": "Usar cartão de demonstração"
+      "useDemoCard": "Usar cartão de demonstração",
+      "inst": "O valor será retido temporariamente no seu cartão assim que você enviar a solicitação, aguardando a aprovação do administrador. O pagamento só será cobrado oficialmente se o seu pedido for aceito; caso contrário, a retenção será cancelada e você não será cobrado."
     },
     "policies": {
       "title": "3. Política de Cancelamento",
@@ -296,10 +310,8 @@
       "phone_number": "Número de Telefone",
       "nationality": "Nacionalidade",
       "current_address": "Morada Atual",
-      "genderOptions": {
-        "male": "Masculino",
-        "female": "Feminino"
-      }
+      "male": "Masculino",
+      "female": "Feminino"
     },
     "requestMessage": {
       "title": "Mensagem de Pedido de Reserva",
@@ -311,10 +323,8 @@
       "where_you_study": "Onde Estuda?",
       "funding_source": "Como Vai Financiar a Sua Estadia?",
       "about_yourself": "Fale-nos Sobre Si",
-      "employmentOptions": {
-        "study": "Estudo",
-        "work": "Trabalho"
-      }
+      "study": "Estudo",
+      "work": "Trabalho"
     },
     "personDetails": {
       "uploadPhoto": "Carregar Nova Foto",
@@ -347,7 +357,9 @@
   "description": "Descrição:",
   "tenants hosted": "Inquilinos Hospedados:",
   "date from": "Data de Início:",
-  "date to": "Data de Término:"
+  "date to": "Data de Término:",
+  "must sign in": "Você precisa fazer login primeiro.",
+  "wrong": "Algo deu errado."
 },
 "Dsidebar": {
   "Dashboard": "Painel de Controle",
@@ -355,32 +367,39 @@
   "Booking Requests": "Pedidos de Reserva"
 },
   "dashboard": {
-    "welcome back": "Bem-vindo de volta",
-    "track": "Acompanhe, gerencie e preveja suas propriedades",
-    "rooms": "Quartos",
-    "occupied": "Quartos Ocupados",
-    "booked": "Reservados",
-    "requests": "Solicitações de Reserva",
-    "pending": "Pendentes",
-    "add room": "Adicionar Quarto",
-    "search": "Pesquisar",
-    "room": "Quarto",
-    "price": "Preço",
-    "location": "Localização",
-    "room type": "Tipo de Quarto",
-    "date": "Data de Publicação",
-    "status": "Status",
-    "tenants": "Inquilinos",
-    "approve confirmation": "Tem certeza de que deseja aprovar este inquilino?",
-    "approve description": "Todos os pedidos enviados por outras pessoas para o mesmo quarto serão rejeitados",
-    "approve": "Aprovar",
-    "reject confirmation": "Tem certeza de que deseja rejeitar este inquilino?",
-    "reject description": "O pedido será excluído",
-    "reject": "Rejeitar",
-    "cancel": "Cancelar"
-  },
+  "welcome back": "Bem-vindo de volta",
+  "track": "Acompanhe, gerencie e preveja suas propriedades",
+  "rooms": "Quartos",
+  "occupied": "Quartos Ocupados",
+  "booked": "Reservados",
+  "requests": "Solicitações de Reserva",
+  "pending": "Pendentes",
+  "add room": "Adicionar Quarto",
+  "room": "Quarto",
+  "price": "Preço",
+  "location": "Localização",
+  "room type": "Tipo de Quarto",
+  "date": "Data de Publicação",
+  "status": "Status",
+  "tenants": "Inquilinos",
+  "approve confirmation": "Tem certeza de que deseja aprovar este inquilino?",
+  "approve description": "Todas as outras solicitações para o mesmo quarto serão rejeitadas",
+  "approve": "Aprovar",
+  "reject confirmation": "Tem certeza de que deseja rejeitar este inquilino?",
+  "reject description": "A solicitação será excluída",
+  "reject": "Rejeitar",
+  "cancel": "Cancelar",
+  "delete": "Excluir",
+  "search": "Pesquisar quarto...",
+  "delete confirmation": "Tem certeza de que deseja excluir este quarto?",
+  "delete description": "Esta ação não pode ser desfeita.",
+  "cannot delete booked room": "Este quarto não pode ser excluído porque possui uma reserva ativa.",
+  "booked until": "Reservado de {from} até {to}.",
+  "close": "Fechar"
+},
   "add edit room": {
     "add room": "Adicionar Quarto",
+    "edit room": "Edit Room",
     "upload photo": "Enviar Fotos do Quarto",
     "drag & drop": "Arraste e solte aqui",
     "browse files": "Procurar Arquivos",
@@ -398,7 +417,11 @@
     "bathrooms": "Casas de banho",
     "size": "Área (m²)",
     "facilities": "Comodidades",
-"landlordRules": "Regras do Proprietário"
+    "landlordRules": "Regras do Proprietário",
+    "save changes": "Save changes",
+    "Studio": "Estúdio",
+"Apartment": "Apartamento",
+"Private Room": "Quarto Privado"
 }
 
 }

@@ -15,7 +15,7 @@ export function HeaderNav({ links, onLinkClick, mobile = false }: Props) {
     return (
       <>
         {links.map((link) => (
-          <div key={link.href} className="border-b border-gray-100 pb-3">
+          <div key={link.href} className=" border-gray-100 pb-3">
             <Link
               href={link.href}
               onClick={onLinkClick}

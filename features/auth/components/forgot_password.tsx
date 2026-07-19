@@ -1,30 +1,38 @@
 "use client";
 
-import Image from 'next/image';
-import Link from 'next/link';
-import { useState } from 'react';
-import useForgetPassword from '@/features/auth/hooks/use-forget-password';
+import Image from "next/image";
+import Link from "next/link";
+import { useMemo } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import useForgetPassword from "@/features/auth/hooks/use-forget-password";
 import { useTranslations } from "next-intl";
+import { createForgotPasswordSchema, ForgotPasswordFormData } from "@/schema/AuthSchema";
+import InputField from "@/components/shared/fields/InputField";
 
 function Forgot_password() {
-  const [email, setEmail] = useState('');
   const { error, success, loading, handleResetPassword } = useForgetPassword();
   const t = useTranslations("ForgotPassword");
+  const tValidation = useTranslations("Validation");
+
+  const forgotPasswordSchema = useMemo(() => createForgotPasswordSchema(tValidation), [tValidation]);
+
+  const form = useForm<ForgotPasswordFormData>({
+    resolver: zodResolver(forgotPasswordSchema),
+    defaultValues: { email: "" },
+    mode: "onTouched",
+  });
+
+  const onSubmit = (data: ForgotPasswordFormData) => {
+    handleResetPassword(data.email);
+  };
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row w-full bg-white">
-      {/* Left side: Hero Image */}
       <div className="hidden md:block md:w-1/2 relative min-h-screen">
-        <Image
-          src="/assets/sign in.png"
-          alt="Erasmus Life Housing Forgot Password"
-          fill
-          priority
-          className="object-cover"
-        />
+        <Image src="/assets/sign in.png" alt="Erasmus Life Housing Forgot Password" fill priority className="object-cover" />
       </div>
 
-      {/* Right side: Forgot Password Form */}
       <div className="w-full md:w-1/2 flex flex-col justify-between min-h-screen p-4 md:p-6 lg:p-8 xl:p-10 bg-white">
         <div className="hidden md:block h-8" />
 
@@ -44,23 +52,9 @@ function Forgot_password() {
               </Link>
             </div>
           ) : (
-            <form className="space-y-5" onSubmit={(e) => {handleResetPassword(e,email)}}>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1.5" htmlFor="email">
-                  {t("email")}
-                </label>
-                <input
-                  id="email"
-                  type="email"
-                  placeholder={t("emailPlaceholder")}
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition text-sm text-gray-900 placeholder-gray-400"
-                  required
-                />
-              </div>
+            <form className="space-y-5" onSubmit={form.handleSubmit(onSubmit)}>
+              <InputField form={form} name="email" label="email" transilation="ForgotPassword" />
 
-              {/* Error message */}
               {error && (
                 <p className="text-sm text-red-500 bg-red-50 border border-red-200 rounded-lg px-4 py-2">
                   {error}
@@ -85,9 +79,7 @@ function Forgot_password() {
           )}
         </div>
 
-        <div className="text-center text-xs text-gray-400 pt-8">
-          © ErasmusLifeHousing
-        </div>
+        <div className="text-center text-xs text-gray-400 pt-8">© ErasmusLifeHousing</div>
       </div>
     </div>
   );
