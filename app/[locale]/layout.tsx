@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "../globals.css";
 import QueryProvider from "@/providers/query-provider";
+import { AuthProvider } from "@/providers/auth-provider";
 import {NextIntlClientProvider, hasLocale} from 'next-intl';
 import {notFound} from 'next/navigation';
 import {routing} from '@/i18n/routing';
@@ -33,10 +34,12 @@ export default async function RootLayout({
       <body className="min-h-full flex flex-col">
         <QueryProvider>
         <NextIntlClientProvider>
+        <AuthProvider>
         <NuqsAdapter>
           {children}
           <Toaster position="top-center" richColors />
         </NuqsAdapter>
+        </AuthProvider>
         </NextIntlClientProvider>
         </QueryProvider>
       </body>

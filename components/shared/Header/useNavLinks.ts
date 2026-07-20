@@ -1,5 +1,6 @@
 // components/Header/useNavLinks.ts
-import { useUserRole } from "@/features/auth/hooks/profile/useUserRole";
+// import { useUserRole } from "@/features/auth/hooks/profile/useUserRole";
+import { useUserRole } from "@/providers/auth-provider";
 import { useTranslations } from "next-intl";
 import { usePathname } from "@/i18n/navigation";
 

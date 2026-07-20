@@ -5,7 +5,8 @@ import { Link } from "@/i18n/navigation";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { UserDropdown } from "@/features/auth/components/profile/UserDropdown";
-import type { UserProfile } from "@/features/auth/hooks/profile/useAuthProfile";
+// import type { UserProfile } from "@/features/auth/hooks/profile/useAuthProfile";
+import type { UserProfile } from "@/providers/auth-provider";
 import { useSearchParams } from "next/navigation";
 
 type Props = {
