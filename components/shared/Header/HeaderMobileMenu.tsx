@@ -8,7 +8,8 @@ import { usePathname, useRouter } from "@/i18n/navigation";
 import { UserAvatar } from "@/features/auth/components/profile/UserAvatar";
 import { HeaderNav } from "./HeaderNav";
 import type { NavLink } from "./useNavLinks";
-import type { UserProfile } from "@/features/auth/hooks/profile/useAuthProfile";
+// import type { UserProfile } from "@/features/auth/hooks/profile/useAuthProfile";
+import type { UserProfile } from "@/providers/auth-provider";
 
 type Props = {
   links: NavLink[];

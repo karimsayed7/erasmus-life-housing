@@ -20,8 +20,11 @@ function useSignIn() {
       return;
     }
 
+    // no need to manually refresh the profile here anymore —
+    // AuthProvider's onAuthStateChange listener picks up the SIGNED_IN
+    // event and refetches automatically.
     router.push('/');
-    router.refresh(); // important: re-syncs server session
+    router.refresh(); // re-syncs the server-rendered session
   };
 
   const handleGoogleLogin = async () => {
