@@ -7,11 +7,10 @@ import {
   useCallback,
   ReactNode,
 } from "react";
-import { User } from "@supabase/supabase-js";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
 
-import { getSupabaseBrowserClient } from "@/lib/supabase/browser-client";
+import { useAuthProfile } from "@/providers/auth-provider";
 import {
   getFavorites,
   addFavorite,
@@ -31,73 +30,47 @@ export const FavoritesContext = createContext<FavoritesContextType | null>(
 
 export function FavoritesProvider({ children }: { children: ReactNode }) {
   const [favoriteIds, setFavoriteIds] = useState<string[]>([]);
-  const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const t = useTranslations("favourites and applications")
+  const t = useTranslations("favourites and applications");
+
+  // Reads auth state from the single shared AuthProvider instead of
+  // independently calling supabase.auth.getUser()/onAuthStateChange here —
+  // that duplicate concurrent call (racing with AuthProvider's own auth
+  // call on the same page load) was the root cause of the stuck-loading bug.
+  const { userId, isLoading: isAuthLoading } = useAuthProfile();
+
   useEffect(() => {
     let isMounted = true;
 
     async function load() {
-      const supabase = getSupabaseBrowserClient();
+      if (!userId) {
+        setFavoriteIds([]);
+        setIsLoading(false);
+        return;
+      }
 
       try {
-        const [
-          {
-            data: { user },
-          },
-          favoriteIds,
-        ] = await Promise.all([
-          supabase.auth.getUser(),
-          getFavorites().catch(() => []),
-        ]);
-
-        if (!isMounted) return;
-
-        setUser(user);
-        setFavoriteIds(favoriteIds);
+        const ids = await getFavorites();
+        if (isMounted) setFavoriteIds(ids);
+      } catch {
+        if (isMounted) setFavoriteIds([]);
       } finally {
-        if (isMounted) {
-          setIsLoading(false);
-        }
+        if (isMounted) setIsLoading(false);
       }
     }
 
-    load();
-
-    const supabase = getSupabaseBrowserClient();
-
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange(async (_, session) => {
-      if (!isMounted) return;
-
-      setUser(session?.user ?? null);
-
-      if (session?.user) {
-        try {
-          const ids = await getFavorites();
-          if (isMounted) {
-            setFavoriteIds(ids);
-          }
-        } catch {
-          if (isMounted) {
-            setFavoriteIds([]);
-          }
-        }
-      } else {
-        setFavoriteIds([]);
-      }
-    });
+    if (!isAuthLoading) {
+      load();
+    }
 
     return () => {
       isMounted = false;
-      subscription.unsubscribe();
     };
-  }, []);
+  }, [userId, isAuthLoading]);
 
   const toggleFavorite = useCallback(
     async (roomId: string) => {
-      if (!user) {
+      if (!userId) {
         toast.error(t("must sign in"));
         return;
       }
@@ -122,7 +95,7 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
         toast.error(t("wrong"));
       }
     },
-    [favoriteIds, user]
+    [favoriteIds, userId, t]
   );
 
   const isFavorite = useCallback(

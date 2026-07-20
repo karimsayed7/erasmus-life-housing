@@ -3,7 +3,9 @@ import Sidebar from "@/components/shared/Sidebar";
 import Header from "@/components/shared/Header/Header";
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useUserRole } from '@/features/auth/hooks/profile/useUserRole';
+// import { useUserRole } from '@/features/auth/hooks/profile/useUserRole';
+import { useUserRole } from "@/providers/auth-provider";
+
 
 
 export default function DashboardLayout({

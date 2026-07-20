@@ -10,9 +10,14 @@ export type UserProfile = {
   photo: string | null;
 };
 
+export type UserRole = "admin" | "user" | null;
+
 type AuthContextValue = {
   profile: UserProfile | null;
+  role: UserRole;
+  isAdmin: boolean;
   isLoading: boolean;
+  userId: string | null;
   handleLogout: () => Promise<void>;
 };
 
@@ -20,6 +25,8 @@ const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [profile, setProfile] = useState<UserProfile | null>(null);
+  const [role, setRole] = useState<UserRole>(null);
+  const [userId, setUserId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
 
@@ -27,48 +34,50 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const supabase = getSupabaseBrowserClient();
     let isMounted = true;
 
-    const fetchProfile = async () => {
+    const fetchAuthState = async () => {
       const {
         data: { session },
       } = await supabase.auth.getSession();
 
+      if (!isMounted) return;
+
       if (!session) {
-        if (isMounted) {
-          setProfile(null);
-          setIsLoading(false);
-        }
+        setProfile(null);
+        setRole(null);
+        setUserId(null);
+        setIsLoading(false);
         return;
       }
 
+      setUserId(session.user.id);
+
       const { data } = await supabase
         .from("profiles")
-        .select("name, email, photo")
+        .select("name, email, photo, role")
         .eq("id", session.user.id)
         .single();
 
       if (!isMounted) return;
 
       setProfile(
-        data ?? {
-          name: session.user.email ?? null,
-          email: session.user.email ?? null,
-          photo: null,
-        }
+        data
+          ? { name: data.name, email: data.email, photo: data.photo }
+          : {
+              name: session.user.email ?? null,
+              email: session.user.email ?? null,
+              photo: null,
+            }
       );
+      setRole((data?.role as UserRole) ?? "user");
       setIsLoading(false);
     };
 
-    // 1) initial fetch on mount (covers hard refresh)
-    fetchProfile();
+    fetchAuthState();
 
-    // 2) re-run fetchProfile on every auth event (SIGNED_IN, SIGNED_OUT,
-    // TOKEN_REFRESHED, and the INITIAL_SESSION event fired right on
-    // subscribe) — so the Header updates immediately after sign-in
-    // instead of waiting for a remount.
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange(() => {
-      fetchProfile();
+      fetchAuthState();
     });
 
     return () => {
@@ -81,12 +90,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const supabase = getSupabaseBrowserClient();
     await supabase.auth.signOut();
     setProfile(null);
+    setRole(null);
+    setUserId(null);
     router.push("/");
     router.refresh();
   };
 
   return (
-    <AuthContext.Provider value={{ profile, isLoading, handleLogout }}>
+    <AuthContext.Provider
+      value={{ profile, role, isAdmin: role === "admin", isLoading, userId, handleLogout }}
+    >
       {children}
     </AuthContext.Provider>
   );
@@ -98,4 +111,12 @@ export function useAuthProfile() {
     throw new Error("useAuthProfile must be used within <AuthProvider>");
   }
   return ctx;
+}
+
+export function useUserRole() {
+  const ctx = useContext(AuthContext);
+  if (!ctx) {
+    throw new Error("useUserRole must be used within <AuthProvider>");
+  }
+  return { role: ctx.role, isAdmin: ctx.isAdmin, isLoading: ctx.isLoading };
 }
