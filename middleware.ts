@@ -1,4 +1,3 @@
-
 import createMiddleware from "next-intl/middleware";
 import type { NextRequest } from "next/server";
 
@@ -7,7 +6,7 @@ import { updateSession } from "@/lib/supabase/proxy";
 
 const handleI18nRouting = createMiddleware(routing);
 
-export async function proxy(request: NextRequest) {  
+export async function middleware(request: NextRequest) {
   const response = handleI18nRouting(request);
   return updateSession(request, response);
 }
