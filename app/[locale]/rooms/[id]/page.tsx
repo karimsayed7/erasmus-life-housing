@@ -1,4 +1,5 @@
 import React from 'react'
+import { notFound } from 'next/navigation'
 import { createSupabaseServerClient } from "@/lib/supabase/server-client"
 import RoomPage from '@/features/roomPage/RoomPage';
 import { FavoritesProvider } from "@/providers/FavoritesProvider";
@@ -18,6 +19,10 @@ async function page({ params }: Props) {
     supabase.from("rooms").select("*").eq("id", id).single(),
     supabase.auth.getUser(),
   ]);
+
+  if (!room) {
+    notFound();
+  }
 
   return (
     <div>

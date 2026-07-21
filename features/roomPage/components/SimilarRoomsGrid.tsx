@@ -9,7 +9,19 @@ interface Props {
 
 export default async function SimilarRoomsGrid({ city, currentRoomId }: Props) {
   const supabase = await createSupabaseServerClient();
-  const { data: rooms } = await supabase.from("rooms").select("*").eq("city->>en", city).neq("id", currentRoomId).eq('is_hidden', false).limit(4);
+
+  let query = supabase
+    .from("rooms")
+    .select("*")
+    .neq("id", currentRoomId)
+    .eq("is_hidden", false)
+    .limit(4);
+
+  if (city) {
+    query = query.eq("city->>en", city);
+  }
+
+  const { data: rooms } = await query;
   const roomsList = rooms ?? [];
   const tRoomPage = await getTranslations("roomPage");
 

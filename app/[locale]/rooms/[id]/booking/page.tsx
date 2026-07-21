@@ -1,5 +1,6 @@
 import React from 'react'
-import {createSupabaseServerClient} from "@/lib/supabase/server-client"
+import { notFound } from 'next/navigation'
+import { createSupabaseServerClient } from "@/lib/supabase/server-client"
 import BookingProccess from '@/features/BookingProccess/BookingProccess';
 
 interface Props {
@@ -18,13 +19,17 @@ export default async function Page({
   const { id } = await params;
   const { checkIn, checkOut } = await searchParams;
 
-   const supabase = await createSupabaseServerClient();
-  
-    const { data: room } = await supabase
-      .from("rooms")
-      .select("*")
-      .eq("id", id)
-      .single();
+  const supabase = await createSupabaseServerClient();
+
+  const { data: room } = await supabase
+    .from("rooms")
+    .select("*")
+    .eq("id", id)
+    .single();
+
+  if (!room) {
+    notFound();
+  }
 
   return (
     <div>
@@ -32,4 +37,3 @@ export default async function Page({
     </div>
   )
 }
-
