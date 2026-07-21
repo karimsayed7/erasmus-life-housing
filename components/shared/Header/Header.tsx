@@ -31,7 +31,9 @@ function Header({className} : HProp) {
           <Image src="/icons/logo.svg" alt="Brand Logo" width={140} height={45} priority />
         </Link>
 
-        <HeaderNav links={navLinks} />
+        <div className="ml-25">
+          <HeaderNav links={navLinks} />
+        </div>
 
         <HeaderDesktopActions
           profile={profile}

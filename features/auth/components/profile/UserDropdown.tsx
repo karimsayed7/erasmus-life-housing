@@ -11,7 +11,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { UserAvatar } from "../profile/UserAvatar";
 import { useTranslations } from 'next-intl';
-import type { UserProfile } from "../../hooks/profile/useAuthProfile";
+// import type { UserProfile } from "../../hooks/profile/useAuthProfile";
+import type { UserProfile } from "@/providers/auth-provider";
 
 type Props = {
   profile: UserProfile;

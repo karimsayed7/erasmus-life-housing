@@ -30,14 +30,18 @@ export async function getRoomById(id: string): Promise<RoomForEdit> {
     notFound()
   }
 
-  // attributes[] -> {bedrooms, bathrooms, size}. Matched by icon since that's
-  // the stable identifier createRoom writes (labels are locale-dependent).
+  // title/description/location/room_type are jsonb columns typed generically
+  // as `Json` by Supabase — createRoom always writes them as {en, pt} (or
+  // {en, pt} wrapped further for room_type), so we cast to the known shape here.
+  const title = room.title as { en: string; pt: string }
+  const description = room.description as { en: string; pt: string }
+  const location = room.location as { en: string; pt: string }
+  const roomType = room.room_type as { en: "Studio" | "Apartment" | "Private Room"; pt: string }
+
   const attrByIcon = Object.fromEntries(
     (room.attributes as { icon: string; value: number }[]).map((a) => [a.icon, a.value])
   )
 
-  // facilities/landlord_rules are stored as {icon, name_en, name_pt} — map
-  // back to the option `key` the form/checkboxes work with.
   const facilities = FACILITIES_OPTIONS.filter((o) =>
     (room.facilities as { icon: string }[]).some((f) => f.icon === o.icon)
   ).map((o) => o.key)
@@ -48,22 +52,22 @@ export async function getRoomById(id: string): Promise<RoomForEdit> {
 
   return {
     id: room.id,
-    title: room.title,
-    description: room.description,
-    location: room.location,
-    roomType: room.room_type.en,
-    images: room.images,
-    lat: room.lat,
-    lng: room.lng,
+    title,
+    description,
+    location,
+    roomType: roomType.en,
+    images: room.images ?? [],
+    lat: room.lat ?? 0,
+    lng: room.lng ?? 0,
     attrs: {
       bedrooms: attrByIcon["BedDouble"] ?? 0,
       bathrooms: attrByIcon["Bath"] ?? 0,
       size: attrByIcon["Maximize2"] ?? 0,
     },
-    price: room.price,
-    fees: room.fee,
-    bills: room.bills,
-    total: room.total,
+    price: room.price ?? 0,
+    fees: room.fee ?? 0,
+    bills: room.bills ?? 0,
+    total: room.total ?? 0,
     facilities,
     landlordRules,
   }

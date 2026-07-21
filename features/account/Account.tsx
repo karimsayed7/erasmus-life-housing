@@ -6,7 +6,7 @@ import Header from '@/components/shared/Header/Header'
 import BasicInfo from './components/forms/BasicInfo'
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { ProfileSchema, ProfileFormType } from '@/schema/ProfileSchema'
+import { ProfileSchema, ProfileFormValues, ProfileFormType } from '@/schema/ProfileSchema'
 import { getSupabaseBrowserClient } from "@/lib/supabase/browser-client"
 import { Button } from '@/components/ui/button'
 import { useProfileDetails } from './hooks/UseProfileDetails'
@@ -16,22 +16,20 @@ import { Profile } from '@/types/profile'
 // import RequestMessage from './components/forms/RequestMessage'
 import AdditionalDetails from './components/forms/AdditionalDetails'
 import { useTranslations } from 'next-intl'
-import { z } from "zod";
 
-  
-function profileToFormValues(profile: Profile): ProfileFormType {
+function profileToFormValues(profile: Profile): ProfileFormValues {
   const { firstName, lastName } = splitName(profile.name)
 
   return {
     firstName,
     lastName,
-    gender: (profile.gender as ProfileFormType["gender"]) ?? undefined,
+    gender: (profile.gender as ProfileFormValues["gender"]) ?? undefined,
     email: profile.email ?? "",
     phone_number: profile.phone_number ?? "",
     nationality: profile.nationality ?? "",
     current_address: profile.current_address ?? "",
     bookingRequestMessage: profile.booking_request_message ?? "",
-    employment_status: (profile.employment_status as ProfileFormType["employment_status"]) ?? undefined,
+    employment_status: (profile.employment_status as ProfileFormValues["employment_status"]) ?? undefined,
     where_you_study: profile.where_you_study ?? "",
     funding_source: profile.funding_source ?? "",
     about_yourself: profile.about_yourself ?? "",
@@ -44,7 +42,7 @@ export default function Account() {
   const t = useTranslations('account.actions')
   const t2 = useTranslations('account.toast')
 
-  const form = useForm<ProfileFormType>({
+  const form = useForm<ProfileFormValues, unknown, ProfileFormType>({
     resolver: zodResolver(ProfileSchema),
     mode: "onBlur",
     defaultValues: {
